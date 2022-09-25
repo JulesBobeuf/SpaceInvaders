@@ -247,8 +247,8 @@ public abstract class AbstractMovable implements IMovable {
     @Override
     public boolean move(long delta) {
         // On met à jour la position de l'objet sur l'axe x.
-        int limitMaxX = game.getLeftLimit() - getWidth();
-        double newX = updatePosition(xPosition.get(), horizontalSpeed, delta, game.getRightLimit(), limitMaxX);
+        int limitMaxX = game.getRightLimit() - getWidth();
+        double newX = updatePosition(xPosition.get(), horizontalSpeed, delta, game.getLeftLimit(), limitMaxX);
         xPosition.set(newX);
 
         // On met à jour la position de l'objet sur l'axe y.
@@ -256,7 +256,7 @@ public abstract class AbstractMovable implements IMovable {
         double newY = updatePosition(yPosition.get(), verticalSpeed, delta, game.getTopLimit(), limitMaxY);
         yPosition.set(newY);
 
-        if ((newX == game.getRightLimit()) || (newX == limitMaxX)) {
+        if ((newX == game.getLeftLimit()) || (newX == limitMaxX)) {
             // L'objet a atteint la limite sur l'axe x.
             return false;
         }
