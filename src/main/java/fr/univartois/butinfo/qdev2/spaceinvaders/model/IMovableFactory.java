@@ -16,6 +16,9 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+
 /**
  * L'interface {@link IMovableFactory} permet de créer différentes instances de
  * {@link IMovable}.
@@ -25,6 +28,22 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
  * @version 0.1.0
  */
 public interface IMovableFactory {
+
+    /**
+     * Modifie l'instance de {@link ISpriteStore} fournissant les {@link Sprite} pour les
+     * objets à créer.
+     *
+     * @param spriteStore L'instance de {@link ISpriteStore} fournissant les {@link Sprite}
+     *        pour les objets à créer.
+     */
+    void setSpriteStore(ISpriteStore spriteStore);
+
+    /**
+     * Modifie le jeu dans lequel les objets sont créés.
+     *
+     * @param game Le jeu dans lequel les objets sont créés.
+     */
+    void setGame(SpaceInvadersGame game);
 
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un alien.

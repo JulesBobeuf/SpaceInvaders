@@ -157,6 +157,9 @@ public final class SpaceInvadersGame {
      * Prépare une partie de Space-Invaders sur le contrôleur de l'application.
      */
     public void prepare() {
+        factory.setSpriteStore(spriteStore);
+        factory.setGame(this);
+
         controller.setSpriteStore(spriteStore);
         controller.prepare();
         controller.bindScore(score);
