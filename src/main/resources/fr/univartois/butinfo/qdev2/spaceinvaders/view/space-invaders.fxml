@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-    minHeight="-Infinity" maxHeight="-Infinity" minWidth="-Infinity" maxWidth="-Infinity" 
+    minHeight="-Infinity" maxHeight="-Infinity" minWidth="-Infinity" maxWidth="-Infinity"
 	fx:controller="fr.univartois.butinfo.qdev2.spaceinvaders.controller.SpaceInvadersController">
 	<children>
 		<Canvas fx:id="background" height="480.0" width="640.0" />
