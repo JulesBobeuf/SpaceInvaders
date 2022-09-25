@@ -318,7 +318,7 @@ public final class SpaceInvadersGame {
     /**
      * Supprime tous les objets pouvant se déplacer dans le jeu.
      */
-    public void clearAllMovables() {
+    private void clearAllMovables() {
         for (IMovable movable : movableObjects) {
             movable.consume();
         }
