@@ -35,7 +35,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public final class SpaceInvadersGame {
 
     /**
-     * La vitesse du vaisseau du joueur lorsqu'il se déplace.
+     * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
      */
     private static final double SHIP_SPEED = 150;
 
@@ -115,12 +115,15 @@ public final class SpaceInvadersGame {
      *        pixels).
      * @param spriteStore L'instance de {@link ISpriteStore} permettant de créer les
      *        {@link Sprite} du jeu.
+     * @param factory L'instance de {@link IMovableFactory} permettant de créer les objets
+     *        du jeu.
      */
-    public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore) {
+    public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
+            IMovableFactory factory) {
         this.width = width;
         this.height = height;
         this.spriteStore = spriteStore;
-        this.factory = null; // TODO Créer la factory à utiliser.
+        this.factory = factory;
     }
 
     /**
@@ -183,9 +186,10 @@ public final class SpaceInvadersGame {
      * Crée les différents objets présents au début de la partie et pouvant se déplacer.
      */
     private void createMovables() {
+        // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
 
-         // TODO Créer le vaisseau du joueur et les aliens.
+        // TODO Créer le vaisseau du joueur et les aliens.
     }
 
     /**
@@ -214,7 +218,7 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShot() {
-        // TODO Déclencher un tir, à condition que le délai a été respecté.
+        // TODO Déclencher un tir, à condition que le délai ait été respecté.
     }
 
     /**
@@ -269,7 +273,7 @@ public final class SpaceInvadersGame {
     }
 
     /**
-     *  Supprime tous les objets pouvant se déplacer dans le jeu.
+     * Supprime tous les objets pouvant se déplacer dans le jeu.
      */
     public void clearAllMovables() {
         for (IMovable movable : movableObjects) {

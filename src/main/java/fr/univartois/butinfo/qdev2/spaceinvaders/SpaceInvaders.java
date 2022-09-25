@@ -61,8 +61,9 @@ public final class SpaceInvaders extends Application {
         controller.setStage(stage);
 
         // On crée ensuite le jeu, que l'on lie au contrôleur.
+        // TODO Utiliser ici la bonne factory pour créer les objets du jeu.
         SpaceInvadersGame game = new SpaceInvadersGame(
-                GAME_WIDTH, GAME_HEIGHT, new SpriteStore());
+                GAME_WIDTH, GAME_HEIGHT, new SpriteStore(), null);
         controller.setGame(game);
         game.setController(controller);
         game.prepare();
