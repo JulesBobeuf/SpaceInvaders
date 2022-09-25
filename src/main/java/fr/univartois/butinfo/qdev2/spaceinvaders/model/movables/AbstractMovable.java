@@ -317,6 +317,12 @@ public abstract class AbstractMovable implements IMovable {
      */
     @Override
     public boolean isCollidingWith(IMovable other) {
+        if (isConsumed() || other.isConsumed()) {
+            // L'un des deux objets au moins est déjà consommé.
+            // Il ne peut donc pas y avoir de collision.
+            return false;
+        }
+
         Rectangle rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
         return rectangle.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
     }
