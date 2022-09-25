@@ -136,12 +136,52 @@ public final class SpaceInvadersGame {
     }
 
     /**
+     * Donne la limite à gauche pour la position des objets mobiles du jeu (mesurée en
+     * pixels).
+     *
+     * @return La limite à gauche pour la position des objets mobiles du jeu.
+     */
+    public int getLeftLimit() {
+        return 10;
+    }
+
+    /**
+     * Donne la limite à droite pour la position des objets mobiles du jeu (mesurée en
+     * pixels).
+     *
+     * @return La limite à droite pour la position des objets mobiles du jeu.
+     */
+    public int getRightLimit() {
+        return width - 10;
+    }
+
+    /**
      * Donne la hauteur sur laquelle les objets du jeu peuvent se déplacer (en pixels).
      *
      * @return La hauteur du jeu.
      */
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Donne la limite en haut pour la position des objets mobiles du jeu (mesurée en
+     * pixels).
+     *
+     * @return La limite en haut pour la position des objets mobiles du jeu.
+     */
+    public int getTopLimit() {
+        return 10;
+    }
+
+    /**
+     * Donne la limite en bas pour la position des objets mobiles du jeu (mesurée en
+     * pixels).
+     *
+     * @return La limite en bas pour la position des objets mobiles du jeu.
+     */
+    public int getBottomLimit() {
+        return height - 100;
     }
 
     /**
