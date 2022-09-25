@@ -26,7 +26,6 @@ import javafx.scene.image.Image;
 /**
  * La classe {@link SpriteStore} permet de charger les différentes images utilisées dans
  * les {@link Sprite} une et une seule fois pendant l'exécution du programme.
- * Cette classe implémente un Singleton.
  *
  * @author Romain Wallon
  *

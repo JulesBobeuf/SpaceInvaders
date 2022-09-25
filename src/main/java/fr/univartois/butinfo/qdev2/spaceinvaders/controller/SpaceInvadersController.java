@@ -138,26 +138,6 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
         addKeyListeners();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.ISpaceInvadersController#bindScore(javafx.beans.property.IntegerProperty)
-     */
-    @Override
-    public void bindScore(IntegerProperty scoreProperty) {
-        this.score.textProperty().bind(scoreProperty.asString());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.ISpaceInvadersController#bindLife(javafx.beans.property.IntegerProperty)
-     */
-    @Override
-    public void bindLife(IntegerProperty lifeProperty) {
-        this.life.textProperty().bind(lifeProperty.asString());
-    }
-
     /**
      * Crée l'arrière plan du jeu.
      * Il est créé une et une seule fois, comme il n'évolue pas au cours de la partie.
@@ -171,16 +151,16 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
 
         // On ajoute l'arrière-plan principal (le ciel étoilé).
         Sprite back = spriteStore.getSprite("back");
-        for (int i = 0; i < width; i += back.getWidth()) {
-            for (int j = 0; j < height; j += back.getHeight()) {
-                back.draw(background.getGraphicsContext2D(), i, j);
+        for (int x = 0; x < width; x += back.getWidth()) {
+            for (int y = 0; y < height; y += back.getHeight()) {
+                back.draw(background.getGraphicsContext2D(), x, y);
             }
         }
 
         // On ajoute le sol de la planète.
         Sprite land = spriteStore.getSprite("land");
-        for (int i = 0; i < width; i += land.getWidth()) {
-            land.draw(background.getGraphicsContext2D(), i, height - land.getHeight());
+        for (int x = 0; x < width; x += land.getWidth()) {
+            land.draw(background.getGraphicsContext2D(), x, height - land.getHeight());
         }
     }
 
@@ -202,7 +182,7 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
             }
         });
 
-        // Lorsque l'utilisateur appuie sur une flèche horizontale, on déplace le vaisseau.
+        // Lorsque l'utilisateur appuie sur une flèche horizontale, on déplace son vaisseau.
         stage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if (started) {
                 if (e.getCode() == KeyCode.LEFT) {
@@ -220,6 +200,30 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
                 game.stopMoving();
             }
         });
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.ISpaceInvadersController#bindScore(
+     * javafx.beans.property.IntegerProperty)
+     */
+    @Override
+    public void bindScore(IntegerProperty scoreProperty) {
+        score.textProperty().bind(scoreProperty.asString());
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.ISpaceInvadersController#bindLife(
+     * javafx.beans.property.IntegerProperty)
+     */
+    @Override
+    public void bindLife(IntegerProperty lifeProperty) {
+        life.textProperty().bind(lifeProperty.asString());
     }
 
     /*

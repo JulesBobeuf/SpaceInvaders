@@ -68,7 +68,7 @@ public abstract class AbstractMovable implements IMovable {
     /**
      * L'instance de {@link Sprite} représentant cet objet.
      */
-    protected Sprite sprite;
+    protected final Sprite sprite;
 
     /**
      * Crée une nouvelle instance de AbstractMovable.
@@ -271,7 +271,7 @@ public abstract class AbstractMovable implements IMovable {
     }
 
     /**
-     * Calcule la nouvelle position de cet objet sur un axe particulier, en fonction de sa
+     * Calcule la nouvelle position d'un objet sur un axe particulier, en fonction de sa
      * position actuelle sur cet axe.
      *
      * @param current La position courante de l'objet.
@@ -317,8 +317,8 @@ public abstract class AbstractMovable implements IMovable {
      */
     @Override
     public boolean isCollidingWith(IMovable other) {
-        Rectangle rect = new Rectangle(getX(), getY(), getWidth(), getHeight());
-        return rect.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+        Rectangle rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
+        return rectangle.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
     }
 
 }

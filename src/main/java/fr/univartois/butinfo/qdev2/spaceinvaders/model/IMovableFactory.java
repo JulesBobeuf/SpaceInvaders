@@ -16,8 +16,6 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
-
 /**
  * L'interface {@link IMovableFactory} permet de créer différentes instances de
  * {@link IMovable}.
