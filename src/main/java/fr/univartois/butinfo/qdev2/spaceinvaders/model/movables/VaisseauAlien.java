@@ -64,7 +64,38 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        // TODO Auto-generated method stub.
+        other.collidedWith(this);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir)
+     */
+    @Override
+    public void collidedWith(Tir other) {
+        //il n'y a rien ici, et c'est normal.
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien)
+     */
+    @Override
+    public void collidedWith(VaisseauAlien other) {
+        //il n'y a rien ici, et c'est normal.  
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur)
+     */
+    @Override
+    public void collidedWith(VaisseauJoueur other) {
+        game.playerIsDead();
+        
     }
     
 
