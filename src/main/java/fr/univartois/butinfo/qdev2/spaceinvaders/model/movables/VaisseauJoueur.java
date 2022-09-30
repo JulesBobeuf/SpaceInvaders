@@ -18,7 +18,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  *
  * @version 0.1.0
  */
-public abstract class VaisseauJoueur extends AbstractMovable {
+public class VaisseauJoueur extends AbstractMovable {
 
     /**
      * Crée une nouvelle instance de VaisseauJoueur.
