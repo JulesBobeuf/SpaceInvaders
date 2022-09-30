@@ -27,7 +27,7 @@ public class VaisseauAlien extends AbstractMovable {
      * @param yPosition
      * @param sprite
      */
-    protected VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite) {
+    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(75.00);
         this.setVerticalSpeed(1.00);
