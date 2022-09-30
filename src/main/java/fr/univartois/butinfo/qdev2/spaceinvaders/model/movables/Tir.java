@@ -43,7 +43,7 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        game.removeMovable(this);
+        other.collidedWith(this);
         
     }
     
@@ -60,6 +60,42 @@ public class Tir extends AbstractMovable {
             return false;
         }
         return true;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir)
+     */
+    @Override
+    public void collidedWith(Tir other) {
+        game.removeMovable(other);
+        game.removeMovable(this);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.VaisseauAlien)
+     */
+    @Override
+    public void collidedWith(VaisseauAlien other) {
+        game.alienIsDead(other);
+        game.removeMovable(this);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur)
+     */
+    @Override
+    public void collidedWith(VaisseauJoueur other) {
+        game.reducePlayerLife();
+        game.removeMovable(this);
+        
     }
    
 }
