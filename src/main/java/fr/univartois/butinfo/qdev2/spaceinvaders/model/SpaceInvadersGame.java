@@ -261,7 +261,7 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShot() {
-        if (lastShot < System.currentTimeMillis() - SHOT_TEMPORIZATION) {
+        if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis() ) {
             addMovable(factory.createShot(ship.getX(), ship.getY()));
         }
     }
@@ -273,6 +273,7 @@ public final class SpaceInvadersGame {
      * @param alien L'alien qui a été tué.
      */
     public void alienIsDead(IMovable alien) {
+        removeMovable(alien);
         nbRemainingAliens -= 1;
         score.add(1);
         if (nbRemainingAliens <= 0) {
@@ -284,7 +285,7 @@ public final class SpaceInvadersGame {
      * Réduit la vie du joueur, et interrompt la partie si elle atteint 0.
      */
     public void reducePlayerLife() {
-        life.add(-1);
+        life.set(life.get()-1);
         if (life.get() <= 0) {
             playerIsDead();
         }
