@@ -28,8 +28,7 @@ public class VaisseauJoueur extends AbstractMovable {
      * @param yPosition
      * @param sprite
      */
-    protected VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition,
-            Sprite sprite) {
+    public VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(150.00);
     }
@@ -43,7 +42,7 @@ public class VaisseauJoueur extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        //TODO membre 1
+        // TODO membre 1
     }
 
 }
