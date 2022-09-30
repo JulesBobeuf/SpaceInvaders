@@ -57,7 +57,7 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        return new VaisseauAlien(game, x, y, spriteStore.getSprite("ship"));
+        return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"));
     }
 
     /*
