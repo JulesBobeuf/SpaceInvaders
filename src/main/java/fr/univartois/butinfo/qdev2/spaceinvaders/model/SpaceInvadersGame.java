@@ -273,14 +273,21 @@ public final class SpaceInvadersGame {
      * @param alien L'alien qui a été tué.
      */
     public void alienIsDead(IMovable alien) {
-        // TODO Mettre à jour l'état du jeu.
+        nbRemainingAliens -= 1;
+        score.add(1);
+        if (nbRemainingAliens <= 0) {
+            controller.gameOver("Tous les aliens sont morts, vous avez gagné !");
+        }
     }
 
     /**
      * Réduit la vie du joueur, et interrompt la partie si elle atteint 0.
      */
     public void reducePlayerLife() {
-        // TODO Réduire la vie du joueur.
+        life.add(-1);
+        if (life.get() <= 0) {
+            playerIsDead();
+        }
     }
 
     /**
