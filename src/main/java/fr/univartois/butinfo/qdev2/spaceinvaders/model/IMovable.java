@@ -16,6 +16,9 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -176,5 +179,29 @@ public interface IMovable {
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
     void collidedWith(IMovable other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link Tir}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(Tir other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link VaisseauAlien}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(VaisseauAlien other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link VaisseauJoueur}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(VaisseauJoueur other);
 
 }

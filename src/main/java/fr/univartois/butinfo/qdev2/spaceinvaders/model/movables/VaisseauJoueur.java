@@ -18,7 +18,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  *
  * @version 0.1.0
  */
-public class VaisseauJoueur extends AbstractMovable {
+public abstract class VaisseauJoueur extends AbstractMovable {
 
     /**
      * Crée une nouvelle instance de VaisseauJoueur.
@@ -42,7 +42,32 @@ public class VaisseauJoueur extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        // TODO membre 1
+        other.collidedWith(this);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir)
+     */
+    @Override
+    public void collidedWith(Tir other) {
+        //il n'y a rien ici, et c'est normal.  
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.VaisseauAlien)
+     */
+    @Override
+    public void collidedWith(VaisseauAlien other) {
+        //il n'y a rien ici, et c'est normal.
+    }
+    
+    @Override
+    public void collidedWith(VaisseauJoueur other) {
+        //il n'y a rien ici, et c'est normal.  
     }
 
 }
