@@ -30,7 +30,7 @@ public class VaisseauJoueur extends AbstractMovable {
      */
     public VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setHorizontalSpeed(150.00);
+        this.setHorizontalSpeed(0);
     }
 
     /*
