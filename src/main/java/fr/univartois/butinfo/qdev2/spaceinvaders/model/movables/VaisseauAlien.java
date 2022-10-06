@@ -41,19 +41,20 @@ public class VaisseauAlien extends AbstractMovable {
     @Override
     public boolean move(long delta) {
         boolean x = super.move(delta);
-        if (x == false)
+        if (x == false) {
             if (this.getY()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
                 return false;
             }
             if (this.getX()==game.getLeftLimit()) {
-                this.setHorizontalSpeed(-(getHorizontalSpeed()*1.02));
+                setHorizontalSpeed(getHorizontalSpeed()*(-1.02));
                 return false;
             }
-            if (this.getX()==game.getRightLimit()) {
-                this.setHorizontalSpeed(-(getHorizontalSpeed()*1.02));
+            if (this.getX()+this.getWidth()==game.getRightLimit()) {
+                setHorizontalSpeed(getHorizontalSpeed()*(-1.02));
                 return false;
             }
+        }
         return true;
     }
     
