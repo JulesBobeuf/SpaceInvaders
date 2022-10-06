@@ -267,7 +267,6 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(ship.getX(), ship.getY()-25));
             addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
             lastShot=System.currentTimeMillis();
         }
