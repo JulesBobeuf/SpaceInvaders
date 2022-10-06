@@ -269,7 +269,8 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(ship.getX(), ship.getY()));
+            addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
+            lastShot=System.currentTimeMillis();
         }
     }
 
@@ -282,7 +283,7 @@ public final class SpaceInvadersGame {
     public void alienIsDead(IMovable alien) {
         removeMovable(alien);
         nbRemainingAliens -= 1;
-        score.add(1);
+        score.set(score.get()+1);
         if (nbRemainingAliens <= 0) {
             controller.gameOver("Tous les aliens sont morts, vous avez gagné !");
         }
