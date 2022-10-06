@@ -18,8 +18,6 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -237,8 +235,8 @@ public final class SpaceInvadersGame {
         addMovable(ship);
         for (int i = 0; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
-                addMovable(factory.createAlien(getLeftLimit() + 15 * i, getTopLimit() + 15 * j));
-                nbRemainingAliens ++;
+                addMovable(factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j));
+                nbRemainingAliens++;
             }
     }
 
@@ -269,7 +267,8 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(ship.getX(), ship.getY()-25));
+            addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
+            lastShot=System.currentTimeMillis();
         }
     }
 
@@ -282,7 +281,7 @@ public final class SpaceInvadersGame {
     public void alienIsDead(IMovable alien) {
         removeMovable(alien);
         nbRemainingAliens -= 1;
-        score.add(1);
+        score.set(score.get()+1);
         if (nbRemainingAliens <= 0) {
             controller.gameOver("Tous les aliens sont morts, vous avez gagné !");
         }
