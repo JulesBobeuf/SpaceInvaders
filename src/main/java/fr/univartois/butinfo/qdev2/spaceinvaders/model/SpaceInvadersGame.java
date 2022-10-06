@@ -237,8 +237,8 @@ public final class SpaceInvadersGame {
         addMovable(ship);
         for (int i = 0; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
-                addMovable(factory.createAlien(getLeftLimit() + 15 * i, getTopLimit() + 15 * j));
-                nbRemainingAliens ++;
+                addMovable(factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j));
+                nbRemainingAliens++;
             }
     }
 
@@ -269,7 +269,7 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(ship.getX(), ship.getY()));
+            addMovable(factory.createShot(ship.getX(), ship.getY() - 25));
         }
     }
 
