@@ -233,7 +233,7 @@ public final class SpaceInvadersGame {
 
         ship = factory.createShip(width / 2, getBottomLimit());
         addMovable(ship);
-        for (int i = 0; i <= 10; i++)
+        for (int i = 1; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
                 addMovable(factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j));
                 nbRemainingAliens++;
