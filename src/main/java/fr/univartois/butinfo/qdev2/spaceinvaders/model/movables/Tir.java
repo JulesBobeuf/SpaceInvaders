@@ -81,9 +81,7 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        game.alienIsDead(other);
-        game.removeMovable(this);
-        
+        //il n'y a rien ici, et c'est normal.
     }
 
     /*
