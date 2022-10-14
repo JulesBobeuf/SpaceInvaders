@@ -88,7 +88,7 @@ public class MovableFactory implements IMovableFactory {
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createStrongShot(int, int)
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createStrongShot(int, int) 
      */
     @Override
     public IMovable createStrongShot(int x, int y) {
