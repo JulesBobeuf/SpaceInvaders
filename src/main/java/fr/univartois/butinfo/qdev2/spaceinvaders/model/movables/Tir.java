@@ -44,6 +44,7 @@ public class Tir extends AbstractMovable {
     @Override
     public void collidedWith(IMovable other) {
         other.collidedWith(this);
+        game.removeMovable(this);
         
     }
     
