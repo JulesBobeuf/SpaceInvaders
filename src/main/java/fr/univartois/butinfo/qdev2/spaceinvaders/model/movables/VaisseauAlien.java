@@ -76,7 +76,6 @@ public class VaisseauAlien extends AbstractMovable {
     @Override
     public void collidedWith(Tir other) {
         game.alienIsDead(this);
-        game.removeMovable(other);
     }
 
     /*

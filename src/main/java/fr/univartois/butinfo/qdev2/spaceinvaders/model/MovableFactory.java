@@ -8,6 +8,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
@@ -82,6 +83,16 @@ public class MovableFactory implements IMovableFactory {
     @Override
     public IMovable createShot(int x, int y) {
         return new Tir(game, x, y, spriteStore.getSprite("shot"));
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createStrongShot(int, int)
+     */
+    @Override
+    public IMovable createStrongShot(int x, int y) {
+        return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("shot")));
     }
 
 }
