@@ -36,6 +36,6 @@ public class DeplacementVertical implements IDeplacements {
     public double getVerticalSpeed() {
         return 30.00;
     }
-
+ 
 }
 
