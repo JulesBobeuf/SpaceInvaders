@@ -74,5 +74,7 @@ public interface IMovableFactory {
      * @return Le tir qui a été créé.
      */
     IMovable createShot(int x, int y);
+    
+    IMovable createStrongShot(int x, int y);
 
 }

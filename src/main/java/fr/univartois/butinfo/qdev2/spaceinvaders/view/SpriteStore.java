@@ -38,7 +38,17 @@ public final class SpriteStore implements ISpriteStore {
      * {@link Sprite} déjà chargées.
      */
     private final Map<String, Sprite> spriteCache = new HashMap<>();
-
+    
+    private static final SpriteStore INSTANCE = new SpriteStore();
+    
+    /**
+     * Constructeur
+     * Crée une nouvelle instance de SpriteStore.
+     */
+    private SpriteStore() {
+        //Il n'y a rien ici, mais c'est normal
+    }
+    
     /*
      * (non-Javadoc)
      *
@@ -77,6 +87,15 @@ public final class SpriteStore implements ISpriteStore {
         } catch (NullPointerException | IllegalArgumentException e) {
             throw new NoSuchElementException("Could not load image " + name, e);
         }
+    }
+
+    /**
+     * Donne l'attribut spritestore de cette instance de SpriteStore.
+     *
+     * @return L'attribut spritestore de cette instance de SpriteStore.
+     */
+    public static SpriteStore getInstance() {
+        return INSTANCE;
     }
 
 }
