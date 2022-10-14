@@ -7,7 +7,6 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
-
 /**
  * Le type IDeplacements
  *
@@ -16,19 +15,15 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
  * @version 0.1.0
  */
 public interface IDeplacements {
-    /**
-     * 
-     */
-    void deplacementVertical();
-    
-    /**
-     * 
-     */
-    void deplacementDiagonal();
-    
-    /**
-     * 
-     */
-    void deplacementNormal();
-}
 
+    /**
+     * @return vitesse horizontale
+     */
+    double getHorizontalSpeed();
+
+    /**
+     * @return vitesse verticale
+     */
+    double getVerticalSpeed();
+
+}
