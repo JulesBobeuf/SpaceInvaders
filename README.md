@@ -16,6 +16,8 @@ Vous pouvez retrouver ci-dessous les liens vers les sujets de TP vous guidant
 dans le développement de votre projet.
 
 - [Lancement du projet](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP03)
+- [Des patrons de conception dans le Space-Invaders (1)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP04)
+- [Des patrons de conception dans le Space-Invaders (2)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP05)
 
 ## Aperçu
 
@@ -86,7 +88,9 @@ interface IMovable {
     + {abstract} setVerticalSpeed(double) : void
     + {abstract} getVerticalSpeed() : double
     + {abstract} move(long) : boolean
+    + {abstract} setSprite(Sprite) : void
     + {abstract} getSprite() : Sprite
+    + {abstract} getSpriteProperty() : ObjectProperty<Sprite>
     + {abstract} isCollidingWith(IMovable) : boolean
     + {abstract} collidedWith(IMovable) : void
 }
@@ -193,7 +197,9 @@ abstract class AbstractMovable implements IMovable {
     + setVerticalSpeed(double) : void
     + getVerticalSpeed() : double
     + move(long) : boolean
+    + setSprite(Sprite) : void
     + getSprite() : Sprite
+    + getSpriteProperty() : ObjectProperty<Sprite>
     + isCollidingWith(IMovable) : boolean
 }
 
