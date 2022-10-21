@@ -17,13 +17,14 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 public interface IDeplacements {
 
     /**
+     * @param delta 
      * @return vitesse horizontale
      */
-    double getHorizontalSpeed();
+    double getHorizontalSpeed(long delta);
 
     /**
+     * @param delta 
      * @return vitesse verticale
      */
-    double getVerticalSpeed();
-
+    double getVerticalSpeed(long delta);
 }
