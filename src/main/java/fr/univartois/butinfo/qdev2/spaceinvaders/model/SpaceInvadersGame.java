@@ -351,8 +351,6 @@ public final class SpaceInvadersGame {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
             addMovable(factory.createShot(alien.getX()-10, alien.getY()+25));
             lastShot=System.currentTimeMillis();
-            
         }
     }
-    
 }

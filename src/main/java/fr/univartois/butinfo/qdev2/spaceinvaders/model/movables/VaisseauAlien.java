@@ -99,6 +99,9 @@ public class VaisseauAlien extends AbstractMovable {
         
     }
     
+    public void alienShot(VaisseauAlien other) {
+        
+    }
 
 }
 
