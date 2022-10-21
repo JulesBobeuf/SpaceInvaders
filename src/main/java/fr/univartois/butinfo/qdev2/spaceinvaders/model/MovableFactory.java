@@ -65,18 +65,20 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
+        
+        String alienSprite = "alien";
+        
         int nb = random.nextInt(21);
         if (nb <= 10) {
             if (random.nextBoolean()) {
-                
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementNormal());
             } else {
                 return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal()));
             }
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal());
         } else if ( 10 < nb && nb < 15) {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementVertical());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementVertical());
         } else {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementDiagonale());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementDiagonale());
         }
         
     }
