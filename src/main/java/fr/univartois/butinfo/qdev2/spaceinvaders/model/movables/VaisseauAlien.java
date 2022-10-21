@@ -21,6 +21,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 public class VaisseauAlien extends AbstractMovable {
 
     private IDeplacements deplacement;
+    private double facteur = 1.00;
+    
     
     /**
      * Crée une nouvelle instance de VaisseauAlien.
@@ -33,8 +35,8 @@ public class VaisseauAlien extends AbstractMovable {
     public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement) {
         super(game, xPosition, yPosition, sprite);
         this.deplacement = deplacement;
-        this.setHorizontalSpeed(deplacement.getHorizontalSpeed());
-        this.setVerticalSpeed(deplacement.getVerticalSpeed());   
+        this.setHorizontalSpeed(deplacement.getHorizontalSpeed(25));
+        this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
     }
 
     /*
@@ -44,7 +46,8 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public boolean move(long delta) {
-        boolean x = super.move(delta);
+        boolean x = super.move(delta);        
+        setVerticalSpeed(deplacement.getVerticalSpeed(delta));
         
         if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
@@ -52,13 +55,16 @@ public class VaisseauAlien extends AbstractMovable {
                 return false;
             }
             if (this.getX()==game.getLeftLimit()) {
-                setHorizontalSpeed(getHorizontalSpeed()*(-1.02));
+                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
+                facteur += 0.02;
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
-                setHorizontalSpeed(getHorizontalSpeed()*(-1.02));
+                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
+                facteur += 0.02;
                 return false;
             }
+                        
         }
         return true;
     }
