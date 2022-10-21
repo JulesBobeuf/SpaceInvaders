@@ -38,7 +38,7 @@ final class SpaceInvadersAnimation extends AnimationTimer {
     /**
      * Le timestamp de la dernière mise à jour des différentes position des objets.
      */
-    private long previousTimestamp = -1;
+    private long previousTimestamp;
 
     /**
      * Crée une nouvelle instance de SpaceInvadersAnimation.
@@ -47,6 +47,17 @@ final class SpaceInvadersAnimation extends AnimationTimer {
      */
     public SpaceInvadersAnimation(List<IMovable> movableObjects) {
         this.movableObjects = movableObjects;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see javafx.animation.AnimationTimer#start()
+     */
+    @Override
+    public void start() {
+        previousTimestamp = -1;
+        super.start();
     }
 
     /*
