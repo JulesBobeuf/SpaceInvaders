@@ -14,6 +14,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNorma
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
@@ -66,12 +67,18 @@ public class MovableFactory implements IMovableFactory {
     public IMovable createAlien(int x, int y) {
         int nb = random.nextInt(21);
         if (nb <= 10) {
+            if (random.nextBoolean()) {
+                
+            } else {
+                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal()));
+            }
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal());
         } else if ( 10 < nb && nb < 15) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementVertical());
         } else {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementDiagonale());
         }
+        
     }
 
     /*
@@ -105,7 +112,7 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createStrongShot(int x, int y) {
-        return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("shot")));
+        return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
     }
 
 }
