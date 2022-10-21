@@ -19,6 +19,8 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -233,6 +235,9 @@ public final class SpaceInvadersGame {
         clearAllMovables();
 
         ship = factory.createShip(width / 2, getBottomLimit());
+        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
+        shipResistant.getVieProperty().bindBidirectional(life);
+        ship = shipResistant;
         addMovable(ship);
         for (int i = 1; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
@@ -351,4 +356,14 @@ public final class SpaceInvadersGame {
         movableObjects.clear();
     }
 
+    /**
+     * Déclenche un tir depuis le vaisseau du joueur.
+     * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     */
+    public void fireShotAlien(IMovable alien) {
+        if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
+            addMovable(factory.createShot(alien.getX()-10, alien.getY()+25));
+            lastShot=System.currentTimeMillis();
+        }
+    }
 }

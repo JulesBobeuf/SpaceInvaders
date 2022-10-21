@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -74,7 +75,16 @@ public interface IMovableFactory {
      * @return Le tir qui a été créé.
      */
     IMovable createShot(int x, int y);
+
+    /**
+     * Crée un nouvel objet pouvant se déplacer et représentant un tir.
+     *
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     *
+     * @return Le tir qui a été créé.
+     */
+    IMovable createShotAlien(int x, int y);
     
     IMovable createStrongShot(int x, int y);
-
 }

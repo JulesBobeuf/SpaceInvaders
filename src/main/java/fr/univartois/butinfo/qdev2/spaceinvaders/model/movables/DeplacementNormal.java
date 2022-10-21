@@ -7,7 +7,6 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
-
 /**
  * Le type DeplacementNormal
  *
@@ -20,7 +19,8 @@ public class DeplacementNormal implements IDeplacements {
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#getHorizontalSpeed()
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#
+     * getHorizontalSpeed()
      */
     @Override
     public double getHorizontalSpeed(long delta) {
@@ -30,7 +30,8 @@ public class DeplacementNormal implements IDeplacements {
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#getVerticalSpeed()
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#
+     * getVerticalSpeed()
      */
     @Override
     public double getVerticalSpeed(long delta) {
@@ -38,4 +39,3 @@ public class DeplacementNormal implements IDeplacements {
     }
 
 }
-
