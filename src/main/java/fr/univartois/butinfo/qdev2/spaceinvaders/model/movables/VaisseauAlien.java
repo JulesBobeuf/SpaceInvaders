@@ -20,17 +20,21 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class VaisseauAlien extends AbstractMovable {
 
+    private IDeplacements deplacement;
+    
     /**
      * Crée une nouvelle instance de VaisseauAlien.
      * @param game
      * @param xPosition
      * @param yPosition
      * @param sprite
+     * @param deplacement
      */
-    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite) {
+    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement) {
         super(game, xPosition, yPosition, sprite);
-        this.setHorizontalSpeed(75.00);
-        this.setVerticalSpeed(1.00);
+        this.deplacement = deplacement;
+        this.setHorizontalSpeed(deplacement.getHorizontalSpeed());
+        this.setVerticalSpeed(deplacement.getVerticalSpeed());   
     }
 
     /*
@@ -41,6 +45,7 @@ public class VaisseauAlien extends AbstractMovable {
     @Override
     public boolean move(long delta) {
         boolean x = super.move(delta);
+        
         if (x == false) {
             if (this.getY()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
@@ -76,7 +81,6 @@ public class VaisseauAlien extends AbstractMovable {
     @Override
     public void collidedWith(Tir other) {
         game.alienIsDead(this);
-        game.removeMovable(other);
     }
 
     /*
