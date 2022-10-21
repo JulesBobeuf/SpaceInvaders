@@ -7,7 +7,7 @@ Pour pouvoir développer votre propre implantation de ce projet, vous devez
 en créer une **divergence** en cliquant sur le bouton `Fork` en haut à droite
 de cette page.
 
-Lorsque ce sera fait, vous pourrez invitez les membres de votre groupe en tant
+Lorsque ce sera fait, vous pourrez inviter les membres de votre groupe en tant
 que *Developer* pour vous permettre de travailler ensemble sur ce projet.
 
 ## Consignes
