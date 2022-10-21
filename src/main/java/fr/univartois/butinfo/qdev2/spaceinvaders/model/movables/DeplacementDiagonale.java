@@ -23,7 +23,7 @@ public class DeplacementDiagonale implements IDeplacements {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#getHorizontalSpeed()
      */
     @Override
-    public double getHorizontalSpeed() {
+    public double getHorizontalSpeed(long delta) {
         return 15.00;
     }
 
@@ -33,7 +33,7 @@ public class DeplacementDiagonale implements IDeplacements {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements#getVerticalSpeed()
      */
     @Override
-    public double getVerticalSpeed() {
+    public double getVerticalSpeed(long delta) {
         return 15.00;
     }
 

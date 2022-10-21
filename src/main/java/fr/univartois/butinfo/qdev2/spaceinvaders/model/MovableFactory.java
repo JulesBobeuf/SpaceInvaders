@@ -68,7 +68,7 @@ public class MovableFactory implements IMovableFactory {
         if (nb <= 10) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal());
         } else if ( 10 < nb && nb < 15) {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementVertical());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical());
         } else {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementDiagonale());
         }
