@@ -205,7 +205,6 @@ public final class SpaceInvadersGame {
         controller.prepare();
         controller.bindScore(score);
         controller.bindLife(life);
-        /// TODO : faut que je bind la vie mais jsp comment
     }
 
     /**
@@ -236,6 +235,7 @@ public final class SpaceInvadersGame {
 
         ship = factory.createShip(width / 2, getBottomLimit());
         TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
+        shipResistant.getVieProperty().bindBidirectional(life);
         ship = shipResistant;
         addMovable(ship);
         for (int i = 1; i <= 10; i++)
