@@ -46,7 +46,7 @@ public class VaisseauAlien extends AbstractMovable {
     public boolean move(long delta) {
         boolean x = super.move(delta);
         
-        if (x == false) {
+        if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
                 return false;

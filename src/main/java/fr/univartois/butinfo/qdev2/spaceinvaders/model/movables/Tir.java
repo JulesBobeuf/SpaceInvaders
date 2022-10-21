@@ -10,8 +10,6 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 
 
 /**
@@ -56,7 +54,7 @@ public class Tir extends AbstractMovable {
     @Override
     public boolean move(long delta) {
         boolean x = super.move(delta);
-        if (x==false) {
+        if (!x) {
             game.removeMovable(this);
             return false;
         }
