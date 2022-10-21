@@ -18,9 +18,10 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  *
  * @version 0.1.0
  */
-public class VaisseauAlien extends AbstractMovable {
+public class VaisseauAlien extends AbstractMovable{
 
     private IDeplacements deplacement;
+    private IFireshotAlien shot;
     
     /**
      * Crée une nouvelle instance de VaisseauAlien.
@@ -30,11 +31,12 @@ public class VaisseauAlien extends AbstractMovable {
      * @param sprite
      * @param deplacement
      */
-    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement) {
+    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement, IFireshotAlien shot) {
         super(game, xPosition, yPosition, sprite);
         this.deplacement = deplacement;
         this.setHorizontalSpeed(deplacement.getHorizontalSpeed());
         this.setVerticalSpeed(deplacement.getVerticalSpeed());   
+        this.shot=shot;
     }
 
     /*
@@ -94,7 +96,7 @@ public class VaisseauAlien extends AbstractMovable {
     }
 
     /*
-     * (non-Javadoc)
+     * (non-Javadoc)    private long lastShot = 0;
      *
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur)
      */
@@ -104,9 +106,28 @@ public class VaisseauAlien extends AbstractMovable {
         
     }
     
-    public void alienShot(VaisseauAlien other) {
-        
+    public void shot(VaisseauAlien other) {
+        other.;
     }
 
+    
+    /**
+     * Donne l'attribut shot de cette instance de VaisseauAlien.
+     *
+     * @return L'attribut shot de cette instance de VaisseauAlien.
+     */
+    public IFireshotAlien getShot() {
+        return shot;
+    }
+
+    
+    /**
+     * Modifie l'attribut shot de cette instance de VaisseauAlien.
+     *
+     * @param shot La nouvelle valeur de l'attribut shot pour cette instance de VaisseauAlien.
+     */
+    public void setShot(IFireshotAlien shot) {
+        this.shot = shot;
+    }
 }
 

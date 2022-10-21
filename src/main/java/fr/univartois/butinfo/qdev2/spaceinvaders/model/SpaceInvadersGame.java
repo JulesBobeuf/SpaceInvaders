@@ -92,6 +92,8 @@ public final class SpaceInvadersGame {
      * Il permet de s'assurer que le joueur ne tire pas trop souvent.
      */
     private long lastShot = 0;
+    
+    private long lastShotAlien = 0;
 
     /**
      * Le nombre d'aliens encore vivants.
@@ -361,9 +363,9 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShotAlien(IMovable alien) {
-        if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
+        if (lastShotAlien + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
             addMovable(factory.createShot(alien.getX()-10, alien.getY()+25));
-            lastShot=System.currentTimeMillis();
+            lastShotAlien=System.currentTimeMillis();
         }
     }
 }
