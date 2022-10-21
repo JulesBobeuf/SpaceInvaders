@@ -74,7 +74,7 @@ public interface IMovableFactory {
      * @return Le tir qui a été créé.
      */
     IMovable createShot(int x, int y);
-    
+
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un tir.
      *
@@ -84,4 +84,6 @@ public interface IMovableFactory {
      * @return Le tir qui a été créé.
      */
     IMovable createShotAlien(int x, int y);
+    
+    IMovable createStrongShot(int x, int y);
 }

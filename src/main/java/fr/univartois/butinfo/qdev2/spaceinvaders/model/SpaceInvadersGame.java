@@ -17,7 +17,10 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -232,6 +235,9 @@ public final class SpaceInvadersGame {
         clearAllMovables();
 
         ship = factory.createShip(width / 2, getBottomLimit());
+        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
+        shipResistant.getVieProperty().bindBidirectional(life);
+        ship = shipResistant;
         addMovable(ship);
         for (int i = 1; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
@@ -267,8 +273,15 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
-            lastShot=System.currentTimeMillis();
+            Random x = new Random();
+            if (x.nextInt(5)==3) {
+                addMovable(factory.createStrongShot(ship.getX()+10, ship.getY()-25));
+                lastShot=System.currentTimeMillis();
+            }
+            else {
+                addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
+                lastShot=System.currentTimeMillis();   
+            }
         }
     }
 
