@@ -34,7 +34,7 @@ public class DeplacementNormal implements IDeplacements {
      */
     @Override
     public double getVerticalSpeed() {
-        return 1.00;
+        return 5.00;
     }
 
 }
