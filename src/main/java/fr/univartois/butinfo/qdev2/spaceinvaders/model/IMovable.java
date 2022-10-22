@@ -193,4 +193,11 @@ public interface IMovable {
      */
     void collidedWith(IMovable other);
 
+    /**
+     * Donne l'objet réel qui implémente cette interface.
+     *
+     * @return L'objet réel.
+     */
+    IMovable self();
+
 }

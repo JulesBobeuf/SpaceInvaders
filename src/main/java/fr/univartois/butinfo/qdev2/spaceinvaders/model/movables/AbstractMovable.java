@@ -354,4 +354,50 @@ public abstract class AbstractMovable implements IMovable {
                 other.getHeight());
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#self()
+     */
+    @Override
+    public IMovable self() {
+        return this;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            // Les deux objets sont forcément différents.
+            return false;
+        }
+
+        if (obj == this) {
+            // Les deux objets sont strictement identiques.
+            return true;
+        }
+
+        if (obj instanceof IMovable other) {
+            // On compare les "vrais objets".
+            return other.self() == self();
+        }
+
+        // L'objet donné n'est pas d'une classe compatible.
+        return false;
+    }
+
 }
