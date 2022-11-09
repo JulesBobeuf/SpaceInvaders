@@ -1,13 +1,7 @@
-/**
- * Ce fichier fait partie du projet projet-2022-2023-b-1.
- *
- * (c) 2022 thomas
- * Tous droits réservés.
- */
-
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
-import java.util.Random;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 
 /**
  * Le type AlienTireStrategy
@@ -16,12 +10,23 @@ import java.util.Random;
  *
  * @version 0.1.0
  */
-public class AlienTireStrategy implements IAlienAttaque {
+/**
+ * 
+ */
+public class AlienTireIntelligent implements IAlienAttaque {
     
     /**
      * 
      */
-    Random random = new Random();
+    private SpaceInvadersGame game;
+    
+    
+    /**
+     * @param game
+     */
+    public AlienTireIntelligent(SpaceInvadersGame game) {
+        this.game = game;
+    }
     /*
      * (non-Javadoc)
      *
@@ -29,8 +34,7 @@ public class AlienTireStrategy implements IAlienAttaque {
      */
     @Override
     public boolean tir() {
-        int x = random.nextInt(1,500);
-        if (x==69) {
+        if (game.getShip().getY()==200) {
             return true;
         }
         else {

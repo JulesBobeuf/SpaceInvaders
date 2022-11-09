@@ -363,4 +363,14 @@ public final class SpaceInvadersGame {
     public void fireShotAlien(IMovable alien) {
             addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
     }
+
+    
+    /**
+     * @return
+     */
+    public IMovable getShip() {
+        return ship;
+    }
+    
+    
 }

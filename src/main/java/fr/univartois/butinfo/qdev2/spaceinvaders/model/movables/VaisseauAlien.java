@@ -34,13 +34,14 @@ public class VaisseauAlien extends AbstractMovable {
     private IAlienAttaque attack;
     
     
+
     /**
-     * Crée une nouvelle instance de VaisseauAlien.
      * @param game
      * @param xPosition
      * @param yPosition
      * @param sprite
      * @param deplacement
+     * @param attack
      */
     public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement, IAlienAttaque attack) {
         super(game, xPosition, yPosition, sprite);

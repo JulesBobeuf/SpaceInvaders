@@ -9,6 +9,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.Random;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireIntelligent;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTirePasStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
@@ -75,7 +76,7 @@ public class MovableFactory implements IMovableFactory {
             } else {
                 return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(), new AlienTirePasStrategy()));
             }
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTireStrategy());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTireIntelligent(game));
         } else if ( 10 < nb && nb < 15) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical(),new AlienTirePasStrategy());
         } else {
