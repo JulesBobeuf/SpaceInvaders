@@ -9,10 +9,13 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.Random;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTirePasStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
@@ -70,13 +73,13 @@ public class MovableFactory implements IMovableFactory {
             if (random.nextBoolean()) {
                 
             } else {
-                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal()));
+                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(), new AlienTirePasStrategy()));
             }
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTireStrategy());
         } else if ( 10 < nb && nb < 15) {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical(),new AlienTirePasStrategy());
         } else {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementDiagonale());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementDiagonale(),new AlienTirePasStrategy());
         }
         
     }
@@ -105,8 +108,13 @@ public class MovableFactory implements IMovableFactory {
         return new Tir(game, x, y, spriteStore.getSprite("shot"));
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(int, int)
+     */
     public IMovable createShotAlien(int x, int y) {
-        return new Tir(game, x, y, spriteStore.getSprite("shot"));
+        return new TirAlien(game, x, y, spriteStore.getSprite("shot"));
     }
 
     /*

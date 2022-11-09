@@ -16,11 +16,10 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
  */
 public interface IAlienAttaque {
     
-    void Tir();
-    
-    void move();
-    
-    void collidedWith();
+    /**
+     * 
+     */
+    boolean tir();
     
 }
 

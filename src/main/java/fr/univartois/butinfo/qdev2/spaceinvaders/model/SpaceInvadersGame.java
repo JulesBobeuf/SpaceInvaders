@@ -361,9 +361,8 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShotAlien(IMovable alien) {
-        if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(alien.getX()-10, alien.getY()+25));
-            lastShot=System.currentTimeMillis();
-        }
+            addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+50));
+            //TO DO : créer classe Tir Alien -> copie de la classe tir mais les tir décendent
+        
     }
 }
