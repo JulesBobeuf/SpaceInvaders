@@ -65,7 +65,6 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        
         String alienSprite = "alien";
         
         int nb = random.nextInt(21);
