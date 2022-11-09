@@ -27,7 +27,7 @@ public abstract class AbstractMovableDecorateur implements IMovable {
      * Crée une nouvelle instance de AbstractMovablePlusResistant.
      * @param movable
      */
-    public AbstractMovableDecorateur(IMovable movable) {
+    protected AbstractMovableDecorateur(IMovable movable) {
         this.movable = movable;
     }
 

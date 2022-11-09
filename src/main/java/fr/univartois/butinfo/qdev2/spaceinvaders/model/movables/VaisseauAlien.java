@@ -64,7 +64,7 @@ public class VaisseauAlien extends AbstractMovable {
         if (tir) {
             game.fireShotAlien(this);
         }
-        if (x == false) {
+        if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
                 return false;

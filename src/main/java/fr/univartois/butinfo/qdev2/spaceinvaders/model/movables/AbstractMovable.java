@@ -260,7 +260,7 @@ public abstract class AbstractMovable implements IMovable {
             // L'objet a atteint la limite sur l'axe x.
             return false;
         }
-
+        
         if ((newY == game.getTopLimit()) || (newY == limitMaxY)) {
             // L'objet a atteint la limite sur l'axe y.
             return false;
