@@ -76,7 +76,13 @@ public class MovableFactory implements IMovableFactory {
             } else {
                 return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(), new AlienTirePasStrategy()));
             }
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTireIntelligent(game));
+            int test = random.nextInt(21);
+            if (test <= 10) {
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementNormal(), new AlienTireIntelligent(game));
+                }
+            else {
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTireStrategy());
+            }
         } else if ( 10 < nb && nb < 15) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical(),new AlienTirePasStrategy());
         } else {
