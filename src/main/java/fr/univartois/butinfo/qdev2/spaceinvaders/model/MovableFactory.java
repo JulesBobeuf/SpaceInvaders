@@ -91,7 +91,7 @@ public class MovableFactory implements IMovableFactory {
         
     }
 
-    /*
+    /* 
      * (non-Javadoc)
      *
      * @see
@@ -114,6 +114,7 @@ public class MovableFactory implements IMovableFactory {
     public IMovable createShot(int x, int y) {
         return new Tir(game, x, y, spriteStore.getSprite("shot"));
     }
+    
     
     /*
      * (non-Javadoc)
