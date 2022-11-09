@@ -109,10 +109,6 @@ public class VaisseauAlien extends AbstractMovable {
         game.playerIsDead();
         
     }
-    
-    public void alienShot(VaisseauAlien other) {
-        
-    }
-
+   
 }
 
