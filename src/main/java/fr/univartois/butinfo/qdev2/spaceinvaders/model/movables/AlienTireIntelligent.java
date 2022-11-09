@@ -34,7 +34,7 @@ public class AlienTireIntelligent implements IAlienAttaque {
      */
     @Override
     public boolean tir() {
-        if (game.getShip().getY()==200) {
+        if (game.getShip().getX()==600) {
             return true;
         }
         else {

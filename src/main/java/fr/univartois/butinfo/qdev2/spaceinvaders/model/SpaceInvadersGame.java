@@ -359,6 +359,7 @@ public final class SpaceInvadersGame {
     /**
      * Déclenche un tir depuis le vaisseau du joueur.
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     * @param alien 
      */
     public void fireShotAlien(IMovable alien) {
             addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
