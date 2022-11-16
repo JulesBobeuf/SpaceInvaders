@@ -19,9 +19,11 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IAlienAttaque;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -109,6 +111,8 @@ public final class SpaceInvadersGame {
      * Le nombre d'aliens encore vivants.
      */
     private int nbRemainingAliens;
+    
+    private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
 
     /**
      * La liste des objets pouvant se déplacer dans le jeu.
@@ -400,7 +404,7 @@ public final class SpaceInvadersGame {
      * @param alien
      */
     public void fireShotAlien(IMovable alien) {
-        addMovable(factory.createShotAlien(alien.getX() - 10, alien.getY() + 25));
+            addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
     /**
@@ -410,6 +414,15 @@ public final class SpaceInvadersGame {
         return ship;
     }
     
+    /**
+<<<<<<< HEAD
+     * @param alien
+     */
+    public void changeTirAlien(VaisseauAlien alien) {
+        IAlienAttaque atak = tirAlienComposite.tir();
+        alien.setAlienAttack(atak);
+    }
+
     /**
      * 
      */
@@ -427,4 +440,7 @@ public final class SpaceInvadersGame {
         mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
+    public int getNbRemainingAliens() {
+        return nbRemainingAliens;
+    }
 }
