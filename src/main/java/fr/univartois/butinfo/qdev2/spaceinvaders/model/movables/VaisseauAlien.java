@@ -19,24 +19,36 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  * @version 0.1.0
  */
 public class VaisseauAlien extends AbstractMovable {
-
+    /**
+     * L'attribut deplacement...
+     */
     private IDeplacements deplacement;
+    /**
+     * L'attribut facteur...
+     */
     private double facteur = 1.00;
     
-    
     /**
-     * Crée une nouvelle instance de VaisseauAlien.
+     * L'attribut attack...
+     */
+    private IAlienAttaque attack;
+    
+    
+
+    /**
      * @param game
      * @param xPosition
      * @param yPosition
      * @param sprite
      * @param deplacement
+     * @param attack
      */
-    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement) {
+    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement, IAlienAttaque attack) {
         super(game, xPosition, yPosition, sprite);
         this.deplacement = deplacement;
         this.setHorizontalSpeed(deplacement.getHorizontalSpeed(25));
         this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
+        this.attack=attack;
     }
 
     /*
@@ -48,7 +60,10 @@ public class VaisseauAlien extends AbstractMovable {
     public boolean move(long delta) {
         boolean x = super.move(delta);        
         setVerticalSpeed(deplacement.getVerticalSpeed(delta));
-        
+        boolean tir = attack.tir();
+        if (tir) {
+            game.fireShotAlien(this);
+        }
         if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
@@ -109,6 +124,5 @@ public class VaisseauAlien extends AbstractMovable {
         game.playerIsDead();
         
     }
-   
 }
 

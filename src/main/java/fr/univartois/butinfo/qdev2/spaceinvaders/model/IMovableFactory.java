@@ -86,5 +86,10 @@ public interface IMovableFactory {
      */
     IMovable createShotAlien(int x, int y);
     
+    /**
+     * @param x
+     * @param y
+     * @return
+     */
     IMovable createStrongShot(int x, int y);
 }

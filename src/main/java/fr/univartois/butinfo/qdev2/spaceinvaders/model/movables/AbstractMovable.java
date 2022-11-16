@@ -326,5 +326,12 @@ public abstract class AbstractMovable implements IMovable {
         Rectangle rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
         return rectangle.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
     }
+    
+    /**
+     * @return game
+     */
+    public SpaceInvadersGame getGame() {
+        return game;
+    }
 
 }
