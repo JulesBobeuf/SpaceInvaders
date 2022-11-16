@@ -8,7 +8,9 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -40,6 +42,32 @@ public class TrucResistantDecorateur extends AbstractMovableDecorateur {
     
     public IntegerProperty getVieProperty() {
         return vie;
+    }
+    
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.movable.setSprite(sprite);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#getSpriteProperty()
+     */
+    @Override
+    public ObjectProperty<Sprite> getSpriteProperty() {
+        return this.movable.getSpriteProperty();
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#self()
+     */
+    @Override
+    public IMovable self() {
+        return this.movable;
     }
 
 }
