@@ -23,9 +23,15 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Mur extends AbstractMovable {
     
+    /**
+     * L'attribut vie...
+     */
     private IntegerProperty vie = new SimpleIntegerProperty();
     
-    private IStateMur state=new MurStateNormal();
+    /**
+     * L'attribut state...
+     */
+    private IStateMur state = new MurStateNormal();
 
     /**
      * Crée une nouvelle instance de Mur.
@@ -48,7 +54,7 @@ public class Mur extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        this.losesLife();
+        //this.losesLife();
         other.collidedWith(this);
     }
 
@@ -61,9 +67,6 @@ public class Mur extends AbstractMovable {
     public void collidedWith(Tir other) {
         this.losesLife();
         game.removeMovable(other);
-        if (vie.get()==0) {
-            game.removeMovable(this);
-        }
     }
 
     /*
@@ -75,9 +78,6 @@ public class Mur extends AbstractMovable {
     public void collidedWith(VaisseauAlien other) {
         this.losesLife();
         game.removeMovable(other);
-        if (vie.get()==0) {
-            game.removeMovable(this);
-        }
     }
 
     /*
@@ -104,10 +104,41 @@ public class Mur extends AbstractMovable {
         return state;
     }
     
+    /**
+     * 
+     */
     private void losesLife() {
         vie.set(vie.get()-1);
         this.setState(state.getNextState());
-        game.changeMurSprite(this);
+        if (vie.get()==0) {
+            game.removeMovable(this);
+        }
+        else {
+            game.changeMurSprite(this);
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        this.losesLife();
+        game.removeMovable(other);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        //impossible? ig
+        
     }
 
 }

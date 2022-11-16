@@ -24,7 +24,7 @@ public class MurStateBroken implements IStateMur {
      */
     @Override
     public IStateMur getNextState() {
-        return new MurStateCracked();
+        return null;
     }
 
     /*
