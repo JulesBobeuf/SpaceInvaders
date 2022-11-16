@@ -15,6 +15,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrateg
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
@@ -129,6 +130,10 @@ public class MovableFactory implements IMovableFactory {
     @Override
     public IMovable createStrongShot(int x, int y) {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
+    }
+    
+    public IMovable createMur(int x, int y) {
+        return new Mur(game, x, y, spriteStore.getSprite("bricks"));
     }
 
 }

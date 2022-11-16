@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -379,6 +380,17 @@ public final class SpaceInvadersGame {
      */
     public IMovable getShip() {
         return ship;
+    }
+    
+    public void placeMur() {
+        addMovable(factory.createMur(ship.getX(),ship.getY()+30));
+    }
+    
+    /**
+     * @param mur
+     */
+    public void changeMurSprite(Mur mur) {
+        mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
     

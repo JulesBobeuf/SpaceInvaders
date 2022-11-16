@@ -30,7 +30,7 @@ import javafx.beans.property.ObjectProperty;
  *
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.1.0 
  */
 public interface IMovable {
 

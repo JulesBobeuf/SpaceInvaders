@@ -180,6 +180,11 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
                 // La partie a commencé : il faut tirer vers les aliens.
                 game.fireShot();
             }
+            
+            else if ("p".equals(e.getCharacter())) {
+                // La partie a commencé : il faut tirer vers les aliens.
+                game.placeMur();
+            }
         });
 
         // Lorsque l'utilisateur appuie sur une flèche horizontale, on déplace son vaisseau.
