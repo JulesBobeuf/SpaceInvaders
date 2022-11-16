@@ -32,9 +32,18 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  */
 public class MovableFactory implements IMovableFactory {
 
+    /**
+     * 
+     */
     private ISpriteStore spriteStore;
+    /**
+     * 
+     */
     private Random random = new Random();
     
+    /**
+     * 
+     */
     private SpaceInvadersGame game;
 
     /*

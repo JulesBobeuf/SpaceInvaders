@@ -72,11 +72,13 @@ public class VaisseauAlien extends AbstractMovable {
             if (this.getX()==game.getLeftLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
                 facteur += 0.02;
+                game.changeTirAlien(this);
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
+                game.changeTirAlien(this);
                 return false;
             }
                         
@@ -123,6 +125,13 @@ public class VaisseauAlien extends AbstractMovable {
     public void collidedWith(VaisseauJoueur other) {
         game.playerIsDead();
         
+    }
+    
+    /**
+     * @param attack
+     */
+    public void setAlienAttack(IAlienAttaque attack) {
+        this.attack=attack;
     }
 }
 

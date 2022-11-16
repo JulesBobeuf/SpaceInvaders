@@ -7,7 +7,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
  */
 public interface ITirsGeneral {
     /**
-     * 
+     * @return
      */
-    void tir();
+    IAlienAttaque tir();
 }
