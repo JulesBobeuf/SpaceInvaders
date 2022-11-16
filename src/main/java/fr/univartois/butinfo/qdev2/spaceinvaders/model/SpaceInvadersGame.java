@@ -394,5 +394,7 @@ public final class SpaceInvadersGame {
         alien.setAlienAttack(atak);
     }
     
-    
+    public int getNbRemainingAliens() {
+        return nbRemainingAliens;
+    }
 }

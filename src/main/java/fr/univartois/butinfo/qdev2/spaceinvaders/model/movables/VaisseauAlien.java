@@ -33,7 +33,10 @@ public class VaisseauAlien extends AbstractMovable {
      */
     private IAlienAttaque attack;
     
-    
+    /**
+     * 
+     */
+    private boolean changedStrategyAttack;
 
     /**
      * @param game
@@ -49,6 +52,7 @@ public class VaisseauAlien extends AbstractMovable {
         this.setHorizontalSpeed(deplacement.getHorizontalSpeed(25));
         this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
         this.attack=attack;
+        this.changedStrategyAttack=false;
     }
 
     /*
@@ -63,6 +67,10 @@ public class VaisseauAlien extends AbstractMovable {
         boolean tir = attack.tir();
         if (tir) {
             game.fireShotAlien(this);
+        }
+        if ((game.getNbRemainingAliens()<10) && (changedStrategyAttack==false)) {
+            game.changeTirAlien(this);
+            changedStrategyAttack=true;
         }
         if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
