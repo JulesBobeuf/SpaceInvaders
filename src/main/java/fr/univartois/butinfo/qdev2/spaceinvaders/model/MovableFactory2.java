@@ -107,5 +107,16 @@ public class MovableFactory2 implements IMovableFactory {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createMur(int, int)
+     */
+    @Override
+    public IMovable createMur(int x, int y) {
+        // TODO Auto-generated method stub.
+        return null;
+    }
+
 }
 

@@ -43,6 +43,7 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
+        other.collidedWith(this);
     }
     
     /*
@@ -92,6 +93,27 @@ public class TirAlien extends AbstractMovable {
         game.reducePlayerLife();
         game.removeMovable(this);
         
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        game.removeMovable(this);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        //il n'y a rien ici et c normal  
     }
    
 }

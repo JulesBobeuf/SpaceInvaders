@@ -92,4 +92,6 @@ public interface IMovableFactory {
      * @return
      */
     IMovable createStrongShot(int x, int y);
+    
+    IMovable createMur(int x, int y);
 }
