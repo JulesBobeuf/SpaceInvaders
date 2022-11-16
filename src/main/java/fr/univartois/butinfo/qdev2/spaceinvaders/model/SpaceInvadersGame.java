@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -35,6 +36,17 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @version 0.1.0
  */
 public final class SpaceInvadersGame {
+    
+
+    /**
+     * L'attribut COUNT_MUR...
+     */
+    private static int COUNT_MUR=3;
+    
+    /**
+     * L'attribut countMur...
+     */
+    private int countMur=COUNT_MUR;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -123,6 +135,13 @@ public final class SpaceInvadersGame {
 
     private Random random = new Random();
 
+    /**
+     * Crée une nouvelle instance de SpaceInvadersGame.
+     * @param width
+     * @param height
+     * @param spriteStore
+     * @param factory
+     */
     public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
             IMovableFactory factory) {
         this.width = width;
@@ -228,6 +247,7 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
+        countMur=COUNT_MUR;
     }
 
     /**
@@ -389,5 +409,22 @@ public final class SpaceInvadersGame {
     public IMovable getShip() {
         return ship;
     }
-
+    
+    /**
+     * 
+     */
+    public void placeMur() {
+        if (countMur>0) {
+            addMovable(factory.createMur(ship.getX(),ship.getY()-100));  
+            countMur--;
+        }
+    }
+    
+    /**
+     * @param mur
+     */
+    public void changeMurSprite(Mur mur) {
+        mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
+    }
+    
 }

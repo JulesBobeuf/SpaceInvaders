@@ -1,7 +1,7 @@
 /**
  * Ce fichier fait partie du projet projet-2022-2023-b-1.
  *
- * (c) 2022 thomas.santoro
+ * (c) 2022 Jules
  * Tous droits réservés.
  */
 
@@ -10,80 +10,43 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 
 /**
- * Le type VaisseauAlien
+ * Le type Mur
  *
- * @author thomas.santoro
+ * @author Jules
  *
  * @version 0.1.0
  */
-public class VaisseauAlien extends AbstractMovable {
-    /**
-     * L'attribut deplacement...
-     */
-    private IDeplacements deplacement;
-    /**
-     * L'attribut facteur...
-     */
-    private double facteur = 1.00;
+public class Mur extends AbstractMovable {
     
     /**
-     * L'attribut attack...
+     * L'attribut vie...
      */
-    private IAlienAttaque attack;
+    private IntegerProperty vie = new SimpleIntegerProperty();
     
-    
+    /**
+     * L'attribut state...
+     */
+    private IStateMur state = new MurStateNormal();
 
     /**
+     * Crée une nouvelle instance de Mur.
      * @param game
      * @param xPosition
      * @param yPosition
      * @param sprite
-     * @param deplacement
-     * @param attack
      */
-    public VaisseauAlien(SpaceInvadersGame game, double xPosition, double yPosition,Sprite sprite, IDeplacements deplacement, IAlienAttaque attack) {
+    public Mur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.deplacement = deplacement;
-        this.setHorizontalSpeed(deplacement.getHorizontalSpeed(25));
-        this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
-        this.attack=attack;
+        this.setHorizontalSpeed(0);
+        this.setVerticalSpeed(0);
+        vie.set(3);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#move(long)
-     */
-    @Override
-    public boolean move(long delta) {
-        boolean x = super.move(delta);        
-        setVerticalSpeed(deplacement.getVerticalSpeed(delta));
-        boolean tir = attack.tir();
-        if (tir) {
-            game.fireShotAlien(this);
-        }
-        if (!x) {
-            if (this.getY()+this.getHeight()==game.getBottomLimit()) {
-                game.alienReachedPlanet();
-                return false;
-            }
-            if (this.getX()==game.getLeftLimit()) {
-                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
-                facteur += 0.02;
-                return false;
-            }
-            if (this.getX()+this.getWidth()==game.getRightLimit()) {
-                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
-                facteur += 0.02;
-                return false;
-            }
-                        
-        }
-        return true;
-    }
-    
     /*
      * (non-Javadoc)
      *
@@ -91,6 +54,7 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
+        //this.losesLife();
         other.collidedWith(this);
     }
 
@@ -101,7 +65,8 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(Tir other) {
-        game.alienIsDead(this);
+        this.losesLife();
+        game.removeMovable(other);
     }
 
     /*
@@ -111,7 +76,8 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        //il n'y a rien ici, et c'est normal.  
+        this.losesLife();
+        game.removeMovable(other);
     }
 
     /*
@@ -121,8 +87,35 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        game.playerIsDead();
-        
+        // impossible
+    }
+    
+    /**
+     * @param state
+     */
+    public void setState(IStateMur state) {
+        this.state=state;
+    }
+    
+    /**
+     * @return
+     */
+    public IStateMur getState() {
+        return state;
+    }
+    
+    /**
+     * 
+     */
+    private void losesLife() {
+        vie.set(vie.get()-1);
+        this.setState(state.getNextState());
+        if (vie.get()==0) {
+            game.removeMovable(this);
+        }
+        else {
+            game.changeMurSprite(this);
+        }
     }
 
     /*
@@ -132,7 +125,8 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        //il n'y a rien ici et c normal
+        this.losesLife();
+        game.removeMovable(other);
         
     }
 
@@ -143,8 +137,9 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        //il n'y a rien ici et c normal
+        //impossible? ig
         
     }
+
 }
 

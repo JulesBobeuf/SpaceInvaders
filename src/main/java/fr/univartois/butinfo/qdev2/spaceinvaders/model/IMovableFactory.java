@@ -101,4 +101,6 @@ public interface IMovableFactory {
      * @return
      */
     IMovable createBonus(int x, int y);
+
+    IMovable createMur(int x, int y);
 }

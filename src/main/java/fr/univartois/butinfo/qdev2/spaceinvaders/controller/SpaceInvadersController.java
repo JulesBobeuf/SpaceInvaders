@@ -40,6 +40,7 @@ import javafx.stage.Stage;
  * @version 0.1.0
  */
 public final class SpaceInvadersController implements ISpaceInvadersController {
+   
 
     /**
      * La partie du jeu Space-Invaders en cours.
@@ -190,7 +191,10 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
 
                 } else if (e.getCode() == KeyCode.RIGHT) {
                     game.moveRight();
-                }
+                } else if (e.getCode() == KeyCode.UP) {
+                // on peut placer 3 murs au max
+                    game.placeMur();
+            }
             }
         });
 
