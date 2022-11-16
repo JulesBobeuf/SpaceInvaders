@@ -8,6 +8,8 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.beans.property.ObjectProperty;
 
 /**
  * Le type TirPuissantDecorateur
@@ -40,5 +42,36 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
             this.movable.collidedWith(v);
         }
      }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#setSprite(fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite)
+     */
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.movable.setSprite(sprite);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#getSpriteProperty()
+     */
+    @Override
+    public ObjectProperty<Sprite> getSpriteProperty() {
+        return this.movable.getSpriteProperty();
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#self()
+     */
+    @Override
+    public IMovable self() {
+        return this.movable;
+    }
 }
 
