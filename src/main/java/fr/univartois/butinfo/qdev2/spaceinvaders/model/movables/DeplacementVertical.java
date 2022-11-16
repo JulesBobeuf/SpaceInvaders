@@ -7,8 +7,6 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
-import java.util.Random;
-
 /**
  * Le type DeplacementVertical
  *
@@ -17,7 +15,6 @@ import java.util.Random;
  * @version 0.1.0
  */
 public class DeplacementVertical implements IDeplacements {
-    private Random random = new Random();
     private long temps = 0;
     private double nb = 10;
     boolean depVert = true;
@@ -41,9 +38,12 @@ public class DeplacementVertical implements IDeplacements {
     public double getVerticalSpeed(long delta) {
         temps += delta;
         if (temps >= 1_000) {
-            //nb = random.nextDouble(20.00, 70.00);
-            nb = (depVert ? 10.00 : 45.00);
-            depVert = (depVert ? false : true);
+            if (depVert) {
+                nb = 10;
+            } else {
+                nb = 45;
+            }
+            depVert = !depVert;
             temps = 0;
         }
         return nb;

@@ -120,6 +120,9 @@ public final class SpaceInvadersGame {
      * @param factory L'instance de {@link IMovableFactory} permettant de créer les objets
      *        du jeu.
      */
+
+    private Random random = new Random();
+
     public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
             IMovableFactory factory) {
         this.width = width;
@@ -273,14 +276,12 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            Random x = new Random();
-            if (x.nextInt(5)==3) {
-                addMovable(factory.createStrongShot(ship.getX()+10, ship.getY()-25));
-                lastShot=System.currentTimeMillis();
-            }
-            else {
-                addMovable(factory.createShot(ship.getX()+10, ship.getY()-25));
-                lastShot=System.currentTimeMillis();   
+            if (random.nextInt(5) == 3) {
+                addMovable(factory.createStrongShot(ship.getX() + 10, ship.getY() - 25));
+                lastShot = System.currentTimeMillis();
+            } else {
+                addMovable(factory.createShot(ship.getX() + 10, ship.getY() - 25));
+                lastShot = System.currentTimeMillis();
             }
         }
     }
@@ -294,7 +295,7 @@ public final class SpaceInvadersGame {
     public void alienIsDead(IMovable alien) {
         removeMovable(alien);
         nbRemainingAliens -= 1;
-        score.set(score.get()+1);
+        score.set(score.get() + 1);
         if (nbRemainingAliens <= 0) {
             controller.gameOver("Tous les aliens sont morts, vous avez gagné !");
         }
@@ -359,11 +360,19 @@ public final class SpaceInvadersGame {
     /**
      * Déclenche un tir depuis le vaisseau du joueur.
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     * @param alien 
      */
     public void fireShotAlien(IMovable alien) {
-        if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            addMovable(factory.createShot(alien.getX()-10, alien.getY()+25));
-            lastShot=System.currentTimeMillis();
-        }
+            addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
     }
+
+    
+    /**
+     * @return
+     */
+    public IMovable getShip() {
+        return ship;
+    }
+    
+    
 }

@@ -260,7 +260,7 @@ public abstract class AbstractMovable implements IMovable {
             // L'objet a atteint la limite sur l'axe x.
             return false;
         }
-
+        
         if ((newY == game.getTopLimit()) || (newY == limitMaxY)) {
             // L'objet a atteint la limite sur l'axe y.
             return false;
@@ -325,6 +325,13 @@ public abstract class AbstractMovable implements IMovable {
 
         Rectangle rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
         return rectangle.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+    }
+    
+    /**
+     * @return game
+     */
+    public SpaceInvadersGame getGame() {
+        return game;
     }
 
 }

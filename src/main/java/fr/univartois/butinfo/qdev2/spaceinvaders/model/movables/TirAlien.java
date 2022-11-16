@@ -10,6 +10,8 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 
 
 /**
@@ -19,7 +21,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  *
  * @version 0.1.0
  */
-public class Tir extends AbstractMovable {
+public class TirAlien extends AbstractMovable {
     
     /**
      * Crée une nouvelle instance de Tir.
@@ -28,9 +30,9 @@ public class Tir extends AbstractMovable {
      * @param yPosition
      * @param sprite
      */
-    public Tir(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public TirAlien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(-300.00);
+        this.setVerticalSpeed(300.00);
         this.setHorizontalSpeed(0);
     }
 
@@ -41,9 +43,6 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        other.collidedWith(this);
-        game.removeMovable(this);
-        
     }
     
     /*
@@ -54,7 +53,7 @@ public class Tir extends AbstractMovable {
     @Override
     public boolean move(long delta) {
         boolean x = super.move(delta);
-        if (!x) {
+        if (x==false) {
             game.removeMovable(this);
             return false;
         }
