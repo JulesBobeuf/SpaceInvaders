@@ -319,6 +319,15 @@ public final class SpaceInvadersGame {
     }
 
     /**
+     * Ajoute nb points de vie au joueur
+     * 
+     * @param nb
+     */
+    public void addPlayerLife(int nb) {
+        life.set(life.get() + nb);
+    }
+
+    /**
      * Termine la partie lorsque le joueur est tué.
      */
     public void playerIsDead() {
@@ -367,19 +376,18 @@ public final class SpaceInvadersGame {
     /**
      * Déclenche un tir depuis le vaisseau du joueur.
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
-     * @param alien 
+     * 
+     * @param alien
      */
     public void fireShotAlien(IMovable alien) {
-            addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
+        addMovable(factory.createShotAlien(alien.getX() - 10, alien.getY() + 25));
     }
 
-    
     /**
      * @return
      */
     public IMovable getShip() {
         return ship;
     }
-    
-    
+
 }
