@@ -29,7 +29,7 @@ public class BonusPointVie extends AbstractMovable {
      * @param sprite
      * @param verticalSpeed 
      */
-    protected BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
+    public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
             Sprite sprite, double verticalSpeed) {
         super(game, xPosition, yPosition, sprite);
         this.setVerticalSpeed(verticalSpeed);
@@ -79,6 +79,7 @@ public class BonusPointVie extends AbstractMovable {
     @Override
     public void collidedWith(VaisseauJoueur other) {
         game.addPlayerLife(1);
+        game.removeMovable(this);
     }
 
 }

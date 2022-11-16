@@ -253,7 +253,7 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        // TODO Créer le bonus.
+        addMovable(factory.createBonus(500, 0, spriteStore.getSprite("heart_5"), 200));
     }
 
     /**
