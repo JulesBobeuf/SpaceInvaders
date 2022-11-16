@@ -70,5 +70,27 @@ public class TrucResistantDecorateur extends AbstractMovableDecorateur {
         return this.movable;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        //il n'y a rien ici et c normal
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        //il n'y a rien ici et c normal
+        
+    }
+
 }
 

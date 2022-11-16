@@ -134,12 +134,36 @@ public class VaisseauAlien extends AbstractMovable {
         game.playerIsDead();
         
     }
+<<<<<<< HEAD
     
     /**
      * @param attack
      */
     public void setAlienAttack(IAlienAttaque attack) {
         this.attack=attack;
+=======
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        //il n'y a rien ici et c normal
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        //il n'y a rien ici et c normal
+        
+>>>>>>> 5281015bb6093b69a866ec9250706d5779de0661
     }
 }
 
