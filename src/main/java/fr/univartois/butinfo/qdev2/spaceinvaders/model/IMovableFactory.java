@@ -93,5 +93,14 @@ public interface IMovableFactory {
      */
     IMovable createStrongShot(int x, int y);
     
+    /**
+     * @param x
+     * @param y
+     * @param sprite
+     * @param vitesse
+     * @return
+     */
+    IMovable createBonus(int x, int y);
+
     IMovable createMur(int x, int y);
 }
