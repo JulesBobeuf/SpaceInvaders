@@ -114,7 +114,7 @@ public class MovableFactory2 implements IMovableFactory {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int, fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite, double)
      */
     @Override
-    public IMovable createBonus(int x, int y, Sprite sprite, double vitesse) {
+    public IMovable createBonus(int x, int y) {
         // TODO Auto-generated method stub.
         return null;
     }

@@ -141,8 +141,13 @@ public class MovableFactory implements IMovableFactory {
     }
 
     @Override
-    public IMovable createBonus(int x, int y, Sprite sprite, double vitesse) {
-        return new BonusPointVie(game, x, y, sprite, vitesse);
+    public IMovable createBonus(int x, int y) {
+        int nb = random.nextInt(101);
+
+        if (nb >= 90)
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
+        else
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
     }
 
 }

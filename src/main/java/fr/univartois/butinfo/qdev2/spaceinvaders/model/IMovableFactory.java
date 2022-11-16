@@ -100,5 +100,5 @@ public interface IMovableFactory {
      * @param vitesse
      * @return
      */
-    IMovable createBonus(int x, int y, Sprite sprite, double vitesse);
+    IMovable createBonus(int x, int y);
 }

@@ -20,6 +20,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class BonusPointVie extends AbstractMovable {
 
+    private int nbPoints;
+
     /**
      * Crée une nouvelle instance de BonusPointVie.
      * 
@@ -27,13 +29,15 @@ public class BonusPointVie extends AbstractMovable {
      * @param xPosition
      * @param yPosition
      * @param sprite
-     * @param verticalSpeed 
+     * @param verticalSpeed
+     * @param nbPoints
      */
     public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
-            Sprite sprite, double verticalSpeed) {
+            Sprite sprite, double verticalSpeed, int nbPoints) {
         super(game, xPosition, yPosition, sprite);
         this.setVerticalSpeed(verticalSpeed);
         this.setHorizontalSpeed(0);
+        this.nbPoints = nbPoints;
     }
 
     /*
@@ -78,7 +82,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        game.addPlayerLife(1);
+        game.addPlayerLife(this.nbPoints);
         game.removeMovable(this);
     }
 
