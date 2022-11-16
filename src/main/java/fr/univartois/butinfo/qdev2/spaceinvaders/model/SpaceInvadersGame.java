@@ -363,7 +363,7 @@ public final class SpaceInvadersGame {
      * @param alien 
      */
     public void fireShotAlien(IMovable alien) {
-            addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
+            addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
     
