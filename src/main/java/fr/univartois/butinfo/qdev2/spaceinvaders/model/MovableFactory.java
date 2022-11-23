@@ -38,20 +38,14 @@ public class MovableFactory implements IMovableFactory {
      * 
      */
     private ISpriteStore spriteStore;
-<<<<<<< HEAD
     /**
      * 
      */
     private Random random = new Random();
-    
+
     /**
      * 
      */
-=======
-
-    private Random random = new Random();
-
->>>>>>> 5281015bb6093b69a866ec9250706d5779de0661
     private SpaceInvadersGame game;
 
     /*
