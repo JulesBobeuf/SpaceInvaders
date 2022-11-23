@@ -130,5 +130,16 @@ public class MovableFactory2 implements IMovableFactory {
         return null;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBomb(int, int)
+     */
+    @Override
+    public IMovable createBomb(int x, int y) {
+        // TODO Auto-generated method stub.
+        return null;
+    }
+
 }
 

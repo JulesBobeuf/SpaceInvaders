@@ -102,5 +102,17 @@ public interface IMovableFactory {
      */
     IMovable createBonus(int x, int y);
 
+    /**
+     * @param x
+     * @param y
+     * @return
+     */
     IMovable createMur(int x, int y);
+    
+    /**
+     * @param x
+     * @param y
+     * @return
+     */
+    IMovable createBomb(int x, int y);
 }

@@ -244,3 +244,7 @@ SpaceInvaders -left-> SpaceInvadersGame : << crée >>
 
 @enduml
 ```
+
+## Fonctionnement
+- Appuyer sur la flèche du haut pour placer un mur au dessus du joueur (3 par manche)
+- Appuyer sur la flèche du bas pour placer un bonus bombe au dessus du joueur. tirer sur celui-ci pour qu'il s'arrete et s'active (2 par manche)
