@@ -12,25 +12,32 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 /**
- * Le type VaisseauJoueur
+ * Le type BonusPointVie
  *
  * @author aymeric.jakobowski
  *
  * @version 0.1.0
  */
-public class VaisseauJoueur extends AbstractMovable {
+public class BonusPointVie extends AbstractMovable {
+
+    private int nbPoints;
 
     /**
-     * Crée une nouvelle instance de VaisseauJoueur.
+     * Crée une nouvelle instance de BonusPointVie.
      * 
      * @param game
      * @param xPosition
      * @param yPosition
      * @param sprite
+     * @param verticalSpeed
+     * @param nbPoints
      */
-    public VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
+            Sprite sprite, double verticalSpeed, int nbPoints) {
         super(game, xPosition, yPosition, sprite);
+        this.setVerticalSpeed(verticalSpeed);
         this.setHorizontalSpeed(0);
+        this.nbPoints = nbPoints;
     }
 
     /*
@@ -42,32 +49,41 @@ public class VaisseauJoueur extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        other.collidedWith(this);
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir)
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois
+     * .butinfo.qdev2.spaceinvaders.model.movables.Tir)
      */
     @Override
     public void collidedWith(Tir other) {
-        //il n'y a rien ici, et c'est normal.  
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.VaisseauAlien)
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois
+     * .butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien)
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        //il n'y a rien ici, et c'est normal.
     }
-    
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois
+     * .butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur)
+     */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        //il n'y a rien ici, et c'est normal.  
+        game.addPlayerLife(this.nbPoints);
+        game.removeMovable(this);
     }
 
     /*
@@ -76,9 +92,7 @@ public class VaisseauJoueur extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
      */
     @Override
-    public void collidedWith(TirAlien other) {
-        //il n'y a rien ici et c normal
-        
+    public void collidedWith(TirAlien other) {        
     }
 
     /*
@@ -87,9 +101,7 @@ public class VaisseauJoueur extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
      */
     @Override
-    public void collidedWith(Mur other) {
-        // impossible
-        
+    public void collidedWith(Mur other) {        
     }
 
 }

@@ -19,8 +19,11 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IAlienAttaque;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlienComposite;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -35,6 +38,17 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @version 0.1.0
  */
 public final class SpaceInvadersGame {
+    
+
+    /**
+     * L'attribut COUNT_MUR...
+     */
+    private static int COUNT_MUR=3;
+    
+    /**
+     * L'attribut countMur...
+     */
+    private int countMur=COUNT_MUR;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -97,6 +111,8 @@ public final class SpaceInvadersGame {
      * Le nombre d'aliens encore vivants.
      */
     private int nbRemainingAliens;
+    
+    private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
 
     /**
      * La liste des objets pouvant se déplacer dans le jeu.
@@ -123,6 +139,13 @@ public final class SpaceInvadersGame {
 
     private Random random = new Random();
 
+    /**
+     * Crée une nouvelle instance de SpaceInvadersGame.
+     * @param width
+     * @param height
+     * @param spriteStore
+     * @param factory
+     */
     public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
             IMovableFactory factory) {
         this.width = width;
@@ -228,6 +251,7 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
+        countMur=COUNT_MUR;
     }
 
     /**
@@ -253,7 +277,7 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        // TODO Créer le bonus.
+        addMovable(factory.createBonus(500, 0));
     }
 
     /**
@@ -319,6 +343,15 @@ public final class SpaceInvadersGame {
     }
 
     /**
+     * Ajoute nb points de vie au joueur
+     * 
+     * @param nb
+     */
+    public void addPlayerLife(int nb) {
+        life.set(life.get() + nb);
+    }
+
+    /**
      * Termine la partie lorsque le joueur est tué.
      */
     public void playerIsDead() {
@@ -367,13 +400,13 @@ public final class SpaceInvadersGame {
     /**
      * Déclenche un tir depuis le vaisseau du joueur.
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
-     * @param alien 
+     * 
+     * @param alien
      */
     public void fireShotAlien(IMovable alien) {
-            addMovable(factory.createShotAlien(alien.getX()-10, alien.getY()+25));
+            addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
-    
     /**
      * @return
      */
@@ -381,5 +414,33 @@ public final class SpaceInvadersGame {
         return ship;
     }
     
+    /**
+<<<<<<< HEAD
+     * @param alien
+     */
+    public void changeTirAlien(VaisseauAlien alien) {
+        IAlienAttaque atak = tirAlienComposite.tir();
+        alien.setAlienAttack(atak);
+    }
+
+    /**
+     * 
+     */
+    public void placeMur() {
+        if (countMur>0) {
+            addMovable(factory.createMur(ship.getX(),ship.getY()-100));  
+            countMur--;
+        }
+    }
     
+    /**
+     * @param mur
+     */
+    public void changeMurSprite(Mur mur) {
+        mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
+    }
+    
+    public int getNbRemainingAliens() {
+        return nbRemainingAliens;
+    }
 }

@@ -12,9 +12,11 @@ import java.util.Random;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireIntelligent;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTirePasStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusPointVie;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
@@ -32,9 +34,18 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  */
 public class MovableFactory implements IMovableFactory {
 
+    /**
+     * 
+     */
     private ISpriteStore spriteStore;
+    /**
+     * 
+     */
     private Random random = new Random();
-    
+
+    /**
+     * 
+     */
     private SpaceInvadersGame game;
 
     /*
@@ -70,24 +81,27 @@ public class MovableFactory implements IMovableFactory {
     @Override
     public IMovable createAlien(int x, int y) {
         String alienSprite = "alien";
-        
+
         int nb = random.nextInt(21);
         if (nb <= 10) {
             if (random.nextBoolean()) {
-                return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementNormal(),new AlienTireStrategy());
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                        new DeplacementNormal(), new AlienTireStrategy());
             } else {
-                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(),new AlienTirePasStrategy()));
+                return new TrucResistantDecorateur(
+                        new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"),
+                                new DeplacementNormal(), new AlienTirePasStrategy()));
             }
-        } else if ( 10 < nb && nb < 15) {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical(),new AlienTireIntelligent(game));
+        } else if (10 < nb && nb < 15) {
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"),
+                    new DeplacementVertical(), new AlienTireIntelligent(game));
         } else {
-            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementDiagonale(),new AlienTirePasStrategy());
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                    new DeplacementDiagonale(), new AlienTirePasStrategy());
         }
-        
     }
 
-
-    /* 
+    /*
      * (non-Javadoc)
      *
      * @see
@@ -110,12 +124,13 @@ public class MovableFactory implements IMovableFactory {
     public IMovable createShot(int x, int y) {
         return new Tir(game, x, y, spriteStore.getSprite("shot"));
     }
-    
-    
+
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(int, int)
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(
+     * int, int)
      */
     public IMovable createShotAlien(int x, int y) {
         return new TirAlien(game, x, y, spriteStore.getSprite("shot"));
@@ -124,11 +139,27 @@ public class MovableFactory implements IMovableFactory {
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createStrongShot(int, int) 
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createStrongShot(
+     * int, int)
      */
     @Override
     public IMovable createStrongShot(int x, int y) {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
+    }
+    
+    public IMovable createMur(int x, int y) {
+        return new Mur(game, x, y, spriteStore.getSprite("bricks"));
+    }
+
+    @Override
+    public IMovable createBonus(int x, int y) {
+        int nb = random.nextInt(101);
+
+        if (nb >= 90)
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
+        else
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
     }
 
 }

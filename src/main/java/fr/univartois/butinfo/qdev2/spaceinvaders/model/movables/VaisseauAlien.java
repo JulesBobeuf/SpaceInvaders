@@ -33,7 +33,10 @@ public class VaisseauAlien extends AbstractMovable {
      */
     private IAlienAttaque attack;
     
-    
+    /**
+     * 
+     */
+    private boolean changedStrategyAttack;
 
     /**
      * @param game
@@ -49,6 +52,7 @@ public class VaisseauAlien extends AbstractMovable {
         this.setHorizontalSpeed(deplacement.getHorizontalSpeed(25));
         this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
         this.attack=attack;
+        this.changedStrategyAttack=false;
     }
 
     /*
@@ -64,6 +68,10 @@ public class VaisseauAlien extends AbstractMovable {
         if (tir) {
             game.fireShotAlien(this);
         }
+        if ((game.getNbRemainingAliens()<10) && (changedStrategyAttack==false)) {
+            game.changeTirAlien(this);
+            changedStrategyAttack=true;
+        }
         if (!x) {
             if (this.getY()+this.getHeight()==game.getBottomLimit()) {
                 game.alienReachedPlanet();
@@ -72,11 +80,13 @@ public class VaisseauAlien extends AbstractMovable {
             if (this.getX()==game.getLeftLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
                 facteur += 0.02;
+                game.changeTirAlien(this);
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
+                game.changeTirAlien(this);
                 return false;
             }
                         
@@ -123,6 +133,34 @@ public class VaisseauAlien extends AbstractMovable {
     public void collidedWith(VaisseauJoueur other) {
         game.playerIsDead();
         
+    }
+    
+    /**
+     * @param attack
+     */
+    public void setAlienAttack(IAlienAttaque attack) {
+        this.attack=attack;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        //il n'y a rien ici et c normal
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        //il n'y a rien ici et c normal
     }
 }
 
