@@ -194,6 +194,9 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
                 } else if (e.getCode() == KeyCode.UP) {
                 // on peut placer 3 murs au max
                     game.placeMur();
+                } else if (e.getCode() == KeyCode.DOWN) {
+                // on peut placer 2 bombes au max
+                    game.throwBomb();
             }
             }
         });

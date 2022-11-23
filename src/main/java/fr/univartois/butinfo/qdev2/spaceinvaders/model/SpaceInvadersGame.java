@@ -46,9 +46,19 @@ public final class SpaceInvadersGame {
     private static int COUNT_MUR=3;
     
     /**
+     * L'attribut COUNT_BOMB...
+     */
+    private static int COUNT_BOMB=2;
+    
+    /**
      * L'attribut countMur...
      */
     private int countMur=COUNT_MUR;
+    
+    /**
+     * L'attribut countBomb...
+     */
+    private int countBomb=COUNT_BOMB;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -112,6 +122,9 @@ public final class SpaceInvadersGame {
      */
     private int nbRemainingAliens;
     
+    /**
+     * 
+     */
     private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
 
     /**
@@ -252,6 +265,7 @@ public final class SpaceInvadersGame {
         score.set(0);
         nbRemainingAliens = 0;
         countMur=COUNT_MUR;
+        countBomb=COUNT_BOMB;
     }
 
     /**
@@ -442,5 +456,12 @@ public final class SpaceInvadersGame {
     
     public int getNbRemainingAliens() {
         return nbRemainingAliens;
+    }
+    
+    public void throwBomb() {
+        if (countBomb>0) {
+            addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
+            countBomb--;
+        }
     }
 }
