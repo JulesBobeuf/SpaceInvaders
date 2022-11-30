@@ -133,7 +133,7 @@ public class MovableFactory implements IMovableFactory {
      * int, int)
      */
     public IMovable createShotAlien(int x, int y) {
-        return new TirAlien(game, x, y, spriteStore.getSprite("shot"));
+        return new TirAlien(game, x, y, spriteStore.getSprite("shotAlien"));
     }
 
     /*
