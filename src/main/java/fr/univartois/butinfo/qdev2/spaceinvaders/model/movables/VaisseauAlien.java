@@ -156,7 +156,7 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        //il n'y a rien ici et c normal
+        //il n'y a rien ici, et c'est normal.
         
     }
 

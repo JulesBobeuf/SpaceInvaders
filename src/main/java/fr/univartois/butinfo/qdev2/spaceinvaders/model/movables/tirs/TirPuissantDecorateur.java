@@ -96,7 +96,6 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
     @Override
     public void collidedWith(Mur other) {
         // TODO Auto-generated method stub.
-        
     }
 }
 
