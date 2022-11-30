@@ -11,10 +11,10 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 
@@ -94,7 +94,7 @@ public class BonusBomb extends AbstractMovable {
      */
     public void explode() {
         for (IMovable movable : game.getMovableObjects()) {
-            if ((Math.abs(movable.getX()-this.getX())<100 || Math.abs(movable.getY()-this.getY())<100) && (! movable.equals(game.getShip()))) {
+            if ((Math.abs(movable.getX()-this.getX())<100 || Math.abs(movable.getY()-this.getY())<100) && (! movable.equals(game.getShip() ))) {
                 game.removeMovable(movable);
             }
         }
