@@ -11,6 +11,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.vaisseaujoueur.VaisseauJoueur;
@@ -95,7 +96,7 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        // Y a r        
+        //il n'y a rien ici, et c'est normal.      
     }
 
     /*
@@ -115,7 +116,18 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        //il n'y a rien ici et c normal
+        //il n'y a rien ici, et c'est normal.
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        game.removeMovable(this);
+        
     }
    
    

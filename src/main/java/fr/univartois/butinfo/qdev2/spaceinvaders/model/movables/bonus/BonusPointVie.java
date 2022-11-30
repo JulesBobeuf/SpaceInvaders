@@ -110,4 +110,16 @@ public class BonusPointVie extends AbstractMovable {
     public void collidedWith(Mur other) {        
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        game.removeMovable(this);
+        // si le joueur explose la bombe sur le bonus, bah il perd le bonus. Il fallait mieux jouer!
+        
+    }
+
 }

@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -237,6 +238,12 @@ public interface IMovable {
      */
     
     void collidedWith(Mur other);
+    
+    /**
+     * @param other
+     */
+    void collidedWith(BonusBomb other);
+
 
     /**
      * Donne l'objet réel qui implémente cette interface.

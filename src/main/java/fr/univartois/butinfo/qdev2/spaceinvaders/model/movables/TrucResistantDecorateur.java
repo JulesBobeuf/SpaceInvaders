@@ -8,6 +8,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -107,6 +108,23 @@ public class TrucResistantDecorateur extends AbstractMovableDecorateur {
     @Override
     public void collidedWith(Mur other) {
         //il n'y a rien ici et c normal
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        if (isAlien) {
+            vie.set(vie.get()-1);
+            if (vie.get() == 0)
+                movable.collidedWith(other);
+        } else {
+            movable.collidedWith(other);
+        }
+
     }
 
 }

@@ -11,6 +11,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -55,6 +56,13 @@ public class VaisseauJoueur extends AbstractMovable {
         other.collidedWith(this);
     }
 
+    /**
+     * @param other
+     */
+    public void collidedWith(BonusBomb other) {
+        etat.handle();
+        etat = etat.nextStateAfterShot();
+    }
     /*
      * (non-Javadoc)
      *

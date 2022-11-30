@@ -88,14 +88,17 @@ public class BonusBomb extends AbstractMovable {
         if (this.getVerticalSpeed()!=0) {
             game.removeMovable(this);
         }
+        else {
+            game.removeMovable(other);
+        }
     }
     /**
      * 
      */
     public void explode() {
         for (IMovable movable : game.getMovableObjects()) {
-            if ((Math.abs(movable.getX()-this.getX())<100 || Math.abs(movable.getY()-this.getY())<100) && (! movable.equals(game.getShip() ))) {
-                game.removeMovable(movable);
+            if ((Math.abs(movable.getX()-this.getX())<150 && Math.abs(movable.getY()-this.getY())<150)) {
+                movable.collidedWith(this);
             }
         }
         game.removeMovable(this);
@@ -107,7 +110,9 @@ public class BonusBomb extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        // impossible
+        if (this.getVerticalSpeed()==0) {
+            game.reducePlayerLife();
+        }
     }
 
     /*
@@ -128,6 +133,17 @@ public class BonusBomb extends AbstractMovable {
     @Override
     public void collidedWith(Mur other) {
         // Il n'y a rien ici et c'est normal (si qqn met un mur au dessus d'une bombe il est pas très intélligent xd
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        // Il n'y a rien ici est c'est normal
+        
     }
 
 }
