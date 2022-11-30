@@ -9,9 +9,9 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.Random;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 

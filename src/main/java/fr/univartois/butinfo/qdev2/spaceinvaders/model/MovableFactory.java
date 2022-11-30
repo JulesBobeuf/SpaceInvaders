@@ -9,21 +9,21 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.Random;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireIntelligent;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTirePasStrategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusBomb;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusPointVie;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusPointVie;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementVertical;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.TirPuissantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireIntelligent;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
 /**

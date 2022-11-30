@@ -5,17 +5,16 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
-
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs;
 
 /**
- * Le type MurStateNormal
+ * Le type MurStateBroken
  *
  * @author Jules
  *
  * @version 0.1.0
  */
-public class MurStateNormal implements IStateMur {
+public class MurStateBroken implements IStateMur {
 
     /*
      * (non-Javadoc)
@@ -24,7 +23,7 @@ public class MurStateNormal implements IStateMur {
      */
     @Override
     public IStateMur getNextState() {
-        return new MurStateCracked();
+        return null;
     }
 
     /*
@@ -34,7 +33,7 @@ public class MurStateNormal implements IStateMur {
      */
     @Override
     public String getSpriteName() {
-        return "bricks";
+        return null;
     }
 
 }
