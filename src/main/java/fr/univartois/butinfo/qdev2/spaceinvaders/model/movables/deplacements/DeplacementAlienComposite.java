@@ -1,13 +1,9 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementVertical;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.IDeplacements;
 
 /**
  * @author thomas
