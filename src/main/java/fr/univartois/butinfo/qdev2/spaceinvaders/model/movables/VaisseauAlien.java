@@ -81,12 +81,14 @@ public class VaisseauAlien extends AbstractMovable {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
                 facteur += 0.02;
                 game.changeTirAlien(this);
+                game.changeDeplacementAlien(this);
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
                 game.changeTirAlien(this);
+                game.changeDeplacementAlien(this);
                 return false;
             }
                         
@@ -162,5 +164,23 @@ public class VaisseauAlien extends AbstractMovable {
     public void collidedWith(Mur other) {
         //il n'y a rien ici et c normal
     }
+
+    
+    /**
+     * @return
+     */
+    public IDeplacements getDeplacement() {
+        return deplacement;
+    }
+
+    
+    /**
+     * @param deplacement
+     */
+    public void setDeplacement(IDeplacements deplacement) {
+        this.deplacement = deplacement;
+    }
+    
+    
 }
 

@@ -19,7 +19,10 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IAlienAttaque;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IDeplacements;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
@@ -112,8 +115,18 @@ public final class SpaceInvadersGame {
      */
     private int nbRemainingAliens;
     
+    /**
+     * 
+     */
     private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
 
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    private DeplacementAlienComposite deplacementComposite = new DeplacementAlienComposite(this);
     /**
      * La liste des objets pouvant se déplacer dans le jeu.
      */
@@ -415,13 +428,22 @@ public final class SpaceInvadersGame {
     }
     
     /**
-<<<<<<< HEAD
      * @param alien
      */
     public void changeTirAlien(VaisseauAlien alien) {
         IAlienAttaque atak = tirAlienComposite.tir();
         alien.setAlienAttack(atak);
     }
+    /**
+     * @param alien
+     */
+    public void changeDeplacementAlien(VaisseauAlien alien) {
+        alien.setDeplacement(deplacementComposite.getDeplacement());
+    }
+    
+    /**
+     * @param alien
+     */
 
     /**
      * 
