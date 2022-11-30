@@ -129,6 +129,13 @@ public final class SpaceInvadersGame {
     private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
 
     /**
+     * 
+     */
+    /**
+     * 
+     */
+    private DeplacementAlienComposite deplacementComposite = new DeplacementAlienComposite(this);
+    /**
      * La liste des objets pouvant se déplacer dans le jeu.
      */
     private final List<IMovable> movableObjects = new CopyOnWriteArrayList<>();
@@ -430,13 +437,22 @@ public final class SpaceInvadersGame {
     }
     
     /**
-<<<<<<< HEAD
      * @param alien
      */
     public void changeTirAlien(VaisseauAlien alien) {
         IAlienAttaque atak = tirAlienComposite.tir();
         alien.setAlienAttack(atak);
     }
+    /**
+     * @param alien
+     */
+    public void changeDeplacementAlien(VaisseauAlien alien) {
+        alien.setDeplacement(deplacementComposite.getDeplacement());
+    }
+    
+    /**
+     * @param alien
+     */
 
     /**
      * 
