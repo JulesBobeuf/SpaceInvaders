@@ -22,24 +22,39 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class TrucResistantDecorateur extends AbstractMovableDecorateur {
 
+    /**
+     * L'attribut vie qui compte les points de vie restants de l'objet décoré.
+     */
     private IntegerProperty vie = new SimpleIntegerProperty();
     
     /**
-     * Crée une nouvelle instance de AlienResistantDecorateur.
-     * @param movable
+     * L'attribut isAlien qui indique si l'objet décoré est un alien.
      */
-    public TrucResistantDecorateur(IMovable movable) {
+    private boolean isAlien;
+    
+    /**
+     * Crée une nouvelle instance de AlienResistantDecorateur.
+     * @param movable IMovable : l'objet décoré
+     * @param isAlien boolean : si le movable est un alien
+     */
+    public TrucResistantDecorateur(IMovable movable, boolean isAlien) {
         super(movable);
+        this.isAlien = isAlien;
         vie.set(3);
     }
     
     @Override
     public void collidedWith(Tir other) {
-        vie.set(vie.get()-1);
-        if (vie.get() == 0)
-            movable.collidedWith(other);
+        if (isAlien) {
+            vie.set(vie.get()-1);
+            if (vie.get() == 0)
+                movable.collidedWith(other);
+        }
     }
     
+    /**
+     * @return IntegerProperty : la propriété de la vie
+     */
     public IntegerProperty getVieProperty() {
         return vie;
     }
@@ -68,6 +83,17 @@ public class TrucResistantDecorateur extends AbstractMovableDecorateur {
     @Override
     public IMovable self() {
         return this.movable;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        if (!isAlien)
+            this.movable.collidedWith(other);
     }
 
 }

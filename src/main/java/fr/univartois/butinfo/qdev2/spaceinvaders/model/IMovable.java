@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -203,6 +204,14 @@ public interface IMovable {
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
     void collidedWith(Tir other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link TirAlien}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(TirAlien other);
     
     /**
      * Informe cet objet qu'il est entré en collision avec une autre instance de

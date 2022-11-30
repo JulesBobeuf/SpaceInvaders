@@ -63,7 +63,7 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        return new TrucResistantDecorateur(movableFactory.createAlien(x, y));
+        return new TrucResistantDecorateur(movableFactory.createAlien(x, y), true);
     }
 
     /*
@@ -73,7 +73,7 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createShip(int x, int y) {
-        return new TrucResistantDecorateur(movableFactory.createShip(x, y));
+        return new TrucResistantDecorateur(movableFactory.createShip(x, y), false);
     }
 
     /*

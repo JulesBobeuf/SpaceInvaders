@@ -7,6 +7,8 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.EtatVulnerable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IEtatVaisseau;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -19,7 +21,10 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  * @version 0.1.0
  */
 public class VaisseauJoueur extends AbstractMovable {
-
+    
+    long timer;
+    public IEtatVaisseau etat;
+    
     /**
      * Crée une nouvelle instance de VaisseauJoueur.
      * 
@@ -31,6 +36,8 @@ public class VaisseauJoueur extends AbstractMovable {
     public VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(0);
+        this.etat = new EtatVulnerable(game);
+        this.timer = 0;
     }
 
     /*
@@ -55,6 +62,19 @@ public class VaisseauJoueur extends AbstractMovable {
         //il n'y a rien ici, et c'est normal.  
     }
 
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        game.removeMovable(other);
+        etat.handle();
+        etat = etat.nextStateAfterShot();
+    }
+    
     /*
      * (non-Javadoc)
      *
@@ -69,5 +89,10 @@ public class VaisseauJoueur extends AbstractMovable {
     public void collidedWith(VaisseauJoueur other) {
         //il n'y a rien ici, et c'est normal.  
     }
-
+    
+    @Override
+    public boolean move(long delta) {
+        etat = etat.nextStateAfterTime();
+        return super.move(delta); 
+    }
 }

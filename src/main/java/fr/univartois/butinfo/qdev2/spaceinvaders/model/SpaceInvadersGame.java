@@ -23,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -238,7 +239,7 @@ public final class SpaceInvadersGame {
         clearAllMovables();
 
         ship = factory.createShip(width / 2, getBottomLimit());
-        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
+        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship, false);
         shipResistant.getVieProperty().bindBidirectional(life);
         ship = shipResistant;
         addMovable(ship);
@@ -379,6 +380,16 @@ public final class SpaceInvadersGame {
      */
     public IMovable getShip() {
         return ship;
+    }
+
+    
+    /**
+     * Donne l'attribut life de cette instance de SpaceInvadersGame.
+     *
+     * @return L'attribut life de cette instance de SpaceInvadersGame.
+     */
+    public int getLife() {
+        return life.get();
     }
     
     

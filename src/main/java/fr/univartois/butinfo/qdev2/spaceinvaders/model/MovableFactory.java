@@ -76,7 +76,7 @@ public class MovableFactory implements IMovableFactory {
             if (random.nextBoolean()) {
                 return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite), new DeplacementNormal(),new AlienTireStrategy());
             } else {
-                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(),new AlienTirePasStrategy()));
+                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(),new AlienTirePasStrategy()), true); // le true indique au décorateur que l'objet est un alien
             }
         } else if ( 10 < nb && nb < 15) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"), new DeplacementVertical(),new AlienTireIntelligent(game));

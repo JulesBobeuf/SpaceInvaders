@@ -90,9 +90,17 @@ public class Tir extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        game.reducePlayerLife();
-        game.removeMovable(this);
-        
+        // Y a r        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
+     */
+    @Override
+    public void collidedWith(TirAlien other) {
+        //il n'y a rien ici, et c'est normal.
     }
    
 }
