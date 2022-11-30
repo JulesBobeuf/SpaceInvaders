@@ -1,4 +1,4 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;

@@ -1,8 +1,9 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 import java.util.Random;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.ITirsGeneral;
 
 /**
  * @author thomas
@@ -20,7 +21,7 @@ public class TirAlienComposite implements ITirsGeneral {
      */
     private SpaceInvadersGame game;
     
-    
+         
     
     /**
      * @param game
