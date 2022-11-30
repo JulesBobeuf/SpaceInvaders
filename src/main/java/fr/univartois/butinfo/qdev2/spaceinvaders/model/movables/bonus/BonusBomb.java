@@ -28,6 +28,12 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 public class BonusBomb extends AbstractMovable {
 
     /**
+     * L'attribut detonation...
+     */
+    long detonation = -10000;
+    
+    
+    /**
      * Crée une nouvelle instance de BonusMine.
      * @param game
      * @param xPosition
@@ -38,8 +44,18 @@ public class BonusBomb extends AbstractMovable {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(0);
         this.setVerticalSpeed(-150);
+        detonation=0;
     }
-
+    
+    @Override
+    public boolean move(long delta) {
+        detonation+=delta;
+        boolean shouldMove = super.move(delta);  
+        if (detonation>3000) {
+            this.explode();
+        }
+        return shouldMove;
+    }
     /*
      * (non-Javadoc)
      *
@@ -55,10 +71,12 @@ public class BonusBomb extends AbstractMovable {
      *
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir)
      */
-    @Override
+      @Override
     public void collidedWith(Tir other) {
+        detonation=0;
         this.setVerticalSpeed(0);
     }
+
 
     /*
      * (non-Javadoc)
@@ -70,12 +88,18 @@ public class BonusBomb extends AbstractMovable {
         if (this.getVerticalSpeed()!=0) {
             game.removeMovable(this);
         }
-        else {
-            game.removeMovable(other);
-            game.removeMovable(this);
-        }
     }
-
+    /**
+     * 
+     */
+    public void explode() {
+        for (IMovable movable : game.getMovableObjects()) {
+            if ((Math.abs(movable.getX()-this.getX())<100 || Math.abs(movable.getY()-this.getY())<100) && (! movable.equals(game.getShip()))) {
+                game.removeMovable(movable);
+            }
+        }
+        game.removeMovable(this);
+    }
     /*
      * (non-Javadoc)
      *

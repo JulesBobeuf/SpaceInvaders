@@ -184,6 +184,13 @@ public final class SpaceInvadersGame {
     public int getWidth() {
         return width;
     }
+    
+    /**
+     * @return
+     */
+    public List<IMovable> getMovableObjects() {
+        return movableObjects;
+    }
 
     /**
      * Donne la limite à gauche pour la position des objets mobiles du jeu (mesurée en
@@ -472,10 +479,16 @@ public final class SpaceInvadersGame {
         mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
+    /**
+     * @return
+     */
     public int getNbRemainingAliens() {
         return nbRemainingAliens;
     }
     
+    /**
+     * 
+     */
     public void throwBomb() {
         if (countBomb>0) {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
