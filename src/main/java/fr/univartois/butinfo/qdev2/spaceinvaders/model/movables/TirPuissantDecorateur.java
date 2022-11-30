@@ -81,7 +81,18 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        //il n'y a rien ici, et c'est normal.
+        this.movable.collidedWith(other);
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        // TODO Auto-generated method stub.
     }
 }
 

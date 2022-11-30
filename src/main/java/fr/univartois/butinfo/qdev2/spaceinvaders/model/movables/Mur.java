@@ -10,28 +10,41 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 
 /**
- * Le type Tir
+ * Le type Mur
  *
  * @author Jules
  *
  * @version 0.1.0
  */
-public class TirAlien extends AbstractMovable {
+public class Mur extends AbstractMovable {
     
     /**
-     * Crée une nouvelle instance de Tir.
-     * @param game SpaceInvadersGame : une référence au jeu
-     * @param xPosition double : la position X, 0 = bord gauche
-     * @param yPosition double : la position Y, 0 = bord haut
-     * @param sprite Sprite : le sprite utilisé par le tir
+     * L'attribut vie...
      */
-    public TirAlien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    private IntegerProperty vie = new SimpleIntegerProperty();
+    
+    /**
+     * L'attribut state...
+     */
+    private IStateMur state = new MurStateNormal();
+
+    /**
+     * Crée une nouvelle instance de Mur.
+     * @param game
+     * @param xPosition
+     * @param yPosition
+     * @param sprite
+     */
+    public Mur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(300.00);
         this.setHorizontalSpeed(0);
+        this.setVerticalSpeed(0);
+        vie.set(3);
     }
 
     /*
@@ -41,22 +54,8 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
+        //this.losesLife();
         other.collidedWith(this);
-    }
-    
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#move(long)
-     */
-    @Override
-    public boolean move(long delta) {
-        boolean x = super.move(delta);
-        if (!x) {
-            game.removeMovable(this);
-            return false;
-        }
-        return true;
     }
 
     /*
@@ -66,19 +65,19 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(Tir other) {
+        this.losesLife();
         game.removeMovable(other);
-        game.removeMovable(this);
-        
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.VaisseauAlien)
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien)
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        // que dalle
+        this.losesLife();
+        game.removeMovable(other);
     }
 
     /*
@@ -88,7 +87,35 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        // nada
+        // impossible
+    }
+    
+    /**
+     * @param state
+     */
+    public void setState(IStateMur state) {
+        this.state=state;
+    }
+    
+    /**
+     * @return
+     */
+    public IStateMur getState() {
+        return state;
+    }
+    
+    /**
+     * 
+     */
+    private void losesLife() {
+        vie.set(vie.get()-1);
+        this.setState(state.getNextState());
+        if (vie.get()==0) {
+            game.removeMovable(this);
+        }
+        else {
+            game.changeMurSprite(this);
+        }
     }
 
     /*
@@ -98,7 +125,9 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        // que tchi
+        this.losesLife();
+        game.removeMovable(other);
+        
     }
 
     /*
@@ -108,8 +137,9 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        //il n'y a rien ici et c normal  
+        //impossible? ig
+        
     }
-   
+
 }
 

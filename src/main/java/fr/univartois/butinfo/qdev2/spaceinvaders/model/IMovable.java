@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
@@ -31,7 +32,7 @@ import javafx.beans.property.ObjectProperty;
  *
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.1.0 
  */
 public interface IMovable {
 
@@ -234,6 +235,15 @@ public interface IMovable {
      *
      * @return L'objet réel.
      */
+    
+    void collidedWith(Mur other);
+
+    /**
+     * Donne l'objet réel qui implémente cette interface.
+     *
+     * @return L'objet réel.
+     */
     IMovable self();
+    
 
 }

@@ -20,7 +20,7 @@ public class EtatInvulnerable implements IEtatVaisseau {
     
     private SpaceInvadersGame game;
     private long timeOfCreation;
-    private long invincibilityDuration = 3_000;
+    private long invincibilityDuration = 2_000;
     
     public EtatInvulnerable(SpaceInvadersGame game) {
         timeOfCreation = System.currentTimeMillis();

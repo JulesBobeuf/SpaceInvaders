@@ -13,6 +13,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirPuissantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 /**
  * Le type MovableFactory2
@@ -105,6 +106,39 @@ public class MovableFactory2 implements IMovableFactory {
     @Override
     public IMovable createStrongShot(int x, int y) {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int, fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite, double)
+     */
+    @Override
+    public IMovable createMur(int x, int y) {
+        // TODO Auto-generated method stub.
+        return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int)
+     */
+    @Override
+    public IMovable createBonus(int x, int y) {
+        // TODO Auto-generated method stub.
+        return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBomb(int, int)
+     */
+    @Override
+    public IMovable createBomb(int x, int y) {
+        // TODO Auto-generated method stub.
+        return null;
     }
 
 }

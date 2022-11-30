@@ -95,4 +95,14 @@ public class VaisseauJoueur extends AbstractMovable {
         etat = etat.nextStateAfterTime();
         return super.move(delta); 
     }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
+     */
+    @Override
+    public void collidedWith(Mur other) {
+        // impossible
+    }
 }
