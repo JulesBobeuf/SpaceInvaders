@@ -107,8 +107,7 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        game.removeMovable(this);
-        
+        //rien normal
     }
 
     /*

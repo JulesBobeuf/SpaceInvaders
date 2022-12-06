@@ -120,6 +120,12 @@ public final class SpaceInvadersGame {
     private long lastShot = 0;
 
     /**
+     * Le timestamp du dernier tir alien.
+     * Il permet de s'assurer que le joueur ne tire pas trop souvent.
+     */
+    private long lastShotAlien = 0;
+    
+    /**
      * Le nombre d'aliens encore vivants.
      */
     private int nbRemainingAliens;
@@ -339,6 +345,15 @@ public final class SpaceInvadersGame {
             }
         }
     }
+    /**
+     * Déclenche un tir depuis le vaisseau du joueur.
+     * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     * 
+     * @param alien
+     */
+    public void fireShotAlien(IMovable alien) {
+        addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
+    }
 
     /**
      * Met à jour le score du joueur lorsqu'un alien est tué.
@@ -418,16 +433,6 @@ public final class SpaceInvadersGame {
             movable.consume();
         }
         movableObjects.clear();
-    }
-
-    /**
-     * Déclenche un tir depuis le vaisseau du joueur.
-     * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
-     * 
-     * @param alien
-     */
-    public void fireShotAlien(IMovable alien) {
-            addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
     /**

@@ -1,6 +1,5 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
-
-
+import java.util.Timer;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 
 /**
@@ -19,7 +18,9 @@ public class AlienTireIntelligent implements IAlienAttaque {
      * 
      */
     private SpaceInvadersGame game;
+
     
+    final long SHOT_TEMPORIZATION = 500;
     
     /**
      * @param game
@@ -34,13 +35,12 @@ public class AlienTireIntelligent implements IAlienAttaque {
      */
     @Override
     public boolean tir() {
-        if (game.getShip().getX()==500) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        long lastShot= System.currentTimeMillis();
+            if (game.getShip().getX()==500) {
+                if(lastShot + SHOT_TEMPORIZATION > System.currentTimeMillis())
+                    return true;
+            }
+        return false;
     }
-
 }
 
