@@ -236,7 +236,6 @@ public interface IMovable {
      *
      * @return L'objet réel.
      */
-    
     void collidedWith(Mur other);
     
     /**

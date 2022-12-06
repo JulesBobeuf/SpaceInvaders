@@ -16,8 +16,19 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.vaisseaujoueur;
  * @version 0.1.0
  */
 public interface IEtatVaisseau {
+    
+    /**
+     * Réalise une séquence d'action qui dépend de l'état actuel.
+     */
     void handle();
+    /**
+     * @return IEtatVaisseau le prochain état du vaisseau après qu'il ait pris un tir
+     */
     IEtatVaisseau nextStateAfterShot();
+    
+    /**
+     * @return IEtatVaisseau le prochain état du vaisseau après un certain délai
+     */
     IEtatVaisseau nextStateAfterTime();
 }
 

@@ -126,6 +126,5 @@ public class TrucResistantDecorateur extends AbstractMovableDecorateur {
         }
 
     }
-
 }
 
