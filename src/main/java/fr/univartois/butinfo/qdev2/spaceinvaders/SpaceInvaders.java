@@ -20,6 +20,9 @@ import java.io.IOException;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.controller.SpaceInvadersController;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.MovableFactory;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.MovableFactory2;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.MovableFactory3;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.MovableFactory4;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
 import javafx.application.Application;
