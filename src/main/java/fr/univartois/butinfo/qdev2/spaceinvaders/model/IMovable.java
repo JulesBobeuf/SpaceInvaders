@@ -18,6 +18,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusShield;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -242,8 +243,14 @@ public interface IMovable {
      * @param other
      */
     void collidedWith(BonusBomb other);
-
-
+    
+    /**
+     * @param other
+     */
+    default void collidedWith(BonusShield other) {
+        // La méthode par défaut ne fait rien : seul le vaisseau joueur devrait toucher ce bonus.
+    }
+    
     /**
      * Donne l'objet réel qui implémente cette interface.
      *

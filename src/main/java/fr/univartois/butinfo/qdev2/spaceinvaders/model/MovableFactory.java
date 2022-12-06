@@ -13,6 +13,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDec
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusPointVie;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusShield;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementVertical;
@@ -154,12 +155,14 @@ public class MovableFactory implements IMovableFactory {
 
     @Override
     public IMovable createBonus(int x, int y) {
-        int nb = random.nextInt(101);
+        double nb = random.nextDouble();
 
-        if (nb >= 90)
-            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
+        if (nb < 0.1)
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.0, 2);
+        else if (nb < 0.2)
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.0, 1);
         else
-            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
+            return new BonusShield(game, x ,y, spriteStore.getSprite("shield"), 200.0);
     }
     
     @Override

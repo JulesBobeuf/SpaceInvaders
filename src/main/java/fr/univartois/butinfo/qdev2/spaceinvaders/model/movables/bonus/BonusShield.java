@@ -5,11 +5,12 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -51,7 +52,7 @@ public class BonusShield extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        // ne rien faire
+        other.collidedWith(this);
     }
 
     /*
@@ -117,8 +118,7 @@ public class BonusShield extends AbstractMovable {
      */
     @Override
     public void collidedWith(BonusBomb other) {
-        // TODO Auto-generated method stub.
-        
+        // ne rien faire
     }
 
 }
