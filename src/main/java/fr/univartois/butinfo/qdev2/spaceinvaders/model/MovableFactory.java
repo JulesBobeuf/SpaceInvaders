@@ -11,7 +11,6 @@ import java.util.Random;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusPointVie;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
@@ -24,6 +23,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.Alien
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
 /**
@@ -89,9 +89,7 @@ public class MovableFactory implements IMovableFactory {
                 return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
                         new DeplacementNormal(), new AlienTireStrategy());
             } else {
-                return new TrucResistantDecorateur(
-                        new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"),
-                                new DeplacementNormal(), new AlienTirePasStrategy()));
+                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(),new AlienTirePasStrategy()), true); // le true indique au décorateur que l'objet est un alien
             }
         } else if (10 < nb && nb < 15) {
             return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"),

@@ -28,6 +28,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlie
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -190,6 +191,13 @@ public final class SpaceInvadersGame {
     public int getWidth() {
         return width;
     }
+    
+    /**
+     * @return
+     */
+    public List<IMovable> getMovableObjects() {
+        return movableObjects;
+    }
 
     /**
      * Donne la limite à gauche pour la position des objets mobiles du jeu (mesurée en
@@ -291,7 +299,7 @@ public final class SpaceInvadersGame {
         clearAllMovables();
 
         ship = factory.createShip(width / 2, getBottomLimit());
-        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
+        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship, false);
         shipResistant.getVieProperty().bindBidirectional(life);
         ship = shipResistant;
         addMovable(ship);
@@ -441,6 +449,16 @@ public final class SpaceInvadersGame {
     public IMovable getShip() {
         return ship;
     }
+
+    
+    /**
+     * Donne l'attribut life de cette instance de SpaceInvadersGame.
+     *
+     * @return L'attribut life de cette instance de SpaceInvadersGame.
+     */
+    public int getLife() {
+        return life.get();
+    }
     
     /**
      * @param alien
@@ -477,10 +495,16 @@ public final class SpaceInvadersGame {
         mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
+    /**
+     * @return
+     */
     public int getNbRemainingAliens() {
         return nbRemainingAliens;
     }
     
+    /**
+     * 
+     */
     public void throwBomb() {
         if (countBomb>0) {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  

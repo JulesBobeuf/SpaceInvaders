@@ -9,6 +9,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovableDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -96,6 +97,17 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
     @Override
     public void collidedWith(Mur other) {
         // TODO Auto-generated method stub.
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        //Il ne se passe rien ici et c'est normal (les tirs puissant résistent les explosions de bombes 
+        //grace à leur technologie avancé.
         
     }
 }
