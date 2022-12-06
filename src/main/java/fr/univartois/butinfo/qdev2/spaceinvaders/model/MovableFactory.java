@@ -132,6 +132,7 @@ public class MovableFactory implements IMovableFactory {
      * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(
      * int, int)
      */
+    @Override
     public IMovable createShotAlien(int x, int y) {
         return new TirAlien(game, x, y, spriteStore.getSprite("shotAlien"));
     }
@@ -148,11 +149,21 @@ public class MovableFactory implements IMovableFactory {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createMur(int, int)
+     */
     @Override
     public IMovable createMur(int x, int y) {
         return new Mur(game, x, y, spriteStore.getSprite("bricks"));
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int)
+     */
     @Override
     public IMovable createBonus(int x, int y) {
         double nb = random.nextDouble();
@@ -162,9 +173,14 @@ public class MovableFactory implements IMovableFactory {
         else if (nb < 0.2)
             return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.0, 1);
         else
-            return new BonusShield(game, x ,y, spriteStore.getSprite("shield"), 200.0);
+            return new BonusShield(game, x ,y, spriteStore.getSprite("shield"));
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBomb(int, int)
+     */
     @Override
     public IMovable createBomb(int x, int y) {
         return new BonusBomb(game, x, y, spriteStore.getSprite("bomb"));

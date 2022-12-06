@@ -67,10 +67,13 @@ public class VaisseauJoueur extends AbstractMovable {
     public void collidedWith(IMovable other) {
         other.collidedWith(this);
     }
-
-    /**
-     * @param other
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
      */
+    @Override
     public void collidedWith(BonusBomb other) {
         etat.handle();
         etat = etat.nextStateAfterShot();

@@ -30,21 +30,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Mur extends AbstractMovable {
     
     /**
-     * L'attribut vie...
+     * La propriété vie, qui donne la vie du mur.
      */
     private IntegerProperty vie = new SimpleIntegerProperty();
     
     /**
-     * L'attribut state...
+     * L'attribut state qui définit l'état actuel du mur.
      */
     private IStateMur state = new MurStateNormal();
 
     /**
      * Crée une nouvelle instance de Mur.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * 
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
      */
     public Mur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
@@ -97,14 +98,14 @@ public class Mur extends AbstractMovable {
     }
     
     /**
-     * @param state
+     * @param state le nouvel état du mur.
      */
     public void setState(IStateMur state) {
         this.state=state;
     }
     
     /**
-     * @return
+     * @return l'état actuel du mur.
      */
     public IStateMur getState() {
         return state;

@@ -1,7 +1,7 @@
 /**
  * Ce fichier fait partie du projet projet-2022-2023-b-1.
  *
- * (c) 2022 aymeric.jakobowski
+ * (c) 2022 pierre.schreiner
  * Tous droits réservés.
  */
 
@@ -20,7 +20,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 /**
  * Le type BonusShield est un bonus qui rend le joueur invulnérable.
  *
- * @author aymeric.jakobowski
+ * @author pierre.schreiner
  *
  * @version 0.1.0
  */
@@ -29,18 +29,16 @@ public class BonusShield extends AbstractMovable {
     /**
      * Crée une nouvelle instance de BonusShield.
      * 
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
-     * @param verticalSpeed
-     * @param nbPoints
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
      */
     public BonusShield(SpaceInvadersGame game, double xPosition, double yPosition,
-            Sprite sprite, double verticalSpeed) {
+            Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(verticalSpeed);
         this.setHorizontalSpeed(0);
+        this.setVerticalSpeed(200);
     }
 
     /*

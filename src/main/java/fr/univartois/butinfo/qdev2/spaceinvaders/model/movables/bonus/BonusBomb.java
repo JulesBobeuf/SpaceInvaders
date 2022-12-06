@@ -19,7 +19,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 
 /**
- * Le type BonusMine
+ * Le type BonusBomb représente une bombe que le joueur peut lancer, puis activer en tirant dessus.
  *
  * @author Jules
  *
@@ -28,17 +28,18 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 public class BonusBomb extends AbstractMovable {
 
     /**
-     * L'attribut detonation...
+     * L'attribut detonation.
      */
-    long detonation = -10000;
+    long detonation;
     
     
     /**
      * Crée une nouvelle instance de BonusMine.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * 
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
      */
     public BonusBomb(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
@@ -143,7 +144,6 @@ public class BonusBomb extends AbstractMovable {
     @Override
     public void collidedWith(BonusBomb other) {
         // Il n'y a rien ici est c'est normal
-        
     }
 
 }

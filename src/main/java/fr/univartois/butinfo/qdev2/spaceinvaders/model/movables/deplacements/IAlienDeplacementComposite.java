@@ -6,7 +6,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements;
  */
 public interface IAlienDeplacementComposite {
     /**
-     * @return
+     * @return IDeplacements L'un des déplacements possibles.
      */
     public IDeplacements getDeplacement();
 }

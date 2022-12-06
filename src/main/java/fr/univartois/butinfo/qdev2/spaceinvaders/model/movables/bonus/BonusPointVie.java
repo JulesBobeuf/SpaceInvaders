@@ -26,17 +26,20 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class BonusPointVie extends AbstractMovable {
 
+    /**
+     * L'attribut nbPoints est le nombre de pv qui seront ajoutés au joueur s'il récupère ce bonus.
+     */
     private int nbPoints;
 
     /**
      * Crée une nouvelle instance de BonusPointVie.
      * 
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
-     * @param verticalSpeed
-     * @param nbPoints
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
+     * @param verticalSpeed Le vitesse à laquelle le bonus descend.
+     * @param nbPoints Le nombre de pv que donne ce bonus.
      */
     public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
             Sprite sprite, double verticalSpeed, int nbPoints) {
@@ -55,6 +58,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
+        // ne rien faire
     }
 
     /*
@@ -66,6 +70,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(Tir other) {
+        // ne rien faire
     }
 
     /*
@@ -77,6 +82,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
+        // ne rien faire
     }
 
     /*
@@ -98,7 +104,8 @@ public class BonusPointVie extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
      */
     @Override
-    public void collidedWith(TirAlien other) {        
+    public void collidedWith(TirAlien other) {
+        // ne rien faire
     }
 
     /*
@@ -107,7 +114,8 @@ public class BonusPointVie extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
      */
     @Override
-    public void collidedWith(Mur other) {        
+    public void collidedWith(Mur other) {
+        // ne rien faire
     }
 
     /*
@@ -118,8 +126,6 @@ public class BonusPointVie extends AbstractMovable {
     @Override
     public void collidedWith(BonusBomb other) {
         game.removeMovable(this);
-        // si le joueur explose la bombe sur le bonus, bah il perd le bonus. Il fallait mieux jouer!
-        
+        // si la bombe sur le bonus, bah bonus est perdu. Fallait mieux jouer.
     }
-
 }
