@@ -33,7 +33,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  *
  * @version 0.1.0
  */
-public class MovableFactory implements IMovableFactory {
+public class MovableFactory4 implements IMovableFactory {
 
     /**
      * 

@@ -10,8 +10,15 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.Random;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementVertical;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.TirPuissantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireIntelligent;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -24,10 +31,22 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class MovableFactory2 implements IMovableFactory {
     
+    /**
+     * création du spriteStore
+     */
     private ISpriteStore spriteStore;
+    /**
+     * creation de la variable random
+     */
     private Random random = new Random();
+    /**
+     * cration de la partie
+     */
     private SpaceInvadersGame game;
-    private MovableFactory movableFactory;
+    /**
+     * créer le movableFactory
+     */
+    private MovableFactory4 movableFactory;
 
     /*
      * (non-Javadoc)
@@ -42,7 +61,7 @@ public class MovableFactory2 implements IMovableFactory {
     /**
      * @param movableFactory
      */
-    public void setMovableFactory(MovableFactory movableFactory) {
+    public void setMovableFactory(MovableFactory4 movableFactory) {
         this.movableFactory = movableFactory;       
     }
 
@@ -64,7 +83,20 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        return new TrucResistantDecorateur(movableFactory.createAlien(x, y), true);
+        String alienSprite = "alien";
+
+        int nb = random.nextInt(21);
+        if (nb <= 10) {
+            if (random.nextBoolean()) {
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                        new DeplacementNormal(), new AlienTirePasStrategy());
+            } else {
+                return new TrucResistantDecorateur(new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"), new DeplacementNormal(),new AlienTirePasStrategy()), true); // le true indique au décorateur que l'objet est un alien
+            }
+        } else {
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                    new DeplacementDiagonale(), new AlienTirePasStrategy());
+        }
     }
 
     /*
@@ -94,7 +126,6 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createShotAlien(int x, int y) {
-        // TODO Auto-generated method stub.
         return null;
     }
 
@@ -115,7 +146,6 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createMur(int x, int y) {
-        // TODO Auto-generated method stub.
         return null;
     }
 
@@ -126,7 +156,6 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createBonus(int x, int y) {
-        // TODO Auto-generated method stub.
         return null;
     }
 
@@ -137,7 +166,6 @@ public class MovableFactory2 implements IMovableFactory {
      */
     @Override
     public IMovable createBomb(int x, int y) {
-        // TODO Auto-generated method stub.
         return null;
     }
 

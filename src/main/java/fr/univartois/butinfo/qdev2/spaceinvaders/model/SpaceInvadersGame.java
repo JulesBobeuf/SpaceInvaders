@@ -51,7 +51,7 @@ public final class SpaceInvadersGame {
     /**
      * L'attribut COUNT_BOMB...
      */
-    private static int COUNT_BOMB=2;
+    private static int COUNT_BOMB=8;
     
     /**
      * L'attribut countMur...
