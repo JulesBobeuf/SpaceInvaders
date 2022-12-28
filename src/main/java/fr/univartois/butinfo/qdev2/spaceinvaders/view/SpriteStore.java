@@ -71,7 +71,7 @@ public final class SpriteStore implements ISpriteStore {
      */
     private Image loadImage(String name) {
         try {
-            URL urlImage = getClass().getResource("./sprites/" + name + ".png");
+            URL urlImage = getClass().getResource("sprites/" + name + ".png");
             return new Image(urlImage.toExternalForm());
 
         } catch (NullPointerException | IllegalArgumentException e) {
