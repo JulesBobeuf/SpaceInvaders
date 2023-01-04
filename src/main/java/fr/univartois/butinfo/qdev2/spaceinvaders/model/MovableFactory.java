@@ -12,6 +12,7 @@ import java.util.Random;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireIntelligent;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTirePasStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AlienTireStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusBomb;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusPointVie;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
@@ -149,6 +150,7 @@ public class MovableFactory implements IMovableFactory {
         return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
     }
     
+    @Override
     public IMovable createMur(int x, int y) {
         return new Mur(game, x, y, spriteStore.getSprite("bricks"));
     }
@@ -161,6 +163,11 @@ public class MovableFactory implements IMovableFactory {
             return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
         else
             return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
+    }
+    
+    @Override
+    public IMovable createBomb(int x, int y) {
+        return new BonusBomb(game, x, y, spriteStore.getSprite("bomb"));
     }
 
     /*
