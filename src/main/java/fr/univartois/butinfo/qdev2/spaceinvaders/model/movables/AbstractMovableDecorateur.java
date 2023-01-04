@@ -23,11 +23,14 @@ import javafx.beans.property.DoubleProperty;
  */
 public abstract class AbstractMovableDecorateur implements IMovable {
     
+    /**
+     * L'objet qui sera décoré par cette classe.
+     */
     protected IMovable movable;
 
     /**
      * Crée une nouvelle instance de AbstractMovablePlusResistant.
-     * @param movable
+     * @param movable Le movable à decorer.
      */
     protected AbstractMovableDecorateur(IMovable movable) {
         this.movable = movable;

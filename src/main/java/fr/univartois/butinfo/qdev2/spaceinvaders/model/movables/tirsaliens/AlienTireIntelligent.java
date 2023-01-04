@@ -22,7 +22,7 @@ public class AlienTireIntelligent implements IAlienAttaque {
     
     
     /**
-     * @param game
+     * @param game Instance de SpaceInvadersGame
      */
     public AlienTireIntelligent(SpaceInvadersGame game) {
         this.game = game;
@@ -34,13 +34,7 @@ public class AlienTireIntelligent implements IAlienAttaque {
      */
     @Override
     public boolean tir() {
-        if (game.getShip().getX()==500) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return game.getShip().getX()==500;
     }
-
 }
 

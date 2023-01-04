@@ -28,7 +28,6 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlie
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -44,24 +43,24 @@ public final class SpaceInvadersGame {
     
 
     /**
-     * L'attribut COUNT_MUR...
+     * L'attribut MAX_MURS donne le nombre max de murs que le joueur peut transporter.
      */
-    private static int COUNT_MUR=3;
+    private static final int MAX_MURS=3;
     
     /**
-     * L'attribut COUNT_BOMB...
+     * L'attribut MAX_BOMBES donne le nombre max de bombes que le joueur peut transporter.
      */
-    private static int COUNT_BOMB=2;
+    private static final int MAX_BOMBES=2;
+
+    /**
+     * L'attribut nbMurs donne le nombre de bombes que le joueur transporte actuellement.
+     */
+    private int nbMurs=MAX_MURS;
     
     /**
-     * L'attribut countMur...
+     * L'attribut nbBombes donne le nombre de bombes que le joueur transporte actuellement.
      */
-    private int countMur=COUNT_MUR;
-    
-    /**
-     * L'attribut countBomb...
-     */
-    private int countBomb=COUNT_BOMB;
+    private int nbBombes=MAX_BOMBES;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -147,6 +146,13 @@ public final class SpaceInvadersGame {
      */
     private final AnimationTimer animation = new SpaceInvadersAnimation(this, movableObjects);
 
+
+    /**
+     * L'attribut random pour générer des nombres pseudo-aléatoires.
+     */
+    private Random random = new Random();
+
+
     /**
      * Crée une nouvelle instance de SpaceInvadersGame.
      *
@@ -158,16 +164,6 @@ public final class SpaceInvadersGame {
      *        {@link Sprite} du jeu.
      * @param factory L'instance de {@link IMovableFactory} permettant de créer les objets
      *        du jeu.
-     */
-
-    private Random random = new Random();
-
-    /**
-     * Crée une nouvelle instance de SpaceInvadersGame.
-     * @param width
-     * @param height
-     * @param spriteStore
-     * @param factory
      */
     public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
             IMovableFactory factory) {
@@ -187,7 +183,9 @@ public final class SpaceInvadersGame {
     }
     
     /**
-     * @return
+     * Donne la liste des objets movables en jeu.
+     * 
+     * @return La liste des movables.
      */
     public List<IMovable> getMovableObjects() {
         return movableObjects;
@@ -281,8 +279,8 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
-        countMur=COUNT_MUR;
-        countBomb=COUNT_BOMB;
+        nbMurs=MAX_MURS;
+        nbBombes=MAX_BOMBES;
     }
 
     /**
@@ -375,8 +373,8 @@ public final class SpaceInvadersGame {
 
     /**
      * Ajoute nb points de vie au joueur
+     * @param nb le nombre de pv à ajouter
      * 
-     * @param nb
      */
     public void addPlayerLife(int nb) {
         life.set(life.get() + nb);
@@ -429,22 +427,20 @@ public final class SpaceInvadersGame {
     }
 
     /**
-     * Déclenche un tir depuis le vaisseau du joueur.
-     * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     * Déclenche un tir depuis le vaisseau d'un alien.
      * 
-     * @param alien
+     * @param alien L'alien qui tire.
      */
     public void fireShotAlien(IMovable alien) {
             addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
     /**
-     * @return
+     * @return Le vaisseau joueur.
      */
     public IMovable getShip() {
         return ship;
     }
-
     
     /**
      * Donne l'attribut life de cette instance de SpaceInvadersGame.
@@ -456,54 +452,52 @@ public final class SpaceInvadersGame {
     }
     
     /**
-     * @param alien
+     * @param alien Le vaisseau alien qui doit changer de tir.
      */
     public void changeTirAlien(VaisseauAlien alien) {
         IAlienAttaque atak = tirAlienComposite.tir();
         alien.setAlienAttack(atak);
     }
+    
     /**
-     * @param alien
+     * @param alien Le vaisseau alien qui doit changer de déplacement.
      */
     public void changeDeplacementAlien(VaisseauAlien alien) {
         alien.setDeplacement(deplacementComposite.getDeplacement());
     }
-    
-    /**
-     * @param alien
-     */
+ 
 
     /**
-     * 
+     * Place un mur en face du vaisseau joueur.
      */
     public void placeMur() {
-        if (countMur>0) {
+        if (nbMurs>0) {
             addMovable(factory.createMur(ship.getX(),ship.getY()-100));  
-            countMur--;
+            nbMurs--;
         }
     }
     
     /**
-     * @param mur
+     * @param mur Change le sprite du mur, pour le suivant.
      */
     public void changeMurSprite(Mur mur) {
         mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
     /**
-     * @return
+     * @return Le nombre d'aliens encore vivants
      */
     public int getNbRemainingAliens() {
         return nbRemainingAliens;
     }
     
     /**
-     * 
+     * Jette une bombe en face du joueur
      */
     public void throwBomb() {
-        if (countBomb>0) {
+        if (nbBombes>0) {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
-            countBomb--;
+            nbBombes--;
         }
     }
 }

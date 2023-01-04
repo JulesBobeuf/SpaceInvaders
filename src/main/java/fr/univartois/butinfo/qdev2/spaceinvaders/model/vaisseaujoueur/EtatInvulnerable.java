@@ -19,10 +19,25 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
  */
 public class EtatInvulnerable implements IEtatVaisseau {
     
+    /**
+     * Instance de SpaceInvadersGame
+     */
     private SpaceInvadersGame game;
+    
+    /**
+     * L'heure en ms où le joueur est devenu invincible.
+     */
     private long timeOfCreation;
+    
+    /**
+     * La durée de l'invincibilité en ms.
+     */
     private long invincibilityDuration = 2_000;
     
+    /**
+     * Crée une nouvelle instance de EtatInvulnerable.
+     * @param game Instance de SpaceInvadersGame
+     */
     public EtatInvulnerable(SpaceInvadersGame game) {
         timeOfCreation = System.currentTimeMillis();
         this.game=game;

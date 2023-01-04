@@ -17,7 +17,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 public interface IAlienAttaque {
     
     /**
-     * 
+     * @return Si l'alien doit tirer ou non.
      */
     boolean tir();
     

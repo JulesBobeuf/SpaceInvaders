@@ -40,6 +40,7 @@ public class MovableFactory implements IMovableFactory {
      * 
      */
     private ISpriteStore spriteStore;
+    
     /**
      * 
      */
