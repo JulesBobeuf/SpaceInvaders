@@ -88,8 +88,7 @@ public class VaisseauAlien extends AbstractMovable {
                 facteur += 0.02;
                 game.changeTirAlien(this);
                 return false;
-            }
-                        
+            }            
         }
         return true;
     }

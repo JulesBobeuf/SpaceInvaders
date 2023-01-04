@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -103,4 +104,6 @@ public interface IMovableFactory {
     IMovable createBonus(int x, int y);
 
     IMovable createMur(int x, int y);
+    
+    EnsembleAliens ensembleAlien();
 }

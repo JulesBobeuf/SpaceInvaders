@@ -19,6 +19,8 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.IAlienAttaque;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
@@ -140,6 +142,11 @@ public final class SpaceInvadersGame {
     private Random random = new Random();
 
     /**
+     * L'attribut ensembleAliens...
+     */
+    private EnsembleAliens ensembleAliens;
+    
+    /**
      * Crée une nouvelle instance de SpaceInvadersGame.
      * @param width
      * @param height
@@ -260,6 +267,8 @@ public final class SpaceInvadersGame {
     private void createMovables() {
         // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
+        
+        ensembleAliens = factory.ensembleAlien();
 
         ship = factory.createShip(width / 2, getBottomLimit());
         TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship);
@@ -268,9 +277,14 @@ public final class SpaceInvadersGame {
         addMovable(ship);
         for (int i = 1; i <= 10; i++)
             for (int j = 0; j <= 5; j++) {
-                addMovable(factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j));
+                IMovable alien = factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j);
+
+                controller.addMovable(alien);                
+                ensembleAliens.ajouteAlien(alien);
+
                 nbRemainingAliens++;
             }
+        movableObjects.add(ensembleAliens);
     }
 
     /**

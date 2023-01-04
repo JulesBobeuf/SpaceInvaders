@@ -16,6 +16,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusPointVie;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.DeplacementVertical;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
@@ -160,6 +161,16 @@ public class MovableFactory implements IMovableFactory {
             return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
         else
             return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#ensembleAlien()
+     */
+    @Override
+    public EnsembleAliens ensembleAlien() {
+        return new EnsembleAliens(game);
     }
 
 }
