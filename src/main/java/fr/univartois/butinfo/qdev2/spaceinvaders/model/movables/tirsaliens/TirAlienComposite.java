@@ -9,7 +9,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.ITirsGenera
  * @author thomas
  *
  */
-public class TirAlienComposite implements ITirsGeneral {
+public class TirAlienComposite implements IAlienAttaque {
     
     /**
      * 
@@ -32,18 +32,31 @@ public class TirAlienComposite implements ITirsGeneral {
 
     
     @Override
-    public IAlienAttaque tir() {
-        int x = random.nextInt(1,4);
-        if (x==1) {
-            return new AlienTirePasStrategy();
+    public boolean tir() {
+        int x = random.nextInt(1,100);
+        if (x==69) {
+            return true;
         }
-        else if (x==2) {
-            return new AlienTireStrategy();
-        }
-        else {
-            return new AlienTireIntelligent(game);
-        }
+        return false;
         
     }
+    
+    /**
+     * @return
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+            int x = random.nextInt(1,4);
+            if (x==1) {
+                return new AlienTirePasStrategy();
+            }
+            else if (x==2) {
+                return new AlienTireStrategy();
+            }
+            else {
+                return new AlienTireIntelligent(game);
+            }
+            
+        }
 
 }

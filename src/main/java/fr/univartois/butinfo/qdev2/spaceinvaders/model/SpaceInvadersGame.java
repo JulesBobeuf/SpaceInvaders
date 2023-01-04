@@ -42,26 +42,21 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public final class SpaceInvadersGame {
     
-
-    /**
-     * L'attribut COUNT_MUR...
-     */
-    private static int COUNT_MUR=3;
-    
-    /**
-     * L'attribut COUNT_BOMB...
-     */
-    private static int COUNT_BOMB=2;
     
     /**
      * L'attribut countMur...
      */
-    private int countMur=COUNT_MUR;
+    private int countMur;
     
     /**
      * L'attribut countBomb...
      */
-    private int countBomb=COUNT_BOMB;
+    private int countBomb;
+    
+    /**
+     * tells if there is bonus or not
+     */
+    private boolean bonus;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -128,11 +123,8 @@ public final class SpaceInvadersGame {
     /**
      * 
      */
-    private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
+    private IAlienAttaque tirAlien;
 
-    /**
-     * 
-     */
     /**
      * 
      */
@@ -281,8 +273,9 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
-        countMur=COUNT_MUR;
-        countBomb=COUNT_BOMB;
+        countMur=factory.getNombreMur();
+        countBomb=factory.getNombreBomb();
+        bonus=factory.getBonus();
     }
 
     /**
@@ -308,7 +301,9 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        addMovable(factory.createBonus(500, 0));
+        if (bonus) {
+            addMovable(factory.createBonus(500, 0));
+        }
     }
 
     /**
@@ -459,8 +454,10 @@ public final class SpaceInvadersGame {
      * @param alien
      */
     public void changeTirAlien(VaisseauAlien alien) {
-        IAlienAttaque atak = tirAlienComposite.tir();
-        alien.setAlienAttack(atak);
+        if (tirAlien.tir()) {
+            IAlienAttaque atak = tirAlien.newStrategy();
+            alien.setAlienAttack(atak);
+        }
     }
     /**
      * @param alien
@@ -505,5 +502,23 @@ public final class SpaceInvadersGame {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
             countBomb--;
         }
+    }
+
+    /**
+     * Donne l'attribut tirAlien de cette instance de SpaceInvadersGame.
+     *
+     * @return L'attribut tirAlien de cette instance de SpaceInvadersGame.
+     */
+    public IAlienAttaque getTirAlien() {
+        return tirAlien;
+    }
+
+    /**
+     * Modifie l'attribut tirAlien de cette instance de SpaceInvadersGame.
+     *
+     * @param tirAlien La nouvelle valeur de l'attribut tirAlien pour cette instance de SpaceInvadersGame.
+     */
+    public void setTirAlien(IAlienAttaque tirAlien) {
+        this.tirAlien = tirAlien;
     }
 }

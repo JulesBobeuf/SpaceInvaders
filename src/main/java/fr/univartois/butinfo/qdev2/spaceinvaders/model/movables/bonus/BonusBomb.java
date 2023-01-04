@@ -30,7 +30,7 @@ public class BonusBomb extends AbstractMovable {
     /**
      * L'attribut detonation...
      */
-    long detonation = -10000;
+    long detonation;
     
     
     /**

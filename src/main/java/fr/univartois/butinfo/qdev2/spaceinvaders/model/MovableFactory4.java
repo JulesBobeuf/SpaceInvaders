@@ -34,6 +34,21 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  * @version 0.1.0
  */
 public class MovableFactory4 implements IMovableFactory {
+    
+    /**
+     * L'attribut COUNT_MUR... qui donne le nombre de mur
+     */
+    private static int nbMur=3;
+    
+    /**
+     * L'attribut COUNT_BOMB... qui donne le nombre de bombe
+     */
+    private static int nbBomb=2;
+    
+    /**
+     * L'attribut bonus...
+     */
+    private static boolean bonus=true;
 
     /**
      * 
@@ -165,6 +180,36 @@ public class MovableFactory4 implements IMovableFactory {
     @Override
     public IMovable createBomb(int x, int y) {
         return new BonusBomb(game, x, y, spriteStore.getSprite("bomb"));
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreMur()
+     */
+    @Override
+    public int getNombreMur() {
+        return nbMur;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreBomb()
+     */
+    @Override
+    public int getNombreBomb() {
+        return nbBomb;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getBonus()
+     */
+    @Override
+    public boolean getBonus() {
+        return bonus;
     }
 
 }

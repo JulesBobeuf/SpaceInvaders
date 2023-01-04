@@ -13,6 +13,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
@@ -24,6 +25,21 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  * @version 0.1.0
  */
 public class MovableFactory implements IMovableFactory {
+    
+    /**
+     * L'attribut COUNT_MUR... qui donne le nombre de mur
+     */
+    private static int nbMur=0;
+    
+    /**
+     * L'attribut COUNT_BOMB... qui donne le nombre de bombe
+     */
+    private static int nbBomb=0;
+    
+    /**
+     * L'attribut bonus...
+     */
+    private static boolean bonus=false;
 
     /**
      * 
@@ -60,6 +76,7 @@ public class MovableFactory implements IMovableFactory {
     @Override
     public void setGame(SpaceInvadersGame game) {
         this.game = game;
+        game.setTirAlien(new AlienTirePasStrategy());
     }
 
     /*
@@ -119,11 +136,12 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createStrongShot(int x, int y) {
-        return null;
+        return new Tir(game, x, y, spriteStore.getSprite("shot"));
     }
     
     @Override
     public IMovable createMur(int x, int y) {
+        //plus de probleme
         return null;
     }
 
@@ -134,7 +152,37 @@ public class MovableFactory implements IMovableFactory {
     
     @Override
     public IMovable createBomb(int x, int y) {
+        //plus de probleme
         return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreMur()
+     */
+    @Override
+    public int getNombreMur() {
+        return nbMur;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreBomb()
+     */
+    @Override
+    public int getNombreBomb() {
+        return nbBomb;
+    }
+
+    /**
+     * Donne l'attribut bonus de cette instance de MovableFactory.
+     *
+     * @return L'attribut bonus de cette instance de MovableFactory.
+     */
+    public boolean getBonus() {
+        return bonus;
     }
 
 }

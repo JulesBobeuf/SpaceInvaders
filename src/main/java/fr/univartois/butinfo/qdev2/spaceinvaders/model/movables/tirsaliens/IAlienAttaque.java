@@ -20,6 +20,11 @@ public interface IAlienAttaque {
      * 
      */
     boolean tir();
+
+    /**
+     * @return IAlienAttaque
+     */
+    IAlienAttaque newStrategy();
     
 }
 
