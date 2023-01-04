@@ -230,17 +230,20 @@ public interface IMovable {
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
     void collidedWith(VaisseauJoueur other);
-
-    /**
-     * Donne l'objet réel qui implémente cette interface.
-     *
-     * @return L'objet réel.
-     */
     
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link Mur}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
     void collidedWith(Mur other);
     
     /**
-     * @param other
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link BonusBomb}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
      */
     void collidedWith(BonusBomb other);
 

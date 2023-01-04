@@ -35,10 +35,10 @@ public class BonusBomb extends AbstractMovable {
     
     /**
      * Crée une nouvelle instance de BonusMine.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * @param game Référence à une instance de SpaceInvaderGame.
+     * @param xPosition La position x initiale de l'objet.
+     * @param yPosition La position y initiale de l'objet.
+     * @param sprite Le sprite que l'objet utilise initialement.
      */
     public BonusBomb(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);

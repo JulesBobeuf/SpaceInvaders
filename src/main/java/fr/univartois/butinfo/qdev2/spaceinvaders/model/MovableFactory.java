@@ -39,6 +39,7 @@ public class MovableFactory implements IMovableFactory {
      * 
      */
     private ISpriteStore spriteStore;
+    
     /**
      * 
      */
@@ -131,6 +132,7 @@ public class MovableFactory implements IMovableFactory {
      * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(
      * int, int)
      */
+    @Override
     public IMovable createShotAlien(int x, int y) {
         return new TirAlien(game, x, y, spriteStore.getSprite("shotAlien"));
     }
