@@ -75,7 +75,7 @@ public class VaisseauAlien extends AbstractMovable {
         if (tir) {
             game.fireShotAlien(this);
         }
-        if ((game.getNbRemainingAliens()<10) && (changedStrategyAttack==false)) {
+        if ((game.getNbRemainingAliens()<10) && (!changedStrategyAttack)) {
             game.changeTirAlien(this);
             changedStrategyAttack=true;
         }
@@ -85,7 +85,7 @@ public class VaisseauAlien extends AbstractMovable {
                 return false;
             }
             if (this.getX()==game.getLeftLimit()) {
-                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
+                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
                 game.changeTirAlien(this);
                 game.changeDeplacementAlien(this);
@@ -97,8 +97,7 @@ public class VaisseauAlien extends AbstractMovable {
                 game.changeTirAlien(this);
                 game.changeDeplacementAlien(this);
                 return false;
-            }
-                        
+            }            
         }
         return true;
     }
