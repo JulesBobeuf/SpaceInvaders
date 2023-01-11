@@ -23,13 +23,15 @@ import javafx.beans.property.ObjectProperty;
  * @version 0.1.0
  */
 public class TirPuissantDecorateur extends AbstractMovableDecorateur {
+    
      /**
-      * attribut décomptant le nombre d'alien que le tir puissant touche.
+      * Donne le nombre d'aliens que le tir puissant peut toucher.
       */
     int count;
+    
     /**
      * Crée une nouvelle instance de TirPuissantDecorateur.
-     * @param movable
+     * @param movable Le tir à décorer.
      */
     public TirPuissantDecorateur(IMovable movable) {
         super(movable);
@@ -55,7 +57,6 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
     @Override
     public void setSprite(Sprite sprite) {
         this.movable.setSprite(sprite);
-        
     }
 
     /*
@@ -96,7 +97,7 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
      */
     @Override
     public void collidedWith(Mur other) {
-        // TODO Auto-generated method stub.
+        // Est géré dans la classe mur.
     }
 
     /*

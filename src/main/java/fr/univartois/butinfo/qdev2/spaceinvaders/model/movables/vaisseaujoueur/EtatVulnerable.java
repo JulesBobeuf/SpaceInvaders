@@ -19,8 +19,15 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
  */
 public class EtatVulnerable implements IEtatVaisseau {
     
+    /**
+     * Instance de SpaceInvadersGame
+     */
     private SpaceInvadersGame game;
     
+    /**
+     * Crée une nouvelle instance de EtatVulnerable.
+     * @param game Instance de SpaceInvadersGame.
+     */
     public EtatVulnerable(SpaceInvadersGame game) {
         this.game=game;
     }

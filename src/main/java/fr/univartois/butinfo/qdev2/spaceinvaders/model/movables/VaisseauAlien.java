@@ -198,7 +198,5 @@ public class VaisseauAlien extends AbstractMovable {
         other.collidedWith(this);
         
     }
-    
-    
 }
 

@@ -13,7 +13,6 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
@@ -29,12 +28,12 @@ public class MovableFactory implements IMovableFactory {
     /**
      * L'attribut COUNT_MUR... qui donne le nombre de mur
      */
-    private static int nbMur=0;
+    private static int nbMurs=0;
     
     /**
-     * L'attribut COUNT_BOMB... qui donne le nombre de bombe
+     * L'attribut nbBombes donne le nombre de bombe dont le joueur dispose.
      */
-    private static int nbBomb=0;
+    private static int nbBombes=0;
     
     /**
      * L'attribut bonus...
@@ -45,10 +44,6 @@ public class MovableFactory implements IMovableFactory {
      * 
      */
     private ISpriteStore spriteStore;
-    /**
-     * 
-     */
-    private Random random = new Random();
 
     /**
      * 
@@ -139,17 +134,32 @@ public class MovableFactory implements IMovableFactory {
         return new Tir(game, x, y, spriteStore.getSprite("shot"));
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createMur(int, int)
+     */
     @Override
     public IMovable createMur(int x, int y) {
         //plus de probleme
         return null;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int)
+     */
     @Override
     public IMovable createBonus(int x, int y) {
         return null;
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBomb(int, int)
+     */
     @Override
     public IMovable createBomb(int x, int y) {
         //plus de probleme
@@ -163,7 +173,7 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public int getNombreMur() {
-        return nbMur;
+        return nbMurs;
     }
 
     /*
@@ -173,7 +183,7 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public int getNombreBomb() {
-        return nbBomb;
+        return nbBombes;
     }
 
     /**

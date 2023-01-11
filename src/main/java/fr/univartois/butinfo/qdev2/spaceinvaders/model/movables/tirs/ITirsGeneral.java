@@ -7,8 +7,9 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlie
  *
  */
 public interface ITirsGeneral {
+    
     /**
-     * @return
+     * @return Fait tirer tous les aliens qui utilisent le tir correspondant.
      */
     IAlienAttaque tir();
 }
