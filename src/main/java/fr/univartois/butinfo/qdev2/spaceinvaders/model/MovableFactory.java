@@ -7,8 +7,7 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-import java.util.Random;
-
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
@@ -192,6 +191,16 @@ public class MovableFactory implements IMovableFactory {
      */
     public boolean getBonus() {
         return bonus;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#ensembleAlien()
+     */
+    @Override
+    public EnsembleAliens ensembleAlien() {
+        return new EnsembleAliens(game);
     }
 
 }

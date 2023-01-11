@@ -85,7 +85,7 @@ public class VaisseauAlien extends AbstractMovable {
                 return false;
             }
             if (this.getX()==game.getLeftLimit()) {
-                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
+                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
                 changeTirAlien(this);
                 game.changeDeplacementAlien(this);
@@ -97,8 +97,7 @@ public class VaisseauAlien extends AbstractMovable {
                 changeTirAlien(this);
                 game.changeDeplacementAlien(this);
                 return false;
-            }
-                        
+            }            
         }
         return true;
     }

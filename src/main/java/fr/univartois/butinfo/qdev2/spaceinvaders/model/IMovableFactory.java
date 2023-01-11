@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -109,6 +110,11 @@ public interface IMovableFactory {
      * @return Le mur qui a été créé.
      */
     IMovable createMur(int x, int y);
+    
+    /**
+     * @return ensemble d'aliens
+     */
+    EnsembleAliens ensembleAlien();
     
     /**
      * @param x La position initiale de l'objet en x.
