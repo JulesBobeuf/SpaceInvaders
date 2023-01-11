@@ -8,7 +8,15 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.11'
     id 'org.beryx.jlink' version '2.26.0'
+    id 'eclipse'
 }
+
+eclipse.classpath.file.whenMerged {
+    entries.findAll { it.properties.kind.equals('lib') }.each {
+        it.entryAttributes['module'] = 'true'
+    }
+}
+
 
 // Les dépôts d'où les dépendances doivent être téléchargées.
 repositories {
@@ -21,6 +29,7 @@ targetCompatibility = '17'
 
 // Le nom de la classe contenant la méthode "main".
 application {
+    mainModule = 'fr.univartois.butinfo.qdev2.spaceinvaders'
     mainClass = 'fr.univartois.butinfo.qdev2.spaceinvaders.SpaceInvaders'
 }
 
