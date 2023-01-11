@@ -5,13 +5,17 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 
 
 /**
@@ -21,18 +25,18 @@ import javafx.beans.property.DoubleProperty;
  *
  * @version 0.1.0
  */
-public class TirAlien extends AbstractMovable {
+public class Tir extends AbstractMovable {
     
     /**
      * Crée une nouvelle instance de Tir.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * @param game Instance de SpaceInvaderGame.
+     * @param xPosition Position de spawn en x.
+     * @param yPosition Position de spawn en y.
+     * @param sprite Le sprite du tir.
      */
-    public TirAlien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Tir(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(300.00);
+        this.setVerticalSpeed(-300.00);
         this.setHorizontalSpeed(0);
     }
 
@@ -44,6 +48,8 @@ public class TirAlien extends AbstractMovable {
     @Override
     public void collidedWith(IMovable other) {
         other.collidedWith(this);
+        game.removeMovable(this);
+        
     }
     
     /*
@@ -54,7 +60,7 @@ public class TirAlien extends AbstractMovable {
     @Override
     public boolean move(long delta) {
         boolean x = super.move(delta);
-        if (x==false) {
+        if (!x) {
             game.removeMovable(this);
             return false;
         }
@@ -90,9 +96,7 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        game.reducePlayerLife();
-        game.removeMovable(this);
-        
+        //il n'y a rien ici, et c'est normal.      
     }
 
     /*
@@ -102,8 +106,7 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        game.removeMovable(this);
-        
+        //il n'y a rien ici, et c'est normal.
     }
 
     /*
@@ -113,8 +116,20 @@ public class TirAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        //il n'y a rien ici et c normal  
+        //il n'y a rien ici, et c'est normal.
     }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        game.removeMovable(this);
+        
+    }
+   
    
 }
 

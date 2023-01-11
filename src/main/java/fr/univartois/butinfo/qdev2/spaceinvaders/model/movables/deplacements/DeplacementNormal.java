@@ -5,7 +5,7 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements;
 
 /**
  * Le type DeplacementNormal

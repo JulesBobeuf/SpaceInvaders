@@ -5,7 +5,7 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 import java.util.Random;
 
@@ -22,6 +22,7 @@ public class AlienTireStrategy implements IAlienAttaque {
      * 
      */
     Random random = new Random();
+    
     /*
      * (non-Javadoc)
      *
@@ -30,12 +31,18 @@ public class AlienTireStrategy implements IAlienAttaque {
     @Override
     public boolean tir() {
         int x = random.nextInt(1,500);
-        if (x==69) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return x==69;
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque#newStrategy()
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+        //cette méthode ne sera jamais appelé.
+        return null;
     }
 
 }

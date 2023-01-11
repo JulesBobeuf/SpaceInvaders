@@ -7,11 +7,23 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import java.util.Random;
+
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TrucResistantDecorateur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusPointVie;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementDiagonale;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementNormal;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementVertical;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.TirPuissantDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireIntelligent;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTirePasStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.AlienTireStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
@@ -22,22 +34,22 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
  *
  * @version 0.1.0
  */
-public class MovableFactory implements IMovableFactory {
-    
+public class MovableFactory4 implements IMovableFactory {
+
     /**
      * L'attribut COUNT_MUR... qui donne le nombre de mur
      */
-    private static int nbMurs=0;
-    
+    private static int nbMur = 3;
+
     /**
-     * L'attribut nbBombes donne le nombre de bombe dont le joueur dispose.
+     * L'attribut COUNT_BOMB... qui donne le nombre de bombe
      */
-    private static int nbBombes=0;
-    
+    private static int nbBomb = 2;
+
     /**
      * L'attribut bonus...
      */
-    private static boolean bonus=false;
+    private static boolean bonus = true;
 
     /**
      * 
@@ -47,10 +59,15 @@ public class MovableFactory implements IMovableFactory {
     /**
      * 
      */
+    private Random random = new Random();
+
+    /**
+     * 
+     */
     private SpaceInvadersGame game;
 
     /*
-     * (non-Javadoc) 
+     * (non-Javadoc)
      *
      * @see
      * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#setSpriteStore(fr.
@@ -70,7 +87,6 @@ public class MovableFactory implements IMovableFactory {
     @Override
     public void setGame(SpaceInvadersGame game) {
         this.game = game;
-        game.setTirAlien(new AlienTirePasStrategy());
     }
 
     /*
@@ -82,7 +98,26 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        return new VaisseauAlien(game,x,y, spriteStore.getSprite("alien"), new DeplacementNormal(), new AlienTirePasStrategy());
+        String alienSprite = "alien";
+
+        int nb = random.nextInt(21);
+        if (nb <= 10) {
+            if (random.nextBoolean()) {
+                return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                        new DeplacementNormal(), new AlienTireStrategy());
+            } else {
+                return new TrucResistantDecorateur(
+                        new VaisseauAlien(game, x, y, spriteStore.getSprite("strongAlien"),
+                                new DeplacementNormal(), new AlienTirePasStrategy()),
+                        true); // le true indique au décorateur que l'objet est un alien
+            }
+        } else if (10 < nb && nb < 15) {
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite("ufo"),
+                    new DeplacementVertical(), new AlienTireIntelligent(game));
+        } else {
+            return new VaisseauAlien(game, x, y, spriteStore.getSprite(alienSprite),
+                    new DeplacementDiagonale(), new AlienTirePasStrategy());
+        }
     }
 
     /*
@@ -116,9 +151,8 @@ public class MovableFactory implements IMovableFactory {
      * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createShotAlien(
      * int, int)
      */
-    @Override
     public IMovable createShotAlien(int x, int y) {
-        return null;
+        return new TirAlien(game, x, y, spriteStore.getSprite("shotAlien"));
     }
 
     /*
@@ -130,39 +164,27 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public IMovable createStrongShot(int x, int y) {
-        return new Tir(game, x, y, spriteStore.getSprite("shot"));
-    }
-    
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createMur(int, int)
-     */
-    @Override
-    public IMovable createMur(int x, int y) {
-        //plus de probleme
-        return null;
+        return new TirPuissantDecorateur(new Tir(game, x, y, spriteStore.getSprite("strongShot")));
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBonus(int, int)
-     */
+    @Override
+    public IMovable createMur(int x, int y) {
+        return new Mur(game, x, y, spriteStore.getSprite("bricks"));
+    }
+
     @Override
     public IMovable createBonus(int x, int y) {
-        return null;
+        int nb = random.nextInt(101);
+
+        if (nb >= 90)
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_2"), 225.00, 2);
+        else
+            return new BonusPointVie(game, x, y, spriteStore.getSprite("heart_1"), 175.00, 1);
     }
-    
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#createBomb(int, int)
-     */
+
     @Override
     public IMovable createBomb(int x, int y) {
-        //plus de probleme
-        return null;
+        return new BonusBomb(game, x, y, spriteStore.getSprite("bomb"));
     }
 
     /*
@@ -172,24 +194,26 @@ public class MovableFactory implements IMovableFactory {
      */
     @Override
     public int getNombreMur() {
-        return nbMurs;
+        return nbMur;
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreBomb()
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getNombreBomb()
      */
     @Override
     public int getNombreBomb() {
-        return nbBombes;
+        return nbBomb;
     }
 
-    /**
-     * Donne l'attribut bonus de cette instance de MovableFactory.
+    /*
+     * (non-Javadoc)
      *
-     * @return L'attribut bonus de cette instance de MovableFactory.
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#getBonus()
      */
+    @Override
     public boolean getBonus() {
         return bonus;
     }
@@ -197,11 +221,13 @@ public class MovableFactory implements IMovableFactory {
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#ensembleAlien()
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory#ensembleAlien()
      */
     @Override
     public EnsembleAliens ensembleAlien() {
-        return new EnsembleAliens(game);
+        // TODO Auto-generated method stub.
+        return null;
     }
 
 }

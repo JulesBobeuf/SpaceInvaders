@@ -1,4 +1,4 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
@@ -22,7 +22,7 @@ public class AlienTireIntelligent implements IAlienAttaque {
     
     
     /**
-     * @param game
+     * @param game Instance de SpaceInvadersGame
      */
     public AlienTireIntelligent(SpaceInvadersGame game) {
         this.game = game;
@@ -34,13 +34,18 @@ public class AlienTireIntelligent implements IAlienAttaque {
      */
     @Override
     public boolean tir() {
-        if (game.getShip().getX()==500) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return game.getShip().getX()==500;
     }
-
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque#newStrategy()
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+        //cette méthode ne sera jamais appelé.
+        return null;
+    }
 }
 

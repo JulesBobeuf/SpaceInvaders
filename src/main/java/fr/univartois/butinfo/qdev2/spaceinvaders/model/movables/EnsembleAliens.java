@@ -12,6 +12,11 @@ import java.util.List;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -362,7 +367,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        // il n'y a rien ici et c normal
+        // Il n'y a rien ici, et c'est normal
     }
 
     /*
@@ -374,7 +379,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        // il n'y a rien ici et c normal
+        // Il n'y a rien ici, et c'est normal
     }
 
     /*
@@ -384,8 +389,20 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public IMovable self() {
-        // TODO Auto-generated method stub.
+        // Il n'y a rien ici, et c'est normal
         return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois
+     * .butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        // Il n'y a rien ici, et c'est normal
     }
 
 }

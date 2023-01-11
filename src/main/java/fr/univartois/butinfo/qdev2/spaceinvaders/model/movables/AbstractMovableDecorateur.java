@@ -8,6 +8,8 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -21,11 +23,14 @@ import javafx.beans.property.DoubleProperty;
  */
 public abstract class AbstractMovableDecorateur implements IMovable {
     
+    /**
+     * L'objet qui sera décoré par cette classe.
+     */
     protected IMovable movable;
 
     /**
      * Crée une nouvelle instance de AbstractMovablePlusResistant.
-     * @param movable
+     * @param movable Le movable à decorer.
      */
     protected AbstractMovableDecorateur(IMovable movable) {
         this.movable = movable;

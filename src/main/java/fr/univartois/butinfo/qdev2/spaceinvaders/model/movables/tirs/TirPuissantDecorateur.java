@@ -5,9 +5,13 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovableDecorateur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.ObjectProperty;
 
@@ -19,13 +23,15 @@ import javafx.beans.property.ObjectProperty;
  * @version 0.1.0
  */
 public class TirPuissantDecorateur extends AbstractMovableDecorateur {
+    
      /**
-      * attribut décomptant le nombre d'alien que le tir puissant touche.
+      * Donne le nombre d'aliens que le tir puissant peut toucher.
       */
     int count;
+    
     /**
      * Crée une nouvelle instance de TirPuissantDecorateur.
-     * @param movable
+     * @param movable Le tir à décorer.
      */
     public TirPuissantDecorateur(IMovable movable) {
         super(movable);
@@ -51,7 +57,6 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
     @Override
     public void setSprite(Sprite sprite) {
         this.movable.setSprite(sprite);
-        
     }
 
     /*
@@ -92,7 +97,18 @@ public class TirPuissantDecorateur extends AbstractMovableDecorateur {
      */
     @Override
     public void collidedWith(Mur other) {
-        // TODO Auto-generated method stub.
+        // Est géré dans la classe mur.
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        //Il ne se passe rien ici et c'est normal (les tirs puissant résistent les explosions de bombes 
+        //grace à leur technologie avancé.
         
     }
 }

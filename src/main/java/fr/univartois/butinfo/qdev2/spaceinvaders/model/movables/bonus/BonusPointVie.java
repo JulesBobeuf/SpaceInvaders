@@ -5,10 +5,16 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 /**
@@ -20,17 +26,24 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class BonusPointVie extends AbstractMovable {
 
+    /**
+<<<<<<< HEAD
+     * L'attribut nbPoints est le nombre de pv qui seront ajoutés au joueur s'il récupère ce bonus.
+=======
+     * L'attribut nbPoints définit le nombre d'hp .
+>>>>>>> fix/SuperTurboJavaDoc
+     */
     private int nbPoints;
 
     /**
      * Crée une nouvelle instance de BonusPointVie.
      * 
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
-     * @param verticalSpeed
-     * @param nbPoints
+     * @param game Référence à une instance de SpaceInvaderGame.
+     * @param xPosition La position x initiale de l'objet.
+     * @param yPosition La position y initiale de l'objet.
+     * @param sprite Le sprite que le bonus utilise initialement.
+     * @param verticalSpeed La vitesse à laquelle le bonus descend.
+     * @param nbPoints Le nombre d'hp que donne le bonus.
      */
     public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
             Sprite sprite, double verticalSpeed, int nbPoints) {
@@ -49,6 +62,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
+        // Le coeur ne peut toucher que le joueur
     }
 
     /*
@@ -60,6 +74,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(Tir other) {
+        // Le coeur ne peut toucher que le joueur
     }
 
     /*
@@ -71,6 +86,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
+        // Le coeur ne peut toucher que le joueur
     }
 
     /*
@@ -92,7 +108,8 @@ public class BonusPointVie extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien)
      */
     @Override
-    public void collidedWith(TirAlien other) {        
+    public void collidedWith(TirAlien other) {
+        // Le coeur ne peut toucher que le joueur.
     }
 
     /*
@@ -101,7 +118,18 @@ public class BonusPointVie extends AbstractMovable {
      * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur)
      */
     @Override
-    public void collidedWith(Mur other) {        
+    public void collidedWith(Mur other) {
+        // Le coeur ne peut toucher que le joueur.
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        game.removeMovable(this);
+        // si le joueur explose la bombe sur le bonus, bah il perd le bonus. Il fallait mieux jouer!
+    }
 }
