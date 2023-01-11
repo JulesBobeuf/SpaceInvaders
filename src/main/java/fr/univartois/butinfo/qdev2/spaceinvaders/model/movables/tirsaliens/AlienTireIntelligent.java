@@ -36,5 +36,16 @@ public class AlienTireIntelligent implements IAlienAttaque {
     public boolean tir() {
         return game.getShip().getX()==500;
     }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque#newStrategy()
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+        //cette méthode ne sera jamais appelé.
+        return null;
+    }
 }
 

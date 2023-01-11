@@ -20,6 +20,11 @@ public interface IAlienAttaque {
      * @return Si l'alien doit tirer ou non.
      */
     boolean tir();
+
+    /**
+     * @return IAlienAttaque
+     */
+    IAlienAttaque newStrategy();
     
 }
 

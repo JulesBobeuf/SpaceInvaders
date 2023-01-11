@@ -117,4 +117,20 @@ public interface IMovableFactory {
      * @return La bombe qui a été créée.
      */
     IMovable createBomb(int x, int y);
+    
+    
+    /**
+     * @return nb Mur, getter
+     */
+    int getNombreMur();
+    
+    /**
+     * @return nbBomb, getter
+     */
+    int getNombreBomb();
+    
+    /**
+     * @return bonus
+     */
+    boolean getBonus();
 }

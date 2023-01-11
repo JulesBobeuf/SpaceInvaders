@@ -33,6 +33,17 @@ public class AlienTireStrategy implements IAlienAttaque {
         int x = random.nextInt(1,500);
         return x==69;
     }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque#newStrategy()
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+        //cette méthode ne sera jamais appelé.
+        return null;
+    }
 
 }
 

@@ -25,7 +25,6 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -40,27 +39,21 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @version 0.1.0
  */
 public final class SpaceInvadersGame {
-    
-
-    /**
-     * L'attribut MAX_MURS donne le nombre max de murs que le joueur peut transporter.
-     */
-    private static final int MAX_MURS=3;
-    
-    /**
-     * L'attribut MAX_BOMBES donne le nombre max de bombes que le joueur peut transporter.
-     */
-    private static final int MAX_BOMBES=2;
 
     /**
      * L'attribut nbMurs donne le nombre de bombes que le joueur transporte actuellement.
      */
-    private int nbMurs=MAX_MURS;
+    private int nbMurs;
     
     /**
      * L'attribut nbBombes donne le nombre de bombes que le joueur transporte actuellement.
      */
-    private int nbBombes=MAX_BOMBES;
+    private int nbBombes;
+    
+    /**
+     * Est ce qu'un bonus peut apparaitre.
+     */
+    private boolean bonusCanSpawn;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -127,11 +120,8 @@ public final class SpaceInvadersGame {
     /**
      * 
      */
-    private TirAlienComposite tirAlienComposite = new TirAlienComposite(this);
+    private IAlienAttaque tirAlien;
 
-    /**
-     * 
-     */
     /**
      * 
      */
@@ -279,8 +269,9 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
-        nbMurs=MAX_MURS;
-        nbBombes=MAX_BOMBES;
+        nbMurs=factory.getNombreMur();
+        nbBombes=factory.getNombreBomb();
+        bonusCanSpawn=factory.getBonus();
     }
 
     /**
@@ -306,7 +297,9 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        addMovable(factory.createBonus(500, 0));
+        if (bonusCanSpawn) {
+            addMovable(factory.createBonus(500, 0));
+        }
     }
 
     /**
@@ -455,8 +448,10 @@ public final class SpaceInvadersGame {
      * @param alien Le vaisseau alien qui doit changer de tir.
      */
     public void changeTirAlien(VaisseauAlien alien) {
-        IAlienAttaque atak = tirAlienComposite.tir();
-        alien.setAlienAttack(atak);
+        if (tirAlien.tir()) {
+            IAlienAttaque atak = tirAlien.newStrategy();
+            alien.setAlienAttack(atak);
+        }
     }
     
     /**
@@ -499,5 +494,23 @@ public final class SpaceInvadersGame {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
             nbBombes--;
         }
+    }
+
+    /**
+     * Donne l'attribut tirAlien de cette instance de SpaceInvadersGame.
+     *
+     * @return L'attribut tirAlien de cette instance de SpaceInvadersGame.
+     */
+    public IAlienAttaque getTirAlien() {
+        return tirAlien;
+    }
+
+    /**
+     * Modifie l'attribut tirAlien de cette instance de SpaceInvadersGame.
+     *
+     * @param tirAlien La nouvelle valeur de l'attribut tirAlien pour cette instance de SpaceInvadersGame.
+     */
+    public void setTirAlien(IAlienAttaque tirAlien) {
+        this.tirAlien = tirAlien;
     }
 }
