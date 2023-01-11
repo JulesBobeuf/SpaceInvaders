@@ -36,14 +36,20 @@ public class EnsembleAliens implements IMovable {
      */
     private SpaceInvadersGame game;
 
-    
+    /**
+     * L'attribut alien...
+     */
+    private IMovable alienTouche;
+
     /**
      * Crée une nouvelle instance de EnsembleAliens.
+     * 
+     * @param game
      */
     public EnsembleAliens(SpaceInvadersGame game) {
-        this.game=game;
+        this.game = game;
     }
-    
+
     /**
      * @param alien
      * 
@@ -280,8 +286,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public ObjectProperty<Sprite> getSpriteProperty() {
-        // TODO Auto-generated method stub.
-        return null;
+        return aliens.get(0).getSpriteProperty();
     }
 
     /*
@@ -293,8 +298,10 @@ public class EnsembleAliens implements IMovable {
     @Override
     public boolean isCollidingWith(IMovable other) {
         for (IMovable alien : aliens)
-            if (alien.isCollidingWith(other))
+            if (alien.isCollidingWith(other)) {
+                alienTouche = alien;
                 return true;
+            }
         return false;
     }
 
@@ -307,7 +314,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        // TODO
+        other.collidedWith(this);
     }
 
     /*
@@ -319,9 +326,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(Tir other) {
-        // for (IMovable alien : aliens)
-        // if (alien.isCollidingWith(other))
-        // alien.
+        game.alienIsDead(alienTouche);
     }
 
     /*
@@ -333,7 +338,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        // TODO Auto-generated method stub.
+        // il n'y a rien ici, et c'est normal.
     }
 
     /*
@@ -345,7 +350,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        // TODO Auto-generated method stub.
+        game.playerIsDead();
     }
 
     /*
@@ -357,7 +362,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        // TODO Auto-generated method stub.
+        // il n'y a rien ici et c normal
     }
 
     /*
@@ -369,7 +374,7 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        // TODO Auto-generated method stub.
+        // il n'y a rien ici et c normal
     }
 
     /*
