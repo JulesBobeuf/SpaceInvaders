@@ -13,7 +13,6 @@
  * (c) 2022 Romain Wallon - Université d'Artois.
  * Tous droits réservés.
  */
-
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.List;
@@ -118,11 +117,7 @@ public final class SpaceInvadersGame {
      * Le nombre d'aliens encore vivants.
      */
     private int nbRemainingAliens;
-    
-    /**
-     * 
-     */
-    private IAlienAttaque tirAlien;
+   
 
     /**
      * 
@@ -358,6 +353,10 @@ public final class SpaceInvadersGame {
         }
     }
     
+    /**
+     * change the facotry
+     *
+     */
     public void changeFactory() {
         level++;
         switch(level) {
@@ -463,15 +462,7 @@ public final class SpaceInvadersGame {
         return life.get();
     }
     
-    /**
-     * @param alien Le vaisseau alien qui doit changer de tir.
-     */
-    public void changeTirAlien(VaisseauAlien alien) {
-        if (tirAlien.tir()) {
-            IAlienAttaque atak = tirAlien.newStrategy();
-            alien.setAlienAttack(atak);
-        }
-    }
+
     
     /**
      * @param alien Le vaisseau alien qui doit changer de déplacement.
@@ -513,24 +504,6 @@ public final class SpaceInvadersGame {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
             nbBombes--;
         }
-    }
-
-    /**
-     * Donne l'attribut tirAlien de cette instance de SpaceInvadersGame.
-     *
-     * @return L'attribut tirAlien de cette instance de SpaceInvadersGame.
-     */
-    public IAlienAttaque getTirAlien() {
-        return tirAlien;
-    }
-
-    /**
-     * Modifie l'attribut tirAlien de cette instance de SpaceInvadersGame.
-     *
-     * @param tirAlien La nouvelle valeur de l'attribut tirAlien pour cette instance de SpaceInvadersGame.
-     */
-    public void setTirAlien(IAlienAttaque tirAlien) {
-        this.tirAlien = tirAlien;
     }
     
     public void setFactory(IMovableFactory f) {

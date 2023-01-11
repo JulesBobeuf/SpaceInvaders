@@ -85,7 +85,6 @@ public class MovableFactory3 implements IMovableFactory {
     @Override
     public void setGame(SpaceInvadersGame game) {
         this.game = game;
-        game.setTirAlien(new AlienTirePasStrategy());
     }
 
     /*

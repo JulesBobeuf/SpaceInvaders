@@ -76,7 +76,7 @@ public class VaisseauAlien extends AbstractMovable {
             game.fireShotAlien(this);
         }
         if ((game.getNbRemainingAliens()<10) && (changedStrategyAttack==false)) {
-            game.changeTirAlien(this);
+            changeTirAlien(this);
             changedStrategyAttack=true;
         }
         if (!x) {
@@ -87,20 +87,30 @@ public class VaisseauAlien extends AbstractMovable {
             if (this.getX()==game.getLeftLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
                 facteur += 0.02;
-                game.changeTirAlien(this);
+                changeTirAlien(this);
                 game.changeDeplacementAlien(this);
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
-                game.changeTirAlien(this);
+                changeTirAlien(this);
                 game.changeDeplacementAlien(this);
                 return false;
             }
                         
         }
         return true;
+    }
+    
+    /**
+     * @param alien Le vaisseau alien qui doit changer de tir.
+     */
+    public void changeTirAlien(VaisseauAlien alien) {
+        if (attack.tir()) {
+            IAlienAttaque atak = attack.newStrategy();
+            alien.setAlienAttack(atak);
+        }
     }
     
     /*
@@ -198,5 +208,7 @@ public class VaisseauAlien extends AbstractMovable {
         other.collidedWith(this);
         
     }
+    
+    
 }
 

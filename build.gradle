@@ -7,6 +7,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.11'
+    id 'org.beryx.jlink' version '2.26.0'
 }
 
 // Les dépôts d'où les dépendances doivent être téléchargées.
@@ -27,4 +28,11 @@ application {
 javafx {
     version = '17.0.2'
     modules = ['javafx.controls', 'javafx.fxml']
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'space-invaders'
+    }
 }
