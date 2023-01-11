@@ -171,7 +171,7 @@ public class MovableFactory3 implements IMovableFactory {
     public IMovable createMur(int x, int y) {
         return new Mur(game, x, y, spriteStore.getSprite("bricks"));
     }
-
+ 
     @Override
     public IMovable createBonus(int x, int y) {
         int nb = random.nextInt(101);

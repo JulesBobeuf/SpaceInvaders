@@ -67,7 +67,9 @@ public final class SpaceInvadersGame {
      * La temporisation contraignant le temps entre deux tirs successifs (en
      * millisecondes).
      */
-    private static final long SHOT_TEMPORIZATION = 500;
+    private static final long SHOT_TEMPORIZATION = 300;
+    
+    private int level;
 
     /**
      * La largeur sur laquelle les objets du jeu peuvent se déplacer (en pixels).
@@ -167,6 +169,7 @@ public final class SpaceInvadersGame {
         this.height = height;
         this.spriteStore = spriteStore;
         this.factory = factory;
+        this.level=1;
     }
 
     /**
@@ -333,7 +336,7 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         if (lastShot + SHOT_TEMPORIZATION < System.currentTimeMillis()) {
-            if (random.nextInt(5) == 3) {
+            if (random.nextInt(4) == 3) {
                 addMovable(factory.createStrongShot(ship.getX() + 10, ship.getY() - 25));
                 lastShot = System.currentTimeMillis();
             } else {
@@ -355,6 +358,22 @@ public final class SpaceInvadersGame {
         score.set(score.get() + 1);
         if (nbRemainingAliens <= 0) {
             controller.gameOver("Tous les aliens sont morts, vous avez gagné !");
+            this.changeFactory();
+        }
+    }
+    
+    public void changeFactory() {
+        level++;
+        switch(level) {
+            case 2:
+                this.setFactory(new MovableFactory2()); 
+                break;
+            case 3:
+                this.setFactory(new MovableFactory3()); 
+                break;
+            default:
+                this.setFactory(new MovableFactory4()); 
+                break;
         }
     }
 
@@ -520,5 +539,12 @@ public final class SpaceInvadersGame {
      */
     public void setTirAlien(IAlienAttaque tirAlien) {
         this.tirAlien = tirAlien;
+    }
+    
+    public void setFactory(IMovableFactory f) {
+        this.factory=f;
+        factory.setSpriteStore(spriteStore);
+        factory.setGame(this);
+        start();
     }
 }
