@@ -29,10 +29,10 @@ public class Tir extends AbstractMovable {
     
     /**
      * Crée une nouvelle instance de Tir.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * @param game Instance de SpaceInvaderGame.
+     * @param xPosition Position de spawn en x.
+     * @param yPosition Position de spawn en y.
+     * @param sprite Le sprite du tir.
      */
     public Tir(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);

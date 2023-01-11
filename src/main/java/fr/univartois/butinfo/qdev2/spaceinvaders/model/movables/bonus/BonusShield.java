@@ -1,7 +1,7 @@
 /**
  * Ce fichier fait partie du projet projet-2022-2023-b-1.
  *
- * (c) 2022 aymeric.jakobowski
+ * (c) 2022 pierre.schreiner
  * Tous droits réservés.
  */
 
@@ -18,39 +18,27 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.V
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 /**
- * Le type BonusPointVie
+ * Le type BonusShield est un bonus qui rend le joueur invulnérable.
  *
- * @author aymeric.jakobowski
+ * @author pierre.schreiner
  *
  * @version 0.1.0
  */
-public class BonusPointVie extends AbstractMovable {
+public class BonusShield extends AbstractMovable {
 
     /**
-<<<<<<< HEAD
-     * L'attribut nbPoints est le nombre de pv qui seront ajoutés au joueur s'il récupère ce bonus.
-=======
-     * L'attribut nbPoints définit le nombre d'hp .
->>>>>>> fix/SuperTurboJavaDoc
-     */
-    private int nbPoints;
-
-    /**
-     * Crée une nouvelle instance de BonusPointVie.
+     * Crée une nouvelle instance de BonusShield.
      * 
-     * @param game Référence à une instance de SpaceInvaderGame.
-     * @param xPosition La position x initiale de l'objet.
-     * @param yPosition La position y initiale de l'objet.
-     * @param sprite Le sprite que le bonus utilise initialement.
-     * @param verticalSpeed La vitesse à laquelle le bonus descend.
-     * @param nbPoints Le nombre d'hp que donne le bonus.
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
      */
-    public BonusPointVie(SpaceInvadersGame game, double xPosition, double yPosition,
-            Sprite sprite, double verticalSpeed, int nbPoints) {
+    public BonusShield(SpaceInvadersGame game, double xPosition, double yPosition,
+            Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(verticalSpeed);
         this.setHorizontalSpeed(0);
-        this.nbPoints = nbPoints;
+        this.setVerticalSpeed(200);
     }
 
     /*
@@ -62,7 +50,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        // Le coeur ne peut toucher que le joueur
+        other.collidedWith(this);
     }
 
     /*
@@ -74,7 +62,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(Tir other) {
-        // Le coeur ne peut toucher que le joueur
+        // ne rien faire
     }
 
     /*
@@ -86,7 +74,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauAlien other) {
-        // Le coeur ne peut toucher que le joueur
+        // ne rien faire
     }
 
     /*
@@ -98,8 +86,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(VaisseauJoueur other) {
-        game.addPlayerLife(this.nbPoints);
-        game.removeMovable(this);
+        // ne rien faire
     }
 
     /*
@@ -109,7 +96,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(TirAlien other) {
-        // Le coeur ne peut toucher que le joueur.
+        // ne rien faire
     }
 
     /*
@@ -119,7 +106,7 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(Mur other) {
-        // Le coeur ne peut toucher que le joueur.
+        // ne rien faire
     }
 
     /*
@@ -129,7 +116,6 @@ public class BonusPointVie extends AbstractMovable {
      */
     @Override
     public void collidedWith(BonusBomb other) {
-        game.removeMovable(this);
-        // si le joueur explose la bombe sur le bonus, bah il perd le bonus. Il fallait mieux jouer!
+        // ne rien faire
     }
 }

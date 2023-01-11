@@ -17,8 +17,14 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs;
  */
 public interface IStateMur {
 
+    /**
+     * @return IStateMur le prochain état du mur après prise de dégat.
+     */
     public IStateMur getNextState();
     
+    /**
+     * @return String le nom du sprite actuel.
+     */
     public String getSpriteName();
     
     

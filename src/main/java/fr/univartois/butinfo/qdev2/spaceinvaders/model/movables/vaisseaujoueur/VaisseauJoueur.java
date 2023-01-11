@@ -12,6 +12,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusShield;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
@@ -26,22 +27,33 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
  */
 public class VaisseauJoueur extends AbstractMovable {
     
-    long timer;
-    public IEtatVaisseau etat;
+    
+    /**
+     * L'attribut etat, qui permet de gérer si le vaisseau est invincible ou non, et d'exécuter sa méthode handle() en fonction.
+     */
+    private IEtatVaisseau etat;
     
     /**
      * Crée une nouvelle instance de VaisseauJoueur.
      * 
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * @param game référence à SpaceInvadersGame
+     * @param xPosition double la position horizontale
+     * @param yPosition double la position verticale
+     * @param sprite le sprite du vaisseau
      */
     public VaisseauJoueur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(0);
         this.etat = new EtatVulnerable(game);
-        this.timer = 0;
+    }
+    
+    /**
+     * Donne l'attribut etat de cette instance de VaisseauJoueur.
+     *
+     * @return L'attribut etat de cette instance de VaisseauJoueur.
+     */
+    public IEtatVaisseau getEtat() {
+        return etat;
     }
 
     /*
@@ -55,14 +67,18 @@ public class VaisseauJoueur extends AbstractMovable {
     public void collidedWith(IMovable other) {
         other.collidedWith(this);
     }
-
-    /**
-     * @param other
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
      */
+    @Override
     public void collidedWith(BonusBomb other) {
         etat.handle();
         etat = etat.nextStateAfterShot();
     }
+
     /*
      * (non-Javadoc)
      *
@@ -115,5 +131,16 @@ public class VaisseauJoueur extends AbstractMovable {
     @Override
     public void collidedWith(Mur other) {
         // impossible
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.BonusShield)
+     */
+    @Override
+    public void collidedWith(BonusShield other) {
+        game.removeMovable(other);
+        etat = etat.nextStateAfterShot();
     }
 }

@@ -25,10 +25,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements.DeplacementAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import fr.univartois.butinfo.qdev2.spaceinvaders.view.SpriteStore;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -41,22 +39,21 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @version 0.1.0
  */
 public final class SpaceInvadersGame {
-    
+
+    /**
+     * L'attribut nbMurs donne le nombre de bombes que le joueur transporte actuellement.
+     */
+    private int nbMurs;
     
     /**
-     * L'attribut countMur...
+     * L'attribut nbBombes donne le nombre de bombes que le joueur transporte actuellement.
      */
-    private int countMur;
+    private int nbBombes;
     
     /**
-     * L'attribut countBomb...
+     * Est ce qu'un bonus peut apparaitre.
      */
-    private int countBomb;
-    
-    /**
-     * tells if there is bonus or not
-     */
-    private boolean bonus;
+    private boolean bonusCanSpawn;
 
     /**
      * La vitesse du vaisseau du joueur lorsqu'il se déplace (en pixels/s).
@@ -141,6 +138,13 @@ public final class SpaceInvadersGame {
      */
     private final AnimationTimer animation = new SpaceInvadersAnimation(this, movableObjects);
 
+
+    /**
+     * L'attribut random pour générer des nombres pseudo-aléatoires.
+     */
+    private Random random = new Random();
+
+
     /**
      * Crée une nouvelle instance de SpaceInvadersGame.
      *
@@ -152,16 +156,6 @@ public final class SpaceInvadersGame {
      *        {@link Sprite} du jeu.
      * @param factory L'instance de {@link IMovableFactory} permettant de créer les objets
      *        du jeu.
-     */
-
-    private Random random = new Random();
-
-    /**
-     * Crée une nouvelle instance de SpaceInvadersGame.
-     * @param width
-     * @param height
-     * @param spriteStore
-     * @param factory
      */
     public SpaceInvadersGame(int width, int height, ISpriteStore spriteStore,
             IMovableFactory factory) {
@@ -182,7 +176,9 @@ public final class SpaceInvadersGame {
     }
     
     /**
-     * @return
+     * Donne la liste des objets movables en jeu.
+     * 
+     * @return La liste des movables.
      */
     public List<IMovable> getMovableObjects() {
         return movableObjects;
@@ -276,9 +272,9 @@ public final class SpaceInvadersGame {
         life.set(3);
         score.set(0);
         nbRemainingAliens = 0;
-        countMur=factory.getNombreMur();
-        countBomb=factory.getNombreBomb();
-        bonus=factory.getBonus();
+        nbMurs=factory.getNombreMur();
+        nbBombes=factory.getNombreBomb();
+        bonusCanSpawn=factory.getBonus();
     }
 
     /**
@@ -304,7 +300,7 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        if (bonus) {
+        if (bonusCanSpawn) {
             addMovable(factory.createBonus(500, 0));
         }
     }
@@ -389,8 +385,8 @@ public final class SpaceInvadersGame {
 
     /**
      * Ajoute nb points de vie au joueur
+     * @param nb le nombre de pv à ajouter
      * 
-     * @param nb
      */
     public void addPlayerLife(int nb) {
         life.set(life.get() + nb);
@@ -443,22 +439,20 @@ public final class SpaceInvadersGame {
     }
 
     /**
-     * Déclenche un tir depuis le vaisseau du joueur.
-     * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
+     * Déclenche un tir depuis le vaisseau d'un alien.
      * 
-     * @param alien
+     * @param alien L'alien qui tire.
      */
     public void fireShotAlien(IMovable alien) {
             addMovable(factory.createShotAlien(alien.getSprite().getWidth()/2+alien.getX(), alien.getY()+35));
     }
 
     /**
-     * @return
+     * @return Le vaisseau joueur.
      */
     public IMovable getShip() {
         return ship;
     }
-
     
     /**
      * Donne l'attribut life de cette instance de SpaceInvadersGame.
@@ -470,7 +464,7 @@ public final class SpaceInvadersGame {
     }
     
     /**
-     * @param alien
+     * @param alien Le vaisseau alien qui doit changer de tir.
      */
     public void changeTirAlien(VaisseauAlien alien) {
         if (tirAlien.tir()) {
@@ -478,48 +472,46 @@ public final class SpaceInvadersGame {
             alien.setAlienAttack(atak);
         }
     }
+    
     /**
-     * @param alien
+     * @param alien Le vaisseau alien qui doit changer de déplacement.
      */
     public void changeDeplacementAlien(VaisseauAlien alien) {
         alien.setDeplacement(deplacementComposite.getDeplacement());
     }
-    
-    /**
-     * @param alien
-     */
+ 
 
     /**
-     * 
+     * Place un mur en face du vaisseau joueur.
      */
     public void placeMur() {
-        if (countMur>0) {
+        if (nbMurs>0) {
             addMovable(factory.createMur(ship.getX(),ship.getY()-100));  
-            countMur--;
+            nbMurs--;
         }
     }
     
     /**
-     * @param mur
+     * @param mur Change le sprite du mur, pour le suivant.
      */
     public void changeMurSprite(Mur mur) {
         mur.setSprite(spriteStore.getSprite(mur.getState().getSpriteName()));
     }
     
     /**
-     * @return
+     * @return Le nombre d'aliens encore vivants
      */
     public int getNbRemainingAliens() {
         return nbRemainingAliens;
     }
     
     /**
-     * 
+     * Jette une bombe en face du joueur
      */
     public void throwBomb() {
-        if (countBomb>0) {
+        if (nbBombes>0) {
             addMovable(factory.createBomb(ship.getX(),ship.getY()-50));  
-            countBomb--;
+            nbBombes--;
         }
     }
 

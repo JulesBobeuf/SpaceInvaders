@@ -22,6 +22,7 @@ public class AlienTireStrategy implements IAlienAttaque {
      * 
      */
     Random random = new Random();
+    
     /*
      * (non-Javadoc)
      *
@@ -30,12 +31,7 @@ public class AlienTireStrategy implements IAlienAttaque {
     @Override
     public boolean tir() {
         int x = random.nextInt(1,500);
-        if (x==69) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return x==69;
     }
     
     /*

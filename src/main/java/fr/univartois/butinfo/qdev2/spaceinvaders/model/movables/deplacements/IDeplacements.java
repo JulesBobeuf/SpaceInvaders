@@ -17,13 +17,13 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements;
 public interface IDeplacements {
 
     /**
-     * @param delta 
+     * @param delta long : le temps depuis le dernier move()
      * @return vitesse horizontale
      */
     double getHorizontalSpeed(long delta);
 
     /**
-     * @param delta 
+     * @param delta long : le temps depuis le dernier move()
      * @return vitesse verticale
      */
     double getVerticalSpeed(long delta);
