@@ -56,18 +56,20 @@ public class EnsembleAliens implements IMovable {
     }
 
     /**
+     * Permet d'ajouter un alien à la liste alien
+     * 
      * @param alien
      * 
-     *        Permet d'ajouter un alien à la liste alien
      */
     public void ajouteAlien(IMovable alien) {
         aliens.add(alien);
     }
 
     /**
+     * Permet de supprimer un alien de la liste alien
+     * 
      * @param alien
      * 
-     *        Permet de supprimer un alien de la liste alien
      */
     public void removeAlien(IMovable alien) {
         aliens.remove(alien);
@@ -212,7 +214,6 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public double getHorizontalSpeed() {
-        // return aliens.get(0).getHorizontalSpeed();
         return aliens.get(0).getHorizontalSpeed();
     }
 
@@ -235,7 +236,6 @@ public class EnsembleAliens implements IMovable {
      */
     @Override
     public double getVerticalSpeed() {
-        // return aliens.get(0).getVerticalSpeed();
         return aliens.get(0).getVerticalSpeed();
     }
 
@@ -249,11 +249,12 @@ public class EnsembleAliens implements IMovable {
         boolean inverse = false;
         for (IMovable alien : aliens) {
             if (!(alien.move(timeDelta))) {
-                if (alien.getX() + alien.getWidth() == game.getRightLimit()
-                    || alien.getX() + alien.getWidth() == game.getLeftLimit())
-                    inverse = true;
+                inverse = true;
+                System.out.println(inverse);
+                break;
             }
         }
+        
         if (inverse) {
             setHorizontalSpeed(getHorizontalSpeed() * -1);
             return false;
