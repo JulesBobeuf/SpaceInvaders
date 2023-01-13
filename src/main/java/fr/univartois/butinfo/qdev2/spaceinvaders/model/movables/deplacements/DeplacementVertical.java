@@ -5,7 +5,7 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.deplacements;
 
 /**
  * Le type DeplacementVertical
@@ -15,9 +15,21 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
  * @version 0.1.0
  */
 public class DeplacementVertical implements IDeplacements {
+    
+    /**
+     * L'attribut temps qui compte le temps entre chaque changement de vitesse.
+     */
     private long temps = 0;
-    private double nb = 10;
-    boolean depVert = true;
+    
+    /**
+     * L'attribut vitesse donne la vitesse verticale.
+     */
+    private double vitesse = 10;
+    
+    /**
+     * L'attribut isFast qui donne si le vaisseau se déplace vite ou non (pour alterner).
+     */
+    boolean isFast = true;
     
     /*
      * (non-Javadoc)
@@ -38,15 +50,15 @@ public class DeplacementVertical implements IDeplacements {
     public double getVerticalSpeed(long delta) {
         temps += delta;
         if (temps >= 1_000) {
-            if (depVert) {
-                nb = 10;
+            if (isFast) {
+                vitesse = 10;
             } else {
-                nb = 45;
+                vitesse = 45;
             }
-            depVert = !depVert;
+            isFast = !isFast;
             temps = 0;
         }
-        return nb;
+        return vitesse;
     }
  
 }

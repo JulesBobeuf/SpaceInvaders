@@ -16,11 +16,13 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Mur;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Tir;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.TirAlien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauJoueur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusShield;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -208,6 +210,14 @@ public interface IMovable {
     
     /**
      * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link TirAlien}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(TirAlien other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
      * {@link VaisseauAlien}.
      *
      * @param other L'objet avec lequel cet objet est entré en collision.
@@ -224,20 +234,30 @@ public interface IMovable {
     
     /**
      * Informe cet objet qu'il est entré en collision avec une autre instance de
-     * {@link Tir}.
+     * {@link Mur}.
      *
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
-    void collidedWith(TirAlien other);
-
-    /**
-     * Donne l'objet réel qui implémente cette interface.
-     *
-     * @return L'objet réel.
-     */
-    
     void collidedWith(Mur other);
-
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link BonusBomb}.
+     *
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    void collidedWith(BonusBomb other);
+    
+    /**
+     * Informe cet objet qu'il est entré en collision avec une autre instance de
+     * {@link BonusShield}.
+     * 
+     * @param other L'objet avec lequel cet objet est entré en collision.
+     */
+    default void collidedWith(BonusShield other) {
+        // La méthode par défaut ne fait rien : seul le vaisseau joueur devrait toucher ce bonus.
+    }
+    
     /**
      * Donne l'objet réel qui implémente cette interface.
      *

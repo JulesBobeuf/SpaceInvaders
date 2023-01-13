@@ -5,7 +5,7 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 /**
  * Le type AlienAttaque
@@ -17,9 +17,14 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 public interface IAlienAttaque {
     
     /**
-     * 
+     * @return Si l'alien doit tirer ou non.
      */
     boolean tir();
+
+    /**
+     * @return IAlienAttaque
+     */
+    IAlienAttaque newStrategy();
     
 }
 
