@@ -137,6 +137,7 @@ public final class SpaceInvadersController implements ISpaceInvadersController {
     public void prepare() {
         createBackground();
         addKeyListeners();
+        message.setText("Press any key to start the game \n From level 3, you can place walls using the down arrow \n You can also throw bombs using the up arrow. \n You must shoot the bomb for it to explode.");
     }
 
     /**

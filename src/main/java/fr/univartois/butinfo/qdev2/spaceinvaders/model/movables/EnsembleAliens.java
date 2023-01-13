@@ -250,7 +250,6 @@ public class EnsembleAliens implements IMovable {
         for (IMovable alien : aliens) {
             if (!(alien.move(timeDelta))) {
                 inverse = true;
-                System.out.println(inverse);
                 break;
             }
         }

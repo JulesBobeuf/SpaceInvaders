@@ -284,7 +284,7 @@ public final class SpaceInvadersGame {
     /**
      * Crée les différents objets présents au début de la partie et pouvant se déplacer.
      */
-    private void createMovables() {
+  /*private void createMovables() {
         // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
         
@@ -299,13 +299,31 @@ public final class SpaceInvadersGame {
             for (int j = 0; j <= 5; j++) {
                 IMovable alien = factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j);
 
-                controller.addMovable(alien);                
+                addMovable(alien);                
                 ensembleAliens.ajouteAlien(alien);
 
                 nbRemainingAliens++;
             }
         movableObjects.add(ensembleAliens);
+    } */   
+    
+  
+    private void createMovables() {
+        // On commence par enlever tous les éléments mobiles encore présents.
+        clearAllMovables();
+
+        ship = factory.createShip(width / 2, getBottomLimit());
+        TrucResistantDecorateur shipResistant = new TrucResistantDecorateur(ship, false);
+        shipResistant.getVieProperty().bindBidirectional(life);
+        ship = shipResistant;
+        addMovable(ship);
+        for (int i = 1; i <= 10; i++)
+            for (int j = 0; j <= 5; j++) {
+                addMovable(factory.createAlien(getLeftLimit() + 55 * i, getTopLimit() + 35 * j));
+                nbRemainingAliens++;
+            }
     }
+
 
     /**
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.

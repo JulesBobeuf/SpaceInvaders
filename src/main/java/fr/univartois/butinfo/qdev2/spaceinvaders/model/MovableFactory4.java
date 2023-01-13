@@ -226,8 +226,7 @@ public class MovableFactory4 implements IMovableFactory {
      */
     @Override
     public EnsembleAliens ensembleAlien() {
-        // TODO Auto-generated method stub.
-        return null;
+        return new EnsembleAliens(game);
     }
 
 }

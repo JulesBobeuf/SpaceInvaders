@@ -84,7 +84,7 @@ public class Mur extends AbstractMovable {
     @Override
     public void collidedWith(VaisseauAlien other) {
         this.losesLife();
-        game.removeMovable(other);
+        game.alienIsDead(other);
     }
 
     /*

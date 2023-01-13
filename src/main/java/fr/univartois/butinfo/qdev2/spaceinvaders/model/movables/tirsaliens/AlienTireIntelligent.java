@@ -36,7 +36,6 @@ public class AlienTireIntelligent implements IAlienAttaque {
     public boolean tir() {
         return game.getShip().getX()==500;
     }
-    
     /*
      * (non-Javadoc)
      *
@@ -44,8 +43,10 @@ public class AlienTireIntelligent implements IAlienAttaque {
      */
     @Override
     public IAlienAttaque newStrategy() {
-        //cette méthode ne sera jamais appelé.
+        // TODO Auto-generated method stub.
         return null;
     }
+    
+
 }
 

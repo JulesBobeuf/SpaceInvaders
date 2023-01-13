@@ -84,7 +84,7 @@ public final class SpaceInvaders extends Application {
      * Exécute l'application JavaFX du jeu Space-Invaders.
      *
      * @param args Les arguments de la ligne de commande (dont on ne tient pas compte).
-     *
+     *   
      * @see #launch(String...)
      */
     public static void main(String[] args) {

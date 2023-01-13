@@ -15,6 +15,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs.Mur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlienComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -40,6 +41,8 @@ public class VaisseauAlien extends AbstractMovable {
      */
     private IAlienAttaque attack;
     
+    private IAlienAttaque changeTir;
+    
     /**
      * 
      */
@@ -60,6 +63,7 @@ public class VaisseauAlien extends AbstractMovable {
         this.setVerticalSpeed(deplacement.getVerticalSpeed(25));
         this.attack=attack;
         this.changedStrategyAttack=false;
+        this.changeTir = new TirAlienComposite(game);
     }
 
     /*
@@ -76,7 +80,7 @@ public class VaisseauAlien extends AbstractMovable {
             game.fireShotAlien(this);
         }
         if ((game.getNbRemainingAliens()<10) && (changedStrategyAttack==false)) {
-            changeTirAlien(this);
+            this.changeTirAlien();
             changedStrategyAttack=true;
         }
         if (!x) {
@@ -85,16 +89,16 @@ public class VaisseauAlien extends AbstractMovable {
                 return false;
             }
             if (this.getX()==game.getLeftLimit()) {
-                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
+                setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(facteur));
                 facteur += 0.02;
-                changeTirAlien(this);
+                this.changeTirAlien();
                 game.changeDeplacementAlien(this);
                 return false;
             }
             if (this.getX()+this.getWidth()==game.getRightLimit()) {
                 setHorizontalSpeed(deplacement.getHorizontalSpeed(delta)*(-facteur));
                 facteur += 0.02;
-                changeTirAlien(this);
+                this.changeTirAlien();
                 game.changeDeplacementAlien(this);
                 return false;
             }            
@@ -105,10 +109,10 @@ public class VaisseauAlien extends AbstractMovable {
     /**
      * @param alien Le vaisseau alien qui doit changer de tir.
      */
-    public void changeTirAlien(VaisseauAlien alien) {
+    public void changeTirAlien() {
         if (attack.tir()) {
-            IAlienAttaque atak = attack.newStrategy();
-            alien.setAlienAttack(atak);
+            IAlienAttaque atak = changeTir.newStrategy();
+            this.setAlienAttack(atak);
         }
     }
     
@@ -150,7 +154,6 @@ public class VaisseauAlien extends AbstractMovable {
     @Override
     public void collidedWith(VaisseauJoueur other) {
         game.playerIsDead();
-        
     }
     
     /**
@@ -204,7 +207,7 @@ public class VaisseauAlien extends AbstractMovable {
      */
     @Override
     public void collidedWith(BonusBomb other) {
-        other.collidedWith(this);
+        game.alienIsDead(this);
         
     }
     
