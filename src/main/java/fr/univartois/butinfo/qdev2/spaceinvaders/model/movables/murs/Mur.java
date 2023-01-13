@@ -5,10 +5,16 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.VaisseauAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirs.Tir;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.TirAlien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.vaisseaujoueur.VaisseauJoueur;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -24,21 +30,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Mur extends AbstractMovable {
     
     /**
-     * L'attribut vie...
+     * La propriété vie, qui donne la vie du mur.
      */
     private IntegerProperty vie = new SimpleIntegerProperty();
     
     /**
-     * L'attribut state...
+     * L'attribut state qui définit l'état actuel du mur.
      */
     private IStateMur state = new MurStateNormal();
 
     /**
      * Crée une nouvelle instance de Mur.
-     * @param game
-     * @param xPosition
-     * @param yPosition
-     * @param sprite
+     * 
+     * @param game Référence à un SpaceInvadersGame
+     * @param xPosition La position horizontale de spawn.
+     * @param yPosition La position verticale de spawn.
+     * @param sprite Le sprite utilisé par le bonus.
      */
     public Mur(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
@@ -77,7 +84,7 @@ public class Mur extends AbstractMovable {
     @Override
     public void collidedWith(VaisseauAlien other) {
         this.losesLife();
-        game.removeMovable(other);
+        game.alienIsDead(other);
     }
 
     /*
@@ -91,14 +98,14 @@ public class Mur extends AbstractMovable {
     }
     
     /**
-     * @param state
+     * @param state le nouvel état du mur.
      */
     public void setState(IStateMur state) {
         this.state=state;
     }
     
     /**
-     * @return
+     * @return l'état actuel du mur.
      */
     public IStateMur getState() {
         return state;
@@ -138,6 +145,17 @@ public class Mur extends AbstractMovable {
     @Override
     public void collidedWith(Mur other) {
         //impossible? ig
+        
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable#collidedWith(fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusBomb)
+     */
+    @Override
+    public void collidedWith(BonusBomb other) {
+        this.losesLife();
         
     }
 

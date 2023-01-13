@@ -5,8 +5,7 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
-
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens;
 
 /**
  * Le type AlienTirePasStrategy
@@ -27,6 +26,16 @@ public class AlienTirePasStrategy implements IAlienAttaque {
         return false;
     }
     
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.tirsaliens.IAlienAttaque#newStrategy()
+     */
+    @Override
+    public IAlienAttaque newStrategy() {
+        //cette méthode ne sera jamais appelé.
+        return null;
+    }
 
 
 }

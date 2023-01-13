@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.EnsembleAliens;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -87,32 +88,55 @@ public interface IMovableFactory {
     IMovable createShotAlien(int x, int y);
     
     /**
-     * @param x
-     * @param y
-     * @return
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     * 
+     * @return Le tir qui a été créé.
      */
     IMovable createStrongShot(int x, int y);
     
     /**
-     * @param x
-     * @param y
-     * @param sprite
-     * @param vitesse
-     * @return
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     * 
+     * @return Le bonus qui a été créé.
      */
     IMovable createBonus(int x, int y);
 
     /**
-     * @param x
-     * @param y
-     * @return
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     * 
+     * @return Le mur qui a été créé.
      */
     IMovable createMur(int x, int y);
     
     /**
-     * @param x
-     * @param y
-     * @return
+     * @return ensemble d'aliens
+     */
+    EnsembleAliens ensembleAlien();
+    
+    /**
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     * 
+     * @return La bombe qui a été créée.
      */
     IMovable createBomb(int x, int y);
+    
+    
+    /**
+     * @return nb Mur, getter
+     */
+    int getNombreMur();
+    
+    /**
+     * @return nbBomb, getter
+     */
+    int getNombreBomb();
+    
+    /**
+     * @return bonus
+     */
+    boolean getBonus();
 }

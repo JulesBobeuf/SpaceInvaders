@@ -16,8 +16,10 @@ Vous pouvez retrouver ci-dessous les liens vers les sujets de TP vous guidant
 dans le développement de votre projet.
 
 - [Lancement du projet](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP03)
-- [Des patrons de conception dans le Space-Invaders (1)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP04)
-- [Des patrons de conception dans le Space-Invaders (2)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP05)
+- [Des patrons de conception dans le *Space-Invaders* (1)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP04)
+- [Des patrons de conception dans le *Space-Invaders* (2)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP05)
+- [Des patrons de conception dans le *Space-Invaders* (3)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP06)
+- [Finalisation du projet *Space-Invaders*](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP07)
 
 ## Aperçu
 

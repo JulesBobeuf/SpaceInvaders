@@ -5,17 +5,23 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
-
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.murs;
 
 /**
- * Le type MurStateBroken
+ * Le type MurStateCracked
  *
  * @author Jules
  *
  * @version 0.1.0
  */
-public class MurStateBroken implements IStateMur {
+/**
+ * Ce fichier fait partie du projet projet-2022-2023-b-1.
+ *
+ * (c) 2022 Jules
+ * Tous droits réservés.
+ */
+
+public class MurStateCracked implements IStateMur {
 
     /*
      * (non-Javadoc)
@@ -24,7 +30,7 @@ public class MurStateBroken implements IStateMur {
      */
     @Override
     public IStateMur getNextState() {
-        return null;
+        return new MurStateEmpty();
     }
 
     /*
@@ -34,8 +40,10 @@ public class MurStateBroken implements IStateMur {
      */
     @Override
     public String getSpriteName() {
-        return null;
+        return "cracked-bricks";
     }
 
 }
+
+
 
