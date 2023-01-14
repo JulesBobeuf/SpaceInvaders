@@ -90,7 +90,7 @@ public class BonusBomb extends AbstractMovable {
             game.removeMovable(this);
         }
         else {
-            game.alienIsDead(other );
+            game.alienIsDead(other);
         }
     }
     /**
