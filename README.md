@@ -21,16 +21,11 @@ dans le développement de votre projet.
 - [Des patrons de conception dans le *Space-Invaders* (3)](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP06)
 - [Finalisation du projet *Space-Invaders*](https://gitlab.univ-artois.fr/enseignements-rwa/modules/but-2/q-dev-2/tp/-/tree/main/TP07)
 
-## Aperçu
+## Mise en garde
 
-Le diagramme de classes ci-dessous vous donne un aperçu des fonctionnalités
-disponibles dans ce projet.
-N'hésitez pas à le mettre à jour dans la version dont vous disposez dans votre
-propre projet, afin de permettre à votre enseignant de TP de vous faire des
-retours sur vos choix de conception.
-Il est en fait au format textuel (comme vous pouvez vous en rendre compte si
-vous consulter le texte brut de ce document) et rendu automatiquement par
-*GitLab*, ce qui devrez vous faciliter la tâche.
+Il y a des bugs en lien avec la classe `EnsembleAliens`, le déplacement en escadrille n'est donc pas implémenté dans le jeu. Néanmoins, la méthode permettant de l'implémenter se retrouve en commentaire. Le jeu est donc jouable !
+
+## Aperçu
 
 ```plantuml
 @startuml
