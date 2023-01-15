@@ -5,6 +5,7 @@
 # Fichiers de compilation Gradle.
 build
 .gradle
+gradle
 
 # Fichiers d'Eclipse.
 bin
@@ -14,3 +15,4 @@ bin
 
 # Divers.
 .DS_Store
+.idea
