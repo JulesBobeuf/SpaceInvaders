@@ -1,6 +1,8 @@
-# SpaceInvaders
-
-**SpaceInvaders** is a classic arcade-style game developed using Java, JavaFX, and Gradle. This project was created as a university assignment to practice object-oriented programming and game development concepts.
+<div align="center">
+  <h1 align="center">Space Invaders</h1>
+  <img src="assets/readme-space-invaders.png" alt="Space Invaders Screenshot" width="600">  <p align="center">
+    Our Space Invaders clone, built with Java & JavaFX
+</div>
 
 ## About The Project
 
