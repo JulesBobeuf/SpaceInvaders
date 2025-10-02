@@ -83,3 +83,7 @@ bobeuf.jules@gmail.com
 Aymeric Jakobowski  
 [LinkedIn](https://www.linkedin.com/in/aymeric-jakobowski/)  
 [GitHub](https://github.com/AymericJak)
+
+Pierre Schreiner
+
+Thomas Santoro
